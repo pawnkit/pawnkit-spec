@@ -1,0 +1,10 @@
+{
+  "schemaVersion": 1,
+  "extends": ["pawnkit:recommended"],
+  "profile": "openmp",
+  "rules": {
+    "no-goto": { "severity": "warning" },
+    "tag-mismatch": { "severity": "error", "options": { "allowExplicitCast": true } }
+  },
+  "ignore": ["vendor/**", "*.generated.pwn"]
+}

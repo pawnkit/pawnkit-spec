@@ -1,0 +1,12 @@
+{
+  "id": "example-legacy-fork",
+  "schemaVersion": 1,
+  "version": "0.1.0",
+  "kind": "policy",
+  "basedOn": "samp-037",
+  "displayName": "Example third-party legacy fork policy",
+  "description": "Example of a policy overlay a third-party fork of PawnKit tooling might ship; illustrates that profiles/*.json is not a closed set beyond the five shipped in this repository.",
+  "dialectFlags": {
+    "tagMismatchSeverity": "off"
+  }
+}

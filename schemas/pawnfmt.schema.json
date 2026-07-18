@@ -1,0 +1,33 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://schemas.pawnkit.dev/pawnfmt/v1/schema.json",
+  "title": "pawnfmt standalone configuration",
+  "description": "Standalone .pawnfmt.json shape. Deliberately small: pawnfmt stays lossless-syntax-driven (principle 3.5), not semantic. See rfcs/0007-tool-configuration.md.",
+  "type": "object",
+  "required": ["schemaVersion"],
+  "properties": {
+    "schemaVersion": { "type": "integer", "const": 1 },
+    "indent": {
+      "type": "object",
+      "x-pawnkit-merge": "replace",
+      "properties": {
+        "style": { "type": "string", "enum": ["space", "tab"] },
+        "size": { "type": "integer", "minimum": 1, "maximum": 16 }
+      },
+      "required": ["style", "size"],
+      "additionalProperties": false
+    },
+    "lineWidth": { "type": "integer", "minimum": 20, "maximum": 400, "x-pawnkit-merge": "replace" },
+    "braceStyle": {
+      "type": "string",
+      "enum": ["same-line", "next-line"],
+      "x-pawnkit-merge": "replace"
+    },
+    "ignore": {
+      "type": "array",
+      "items": { "type": "string" },
+      "x-pawnkit-merge": "concat"
+    }
+  },
+  "additionalProperties": false
+}

@@ -1,0 +1,76 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    name: validate (go ${{ matrix.go-version }})
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        go-version: ["1.26", "stable"]
+    defaults:
+      run:
+        working-directory: tools/validate
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-go@v5
+        with:
+          go-version: ${{ matrix.go-version }}
+
+      - name: Build
+        run: go build ./...
+
+      - name: Vet
+        run: go vet ./...
+
+      - name: gofmt check
+        run: |
+          fmt_out="$(gofmt -l .)"
+          if [ -n "$fmt_out" ]; then
+            echo "The following files are not gofmt'd:"
+            echo "$fmt_out"
+            exit 1
+          fi
+
+      - name: go mod tidy check
+        run: |
+          go mod tidy
+          git diff --exit-code -- go.mod go.sum
+
+      - name: Validate schemas, profiles, examples, conformance docs, and RFC front matter
+        run: go run . ../../schemas ../../profiles ../../examples ../../conformance ../../rfcs
+
+  markdown-lint:
+    name: markdown link/format check
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Check for obviously broken relative links
+        run: |
+          set -euo pipefail
+          status=0
+          while IFS= read -r -d '' file; do
+            dir=$(dirname "$file")
+            while read -r link; do
+              [ -z "$link" ] && continue
+              case "$link" in
+                http*|/*) continue ;;
+              esac
+              if [ ! -f "$dir/$link" ]; then
+                echo "broken relative link in $file: $link"
+                status=1
+              fi
+            done < <(grep -oE '\]\(([^:)]+\.md)(#[^)]*)?\)' "$file" | sed -E 's/^\]\(([^)#]+).*/\1/')
+          done < <(find . -name '*.md' -not -path './.git/*' -print0)
+          exit "$status"

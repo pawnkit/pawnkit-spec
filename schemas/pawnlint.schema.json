@@ -1,0 +1,44 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://schemas.pawnkit.dev/pawnlint/v1/schema.json",
+  "title": "pawnlint standalone configuration",
+  "description": "Standalone pawnlint.json/.pawnlintrc shape. See rfcs/0007-tool-configuration.md for precedence/merge rules against pawn.json's pawnkit.tool.pawnlint.",
+  "type": "object",
+  "required": ["schemaVersion"],
+  "properties": {
+    "schemaVersion": { "type": "integer", "const": 1 },
+    "extends": {
+      "type": "array",
+      "items": { "type": "string" },
+      "x-pawnkit-merge": "concat",
+      "description": "Named or path-based rule-set references."
+    },
+    "profile": {
+      "type": "string",
+      "pattern": "^[a-z][a-z0-9-]*$",
+      "x-pawnkit-merge": "replace",
+      "description": "RFC 0001 profile id override for which dialect rules assume."
+    },
+    "rules": {
+      "type": "object",
+      "x-pawnkit-merge": "concat",
+      "description": "Keyed by rule id; individual keys merge (later config wins per key), per rfcs/0007-tool-configuration.md.",
+      "additionalProperties": {
+        "type": "object",
+        "required": ["severity"],
+        "properties": {
+          "severity": { "type": "string", "enum": ["error", "warning", "off"] },
+          "options": { "type": "object" }
+        },
+        "additionalProperties": false
+      }
+    },
+    "ignore": {
+      "type": "array",
+      "items": { "type": "string" },
+      "x-pawnkit-merge": "concat",
+      "description": "Glob patterns excluded from linting."
+    }
+  },
+  "additionalProperties": false
+}

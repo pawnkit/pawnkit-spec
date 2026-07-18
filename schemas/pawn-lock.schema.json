@@ -1,0 +1,85 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://schemas.pawnkit.dev/pawn-lock/v1/schema.json",
+  "title": "Pawn lockfile (pawn.lock)",
+  "description": "Resolved dependency graph, checksums, and toolchain versions. New PawnKit format (sampctl does not document a committed lockfile). See rfcs/0003-lockfile.md.",
+  "type": "object",
+  "required": ["schemaVersion", "packages"],
+  "properties": {
+    "schemaVersion": { "type": "integer", "const": 1 },
+    "generatedAt": { "type": "string", "format": "date-time" },
+    "manifestChecksum": { "$ref": "#/$defs/checksum" },
+    "compiler": {
+      "type": "object",
+      "required": ["vendor", "version"],
+      "properties": {
+        "vendor": { "type": "string", "enum": ["pawn-lang", "openmultiplayer", "original-pawn"] },
+        "version": { "type": "string" },
+        "checksum": { "$ref": "#/$defs/checksum" }
+      },
+      "additionalProperties": false
+    },
+    "runtimeProfile": {
+      "type": "string",
+      "pattern": "^[a-z][a-z0-9-]*$",
+      "description": "RFC 0001 profile id describing the runtime this lockfile assumes."
+    },
+    "packages": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/package" }
+    }
+  },
+  "additionalProperties": false,
+  "$defs": {
+    "checksum": {
+      "type": "string",
+      "pattern": "^sha256:[0-9a-f]{64}$"
+    },
+    "package": {
+      "type": "object",
+      "required": ["name", "resolved", "commit", "source", "kind"],
+      "properties": {
+        "name": { "type": "string", "pattern": "^[A-Za-z0-9_.-]+/[A-Za-z0-9_.-]+$" },
+        "resolved": { "type": "string" },
+        "version": { "type": "string" },
+        "commit": { "type": "string", "pattern": "^[0-9a-f]{7,40}$" },
+        "source": {
+          "type": "object",
+          "required": ["type", "url"],
+          "properties": {
+            "type": { "type": "string", "enum": ["git", "archive", "local"] },
+            "url": { "type": "string" }
+          },
+          "additionalProperties": false
+        },
+        "checksum": { "$ref": "#/$defs/checksum" },
+        "kind": {
+          "type": "string",
+          "enum": ["dependency", "dev-dependency", "plugin", "component", "includes", "filterscript"]
+        },
+        "platformArtifacts": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["platform"],
+            "properties": {
+              "platform": { "type": "string", "examples": ["linux-x86_64", "windows-x86_64", "darwin-arm64"] },
+              "url": { "type": "string" },
+              "path": { "type": "string" },
+              "checksum": { "$ref": "#/$defs/checksum" }
+            },
+            "additionalProperties": false
+          }
+        },
+        "dependencies": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "Names of other packages[] entries this one depends on (edges in the resolved dependency graph)."
+        }
+      },
+      "additionalProperties": false,
+      "if": { "properties": { "source": { "properties": { "type": { "const": "archive" } } } } },
+      "then": { "required": ["name", "resolved", "commit", "source", "kind", "checksum"] }
+    }
+  }
+}

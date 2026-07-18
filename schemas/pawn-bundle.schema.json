@@ -1,0 +1,114 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://schemas.pawnkit.dev/pawn-bundle/v1/schema.json",
+  "title": "Pawn server bundle manifest",
+  "description": "Bundle layout, checksums, runtime requirements, configuration, services, migrations, persistence, health, and update metadata. See rfcs/0006-server-bundle.md.",
+  "type": "object",
+  "required": ["schemaVersion", "name", "version", "runtimeProfile", "server", "entryPoints", "checksum"],
+  "properties": {
+    "schemaVersion": { "type": "integer", "const": 1 },
+    "name": { "type": "string", "minLength": 1 },
+    "version": { "type": "string", "pattern": "^\\d+\\.\\d+\\.\\d+" },
+    "runtimeProfile": { "type": "string", "enum": ["samp-037", "openmp"] },
+    "server": {
+      "type": "object",
+      "required": ["binary", "version"],
+      "properties": {
+        "version": { "type": "string" },
+        "binary": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "object",
+            "required": ["path", "checksum", "platform"],
+            "properties": {
+              "path": { "type": "string" },
+              "checksum": { "$ref": "#/$defs/checksum" },
+              "platform": { "type": "string", "examples": ["linux-x86_64", "windows-x86_64", "darwin-arm64"] }
+            },
+            "additionalProperties": false
+          }
+        }
+      },
+      "additionalProperties": false
+    },
+    "entryPoints": {
+      "type": "object",
+      "required": ["gamemode"],
+      "properties": {
+        "gamemode": { "type": "string" },
+        "filterscripts": { "type": "array", "items": { "type": "string" } }
+      },
+      "additionalProperties": false
+    },
+    "plugins": { "type": "array", "items": { "$ref": "#/$defs/artifact" } },
+    "components": { "type": "array", "items": { "$ref": "#/$defs/artifact" } },
+    "configuration": {
+      "type": "object",
+      "required": ["path"],
+      "properties": {
+        "path": { "type": "string" },
+        "schema": { "type": "string", "format": "uri", "description": "Fixed reference to openmp-config schema $id for openmp targets; omitted for samp-037 targets using server.cfg." }
+      },
+      "additionalProperties": false
+    },
+    "services": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["name", "kind", "required"],
+        "properties": {
+          "name": { "type": "string" },
+          "kind": { "type": "string" },
+          "required": { "type": "boolean" }
+        },
+        "additionalProperties": false
+      }
+    },
+    "migrations": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "description"],
+        "properties": {
+          "id": { "type": "string" },
+          "description": { "type": "string" },
+          "appliesToVersion": { "type": "string" }
+        },
+        "additionalProperties": false
+      }
+    },
+    "persistence": {
+      "type": "object",
+      "properties": {
+        "paths": { "type": "array", "items": { "type": "string" } }
+      },
+      "additionalProperties": false
+    },
+    "health": {
+      "type": "object",
+      "properties": {
+        "checkCommand": { "type": "string" },
+        "checkPort": { "type": "integer" },
+        "timeout": { "type": "number", "description": "Seconds." }
+      },
+      "additionalProperties": false
+    },
+    "checksum": { "$ref": "#/$defs/checksum" }
+  },
+  "additionalProperties": false,
+  "$defs": {
+    "checksum": { "type": "string", "pattern": "^sha256:[0-9a-f]{64}$" },
+    "artifact": {
+      "type": "object",
+      "required": ["name", "path", "checksum", "platform"],
+      "properties": {
+        "name": { "type": "string" },
+        "path": { "type": "string" },
+        "checksum": { "$ref": "#/$defs/checksum" },
+        "platform": { "type": "string" }
+      },
+      "additionalProperties": false
+    }
+  }
+}

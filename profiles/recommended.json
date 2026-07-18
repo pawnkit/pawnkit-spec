@@ -1,0 +1,17 @@
+{
+  "id": "recommended",
+  "schemaVersion": 1,
+  "version": "0.1.0",
+  "kind": "policy",
+  "basedOn": "openmp",
+  "displayName": "Recommended modern practice",
+  "description": "Policy overlay on top of the openmp source profile: warns on valid-but-unsafe and valid-legacy patterns (see language/implementation-defined.md's five-way classification) without rejecting anything the openmp profile accepts. Intended default for actively maintained projects.",
+  "dialectFlags": {
+    "tagMismatchSeverity": "warning",
+    "legacyIdiomSeverity": "warning",
+    "unsafeIdiomSeverity": "warning"
+  },
+  "references": [
+    { "url": "https://open.mp/docs", "note": "General basis for what counts as 'modern' omp-stdlib practice; specific rule content is owned by pawnlint, not this profile." }
+  ]
+}

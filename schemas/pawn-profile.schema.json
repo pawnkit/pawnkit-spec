@@ -1,0 +1,92 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://schemas.pawnkit.dev/pawn-profile/v1/schema.json",
+  "title": "PawnKit target profile",
+  "description": "Machine-readable Pawn language/runtime target profile. See rfcs/0001-target-profiles.md.",
+  "type": "object",
+  "required": ["id", "schemaVersion", "version", "kind", "displayName", "description"],
+  "properties": {
+    "id": {
+      "type": "string",
+      "pattern": "^[a-z][a-z0-9-]*$",
+      "description": "Stable, unique, lowercase-kebab-case profile identifier, e.g. \"openmp\"."
+    },
+    "schemaVersion": {
+      "type": "integer",
+      "const": 1,
+      "description": "Major version of this schema the document conforms to."
+    },
+    "version": {
+      "type": "string",
+      "pattern": "^\\d+\\.\\d+\\.\\d+$",
+      "description": "Semantic version of this profile document's own content, independent of schemaVersion."
+    },
+    "kind": {
+      "type": "string",
+      "enum": ["source", "runtime", "policy"],
+      "description": "source: accepted syntax/semantics. runtime: AMX/host API behavior. policy: an overlay narrowing a source profile (must set basedOn)."
+    },
+    "basedOn": {
+      "type": "string",
+      "pattern": "^[a-z][a-z0-9-]*$",
+      "description": "Required when kind is \"policy\": the profile id this one overlays."
+    },
+    "displayName": { "type": "string", "minLength": 1 },
+    "description": { "type": "string", "minLength": 1 },
+    "compiler": {
+      "type": "object",
+      "description": "Compiler lineage facts. Present for source/runtime kinds; omitted for policy overlays (inherited from basedOn).",
+      "required": ["lineage", "vendor"],
+      "properties": {
+        "lineage": { "type": "string", "minLength": 1, "examples": ["pawn-3.2.3664"] },
+        "vendor": { "type": "string", "enum": ["pawn-lang", "openmultiplayer", "original-pawn"] },
+        "minVersion": { "type": "string" },
+        "maxVersion": { "type": "string" },
+        "notes": { "type": "string" }
+      },
+      "additionalProperties": false
+    },
+    "dialectFlags": {
+      "type": "object",
+      "description": "Named dialect facts this profile fixes. Flag set is defined per-profile, not enumerated by this schema; values must be scalars (string, number, boolean) or null (meaning \"unconfirmed, see language/implementation-defined.md\").",
+      "additionalProperties": {
+        "type": ["string", "number", "boolean", "null"]
+      }
+    },
+    "runtime": {
+      "type": "object",
+      "description": "Runtime/AMX facts for runtime-kind profiles.",
+      "properties": {
+        "cellSizeBits": { "type": "integer", "enum": [32] },
+        "server": { "type": "string" },
+        "serverVersion": { "type": "string" }
+      },
+      "additionalProperties": true
+    },
+    "sourceProfile": {
+      "type": "string",
+      "pattern": "^[a-z][a-z0-9-]*$",
+      "description": "For a runtime-kind profile that pairs with a specific default source profile id."
+    },
+    "references": {
+      "type": "array",
+      "description": "Primary sources this profile's facts were derived from.",
+      "items": {
+        "type": "object",
+        "required": ["url"],
+        "properties": {
+          "url": { "type": "string", "format": "uri" },
+          "note": { "type": "string" }
+        },
+        "additionalProperties": false
+      }
+    }
+  },
+  "allOf": [
+    {
+      "if": { "properties": { "kind": { "const": "policy" } }, "required": ["kind"] },
+      "then": { "required": ["basedOn"] }
+    }
+  ],
+  "additionalProperties": false
+}

@@ -1,0 +1,25 @@
+{
+  "id": "samp-037",
+  "schemaVersion": 1,
+  "version": "0.1.0",
+  "kind": "source",
+  "displayName": "SA-MP 0.3.7 (pawn-lang/compiler)",
+  "description": "The dialect accepted by pawn-lang/compiler-based toolchains bundled with SA-MP 0.3.7 server releases: Pawn 3.2.3664 lineage plus community bug fixes and additions.",
+  "compiler": {
+    "lineage": "pawn-3.2.3664",
+    "vendor": "pawn-lang",
+    "notes": "Community-maintained fork with bug fixes and new features over the original compiler; see pawn-lang/compiler readme for #pragma compat guidance when migrating from the original compiler."
+  },
+  "dialectFlags": {
+    "automaticIncludeGuards": true,
+    "tagMismatchIsError": false,
+    "tagMismatchNamesInvolvedTags": true,
+    "pragmaCompatSupported": true,
+    "binaryLiteralsSupported": true,
+    "blockScopedLocals": null
+  },
+  "references": [
+    { "url": "https://github.com/pawn-lang/compiler", "note": "Primary source for pawn-lang/compiler behavior claims." },
+    { "url": "https://github.com/pawn-lang/compiler/blob/master/readme.md", "note": "#pragma compat and improved-diagnostics claims." }
+  ]
+}

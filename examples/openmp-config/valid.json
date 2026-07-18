@@ -1,0 +1,41 @@
+{
+  "name": "Example open.mp server",
+  "language": "en",
+  "announce": true,
+  "website": "https://example.test",
+  "enable_query": true,
+  "max_players": 50,
+  "max_bots": 0,
+  "sleep": 5.0,
+  "use_dyn_ticks": true,
+  "chat_input_filter": true,
+  "game": {
+    "mode": "example",
+    "map": "Los Santos",
+    "time": 12,
+    "weather": 10,
+    "gravity": 0.008,
+    "lag_compensation_mode": 1,
+    "use_nametags": true
+  },
+  "network": {
+    "port": 7777,
+    "bind": "0.0.0.0",
+    "stream_radius": 200.0,
+    "allow_037_clients": true
+  },
+  "pawn": {
+    "main_scripts": ["example 1"],
+    "side_scripts": [],
+    "legacy_plugins": []
+  },
+  "rcon": {
+    "enable": true,
+    "password": "changeme"
+  },
+  "logging": {
+    "enable": true,
+    "file": "log.txt",
+    "log_chat": true
+  }
+}

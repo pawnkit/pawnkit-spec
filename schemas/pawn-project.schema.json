@@ -1,0 +1,183 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://schemas.pawnkit.dev/pawn-project/v1/schema.json",
+  "title": "Pawn project manifest (pawn.json / pawn.yaml)",
+  "description": "Formalizes the sampctl pawn.json/pawn.yaml package definition shape. See rfcs/0002-project-manifest.md. additionalProperties is true at the top level so an unmodeled sampctl field never fails validation; the pawnkit extension object is closed.",
+  "type": "object",
+  "properties": {
+    "entry": { "type": "string", "minLength": 1, "description": "The .pwn file to compile." },
+    "output": { "type": "string", "minLength": 1, "description": "Destination path for the compiled .amx." },
+    "user": { "type": "string" },
+    "repo": { "type": "string" },
+    "dependencies": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/dependencyString" }
+    },
+    "dev_dependencies": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/dependencyString" }
+    },
+    "preset": { "type": "string", "enum": ["samp", "openmp"] },
+    "local": { "type": "boolean", "default": false },
+    "include_path": { "type": "string" },
+    "resources": {
+      "type": "object",
+      "description": "Extra platform-specific files/archives. Modeled permissively: sampctl's own documentation describes this only at a high level for plugin packages (see RFC 0002 open questions).",
+      "additionalProperties": true
+    },
+    "extract_ignore_patterns": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "contributors": {
+      "type": "array",
+      "items": {
+        "oneOf": [
+          { "type": "string" },
+          {
+            "type": "object",
+            "properties": {
+              "name": { "type": "string" },
+              "email": { "type": "string" }
+            },
+            "additionalProperties": true
+          }
+        ]
+      }
+    },
+    "website": { "type": "string" },
+    "experimental": {
+      "type": "object",
+      "properties": {
+        "build_file": { "type": "boolean", "default": true }
+      },
+      "additionalProperties": true
+    },
+    "build": { "$ref": "#/$defs/build" },
+    "builds": {
+      "type": "array",
+      "items": { "allOf": [{ "$ref": "#/$defs/build" }, { "required": ["name"] }] }
+    },
+    "runtime": { "$ref": "#/$defs/runtime" },
+    "runtimes": {
+      "type": "array",
+      "items": { "allOf": [{ "$ref": "#/$defs/runtime" }, { "required": ["name"] }] }
+    },
+    "pawnkit": {
+      "type": "object",
+      "description": "PawnKit-only additive extensions. A manifest with no pawnkit object is a plain sampctl-shaped manifest (RFC 0002 'PawnKit extensions').",
+      "required": ["schemaVersion"],
+      "properties": {
+        "schemaVersion": { "type": "integer", "const": 1 },
+        "profile": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9-]*$",
+          "description": "Explicit RFC 0001 profile id, overriding the preset-based default mapping."
+        },
+        "includePaths": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "Additional include roots beyond include_path/the project root."
+        },
+        "tests": {
+          "type": "object",
+          "description": "pawntest entry points/options embedded in the manifest; see rfcs/0007-tool-configuration.md.",
+          "additionalProperties": true
+        },
+        "tool": {
+          "type": "object",
+          "description": "Free-form per-tool settings keyed by tool name (e.g. pawnkit.tool.pawnlint), merged per rfcs/0007-tool-configuration.md.",
+          "additionalProperties": { "type": "object" }
+        },
+        "lockfile": {
+          "type": "string",
+          "default": "pawn.lock",
+          "description": "Path to the RFC 0003 lockfile, in case a project relocates it."
+        }
+      },
+      "additionalProperties": false
+    }
+  },
+  "additionalProperties": true,
+  "$defs": {
+    "dependencyString": {
+      "type": "string",
+      "description": "user/repo with optional :tag, @branch, or #commit, optionally prefixed with plugin://, component://, includes://, or filterscript://.",
+      "pattern": "^(plugin://|component://|includes://|filterscript://)?[A-Za-z0-9_.-]+/[A-Za-z0-9_.-]+([:#@].+)?$"
+    },
+    "build": {
+      "type": "object",
+      "properties": {
+        "name": { "type": "string" },
+        "args": { "type": "array", "items": { "type": "string" } },
+        "constants": { "type": "object", "additionalProperties": { "type": ["string", "number", "boolean"] } },
+        "compiler": {
+          "type": "object",
+          "properties": {
+            "site": { "type": "string" },
+            "user": { "type": "string" },
+            "repo": { "type": "string" },
+            "version": { "type": "string" }
+          },
+          "additionalProperties": true
+        },
+        "input": { "type": "string" },
+        "output": { "type": "string" },
+        "includes": { "type": "array", "items": { "type": "string" } }
+      },
+      "additionalProperties": true
+    },
+    "runtime": {
+      "type": "object",
+      "description": "Effectively server.cfg re-expressed as JSON/YAML, matching sampctl's Runtime Configuration Reference field names (mapped 1:1 to server.cfg/SAMP_ env vars). Modeled permissively; see RFC 0002.",
+      "properties": {
+        "name": { "type": "string" },
+        "version": { "type": "string" },
+        "endpoint": { "type": "string" },
+        "mode": { "type": "string" },
+        "extra": { "type": "object", "additionalProperties": true },
+        "gamemodes": { "type": "array", "items": { "type": "string" } },
+        "rcon_password": { "type": "string" },
+        "announce": { "type": "boolean" },
+        "maxplayers": { "type": "integer" },
+        "port": { "type": "integer" },
+        "lanmode": { "type": "boolean" },
+        "query": { "type": "boolean" },
+        "rcon": { "type": "boolean" },
+        "logqueries": { "type": "boolean" },
+        "stream_rate": { "type": "integer" },
+        "stream_distance": { "type": "number" },
+        "sleep": { "type": ["string", "integer"] },
+        "maxnpc": { "type": "integer" },
+        "onfoot_rate": { "type": "integer" },
+        "incar_rate": { "type": "integer" },
+        "weapon_rate": { "type": "integer" },
+        "chatlogging": { "type": "boolean" },
+        "timestamp": { "type": "boolean" },
+        "bind": { "type": "string" },
+        "password": { "type": "string" },
+        "hostname": { "type": "string" },
+        "language": { "type": "string" },
+        "mapname": { "type": "string" },
+        "weburl": { "type": "string" },
+        "gamemodetext": { "type": "string" },
+        "filterscripts": { "type": "array", "items": { "type": "string" } },
+        "plugins": { "type": "array", "items": { "type": "string" } },
+        "nosign": { "type": "string" },
+        "logtimeformat": { "type": "string" },
+        "messageholelimit": { "type": "integer" },
+        "messageslimit": { "type": "integer" },
+        "ackslimit": { "type": "integer" },
+        "playertimeout": { "type": "integer" },
+        "minconnectiontime": { "type": "integer" },
+        "lagcompmode": { "type": "integer" },
+        "connseedtime": { "type": "integer" },
+        "db_logging": { "type": "boolean" },
+        "db_log_queries": { "type": "boolean" },
+        "conncookies": { "type": "boolean" },
+        "cookielogging": { "type": "boolean" }
+      },
+      "additionalProperties": true
+    }
+  }
+}

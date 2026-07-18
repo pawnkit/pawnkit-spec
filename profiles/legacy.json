@@ -1,0 +1,24 @@
+{
+  "id": "legacy",
+  "schemaVersion": 1,
+  "version": "0.1.0",
+  "kind": "source",
+  "displayName": "Legacy Pawn 3.2.3664",
+  "description": "Original Pawn 3.2.3664 syntax and semantics as commonly targeted by pre-2015 SA-MP gamemodes, without pawn-lang/open.mp compiler-specific bug fixes. Existing legacy scripts are treated as valid but not recommended under this profile (see language/implementation-defined.md), not modernized.",
+  "compiler": {
+    "lineage": "pawn-3.2.3664",
+    "vendor": "original-pawn",
+    "notes": "The unmodified upstream Pawn 3.2.3664 compiler lineage predating pawn-lang/compiler's community fork."
+  },
+  "dialectFlags": {
+    "automaticIncludeGuards": true,
+    "tagMismatchIsError": false,
+    "tagMismatchNamesInvolvedTags": false,
+    "pragmaCompatSupported": false,
+    "binaryLiteralsSupported": null,
+    "blockScopedLocals": null
+  },
+  "references": [
+    { "url": "https://github.com/Daniel-Cortez/pawn-3.10", "note": "Pawn 3.2.3664 (\"Pawn 3.10\") lineage reference, cross-checked during research; not the exclusive source for this profile's flags." }
+  ]
+}

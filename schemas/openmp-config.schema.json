@@ -1,0 +1,159 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://schemas.pawnkit.dev/openmp-config/v1/schema.json",
+  "title": "open.mp config.json",
+  "description": "open.mp server runtime configuration file. Field names/defaults sourced from https://open.mp/docs/server/config.json during this repository's initial research pass. additionalProperties is true throughout because open.mp may add fields between doc-drift checks (see rfcs/0006-server-bundle.md and WORKFLOWS.md scheduled upstream-drift checks); unknown fields are tolerated, not rejected.",
+  "type": "object",
+  "properties": {
+    "name": { "type": "string", "default": "open.mp server" },
+    "language": { "type": "string" },
+    "announce": { "type": "boolean", "default": true },
+    "website": { "type": "string", "default": "open.mp" },
+    "password": { "type": "string" },
+    "enable_query": { "type": "boolean", "default": true },
+    "max_players": { "type": "integer", "minimum": 1, "maximum": 1000, "default": 50 },
+    "max_bots": { "type": "integer", "minimum": 0, "default": 0 },
+    "sleep": { "type": "number", "default": 5.0 },
+    "use_dyn_ticks": { "type": "boolean", "default": true },
+    "chat_input_filter": { "type": "boolean", "default": true },
+    "game": {
+      "type": "object",
+      "properties": {
+        "mode": { "type": "string" },
+        "map": { "type": "string" },
+        "time": { "type": "integer", "default": 12 },
+        "weather": { "type": "integer", "default": 10 },
+        "gravity": { "type": "number", "default": 0.008 },
+        "lag_compensation_mode": { "type": "integer", "enum": [0, 1, 2], "default": 1 },
+        "allow_interior_weapons": { "type": "boolean", "default": true },
+        "chat_radius": { "type": "number", "default": 200.0 },
+        "use_chat_radius": { "type": "boolean", "default": false },
+        "nametag_draw_radius": { "type": "number", "default": 70.0 },
+        "player_marker_draw_radius": { "type": "number", "default": 250.0 },
+        "player_marker_mode": { "type": "integer", "enum": [0, 1, 2], "default": 1 },
+        "use_player_marker_draw_radius": { "type": "boolean", "default": false },
+        "use_nametags": { "type": "boolean", "default": true },
+        "use_nametag_los": { "type": "boolean", "default": true },
+        "use_player_ped_anims": { "type": "boolean", "default": false },
+        "use_all_animations": { "type": "boolean", "default": false },
+        "use_entry_exit_markers": { "type": "boolean", "default": true },
+        "use_zone_names": { "type": "boolean", "default": false },
+        "use_stunt_bonuses": { "type": "boolean", "default": true },
+        "use_vehicle_friendly_fire": { "type": "boolean", "default": false },
+        "use_manual_engine_and_lights": { "type": "boolean", "default": false },
+        "validate_animations": { "type": "boolean", "default": true },
+        "vehicle_respawn_time": { "type": "integer", "default": 10000 },
+        "death_drop_amount": { "type": "integer", "default": 0 },
+        "group_player_objects": { "type": "boolean", "default": false }
+      },
+      "additionalProperties": true
+    },
+    "network": {
+      "type": "object",
+      "properties": {
+        "port": { "type": "integer", "default": 7777 },
+        "bind": { "type": "string" },
+        "public_addr": { "type": "string" },
+        "mtu": { "type": "integer", "default": 576 },
+        "aiming_sync_rate": { "type": "integer", "default": 30 },
+        "on_foot_sync_rate": { "type": "integer", "default": 30 },
+        "in_vehicle_sync_rate": { "type": "integer", "default": 30 },
+        "player_marker_sync_rate": { "type": "integer", "default": 2500 },
+        "time_sync_rate": { "type": "integer", "default": 30000 },
+        "stream_radius": { "type": "number", "default": 200.0 },
+        "stream_rate": { "type": "integer", "default": 1000 },
+        "player_timeout": { "type": "integer", "default": 10000 },
+        "allow_037_clients": { "type": "boolean", "default": true },
+        "use_omp_encryption": { "type": "boolean", "default": false },
+        "use_lan_mode": { "type": "boolean", "default": false, "description": "Deprecated per open.mp docs." },
+        "acks_limit": { "type": "integer", "default": 3000 },
+        "messages_limit": { "type": "integer", "default": 500 },
+        "message_hole_limit": { "type": "integer", "default": 3000 },
+        "minimum_connection_time": { "type": "integer", "default": 0 },
+        "cookie_reseed_time": { "type": "integer", "default": 300000 },
+        "grace_period": { "type": "integer", "default": 5000 },
+        "limits_ban_time": { "type": "integer", "default": 60000 },
+        "multiplier": { "type": "integer", "default": 10 },
+        "http_threads": { "type": "integer", "default": 50 }
+      },
+      "additionalProperties": true
+    },
+    "npc": {
+      "type": "object",
+      "properties": {
+        "on_foot_sync_rate": { "type": "integer" },
+        "in_vehicle_sync_rate": { "type": "integer" },
+        "aiming_sync_rate": { "type": "integer" },
+        "process_update_rate": { "type": "integer", "default": 50 },
+        "on_foot_sync_skip_update_limit": { "type": "integer", "default": 15 },
+        "in_vehicle_sync_skip_update_limit": { "type": "integer", "default": 15 },
+        "aim_sync_skip_update_limit": { "type": "integer", "default": 15 }
+      },
+      "additionalProperties": true
+    },
+    "discord": {
+      "type": "object",
+      "properties": {
+        "invite": { "type": "string", "default": "https://discord.gg/samp" }
+      },
+      "additionalProperties": true
+    },
+    "banners": {
+      "type": "object",
+      "properties": {
+        "light": { "type": "string" },
+        "dark": { "type": "string" }
+      },
+      "additionalProperties": true
+    },
+    "logo": { "type": "string" },
+    "artwork": {
+      "type": "object",
+      "properties": {
+        "enable": { "type": "boolean", "default": true },
+        "models_path": { "type": "string", "default": "models" },
+        "cdn": { "type": "string" },
+        "port": { "type": "integer", "default": 7777 },
+        "web_server_bind": { "type": "string" }
+      },
+      "additionalProperties": true
+    },
+    "pawn": {
+      "type": "object",
+      "properties": {
+        "main_scripts": { "type": "array", "items": { "type": "string" } },
+        "side_scripts": { "type": "array", "items": { "type": "string" }, "default": [] },
+        "legacy_plugins": { "type": "array", "items": { "type": "string" }, "default": [] }
+      },
+      "additionalProperties": true
+    },
+    "rcon": {
+      "type": "object",
+      "properties": {
+        "enable": { "type": "boolean", "default": false },
+        "password": { "type": "string", "default": "changeme" },
+        "allow_teleport": { "type": "boolean", "default": false }
+      },
+      "additionalProperties": true
+    },
+    "logging": {
+      "type": "object",
+      "properties": {
+        "enable": { "type": "boolean", "default": true },
+        "file": { "type": "string", "default": "log.txt" },
+        "use_timestamp": { "type": "boolean", "default": true },
+        "timestamp_format": { "type": "string", "default": "[%Y-%m-%dT%H:%M:%S%z]" },
+        "use_prefix": { "type": "boolean", "default": true },
+        "log_chat": { "type": "boolean", "default": true },
+        "log_connection_messages": { "type": "boolean", "default": true },
+        "log_deaths": { "type": "boolean", "default": true },
+        "log_cookies": { "type": "boolean", "default": false },
+        "log_queries": { "type": "boolean", "default": false },
+        "log_sqlite": { "type": "boolean", "default": false },
+        "log_sqlite_queries": { "type": "boolean", "default": false }
+      },
+      "additionalProperties": true
+    }
+  },
+  "additionalProperties": true
+}

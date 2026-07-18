@@ -1,0 +1,30 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://schemas.pawnkit.dev/pawntest/v1/schema.json",
+  "title": "pawntest standalone configuration",
+  "description": "Standalone pawntest.json shape. See rfcs/0007-tool-configuration.md.",
+  "type": "object",
+  "required": ["schemaVersion", "entries"],
+  "properties": {
+    "schemaVersion": { "type": "integer", "const": 1 },
+    "entries": {
+      "type": "array",
+      "items": { "type": "string" },
+      "minItems": 1,
+      "x-pawnkit-merge": "concat",
+      "description": "Test-suite entry .pwn files or globs."
+    },
+    "runtimeProfile": {
+      "type": "string",
+      "pattern": "^[a-z][a-z0-9-]*$",
+      "x-pawnkit-merge": "replace"
+    },
+    "timeoutSeconds": { "type": "integer", "minimum": 1, "x-pawnkit-merge": "replace" },
+    "reporters": {
+      "type": "array",
+      "items": { "type": "string", "enum": ["human", "json", "junit"] },
+      "x-pawnkit-merge": "concat"
+    }
+  },
+  "additionalProperties": false
+}

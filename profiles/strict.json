@@ -1,0 +1,18 @@
+{
+  "id": "strict",
+  "schemaVersion": 1,
+  "version": "0.1.0",
+  "kind": "policy",
+  "basedOn": "openmp",
+  "displayName": "Strict modern practice",
+  "description": "Policy overlay on top of the openmp source profile: upgrades most recommended-profile warnings to errors and adds stricter tag/tag-mismatch enforcement. Intended for new projects, not as a drop-in migration target for legacy codebases (principle 3.7: migration must be incremental, previewable, and reversible, not forced by switching profiles).",
+  "dialectFlags": {
+    "tagMismatchSeverity": "error",
+    "legacyIdiomSeverity": "error",
+    "unsafeIdiomSeverity": "error",
+    "requireExplicitTagCasts": true
+  },
+  "references": [
+    { "url": "https://open.mp/docs", "note": "General basis for what counts as 'modern' omp-stdlib practice; specific rule content is owned by pawnlint, not this profile." }
+  ]
+}

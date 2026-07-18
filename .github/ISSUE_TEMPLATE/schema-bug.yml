@@ -1,0 +1,33 @@
+name: Schema or profile bug
+description: A schema, profile, or example does not match documented/observed behavior.
+title: "schema: "
+labels: ["bug", "schema"]
+body:
+  - type: input
+    id: file
+    attributes:
+      label: Affected file
+      placeholder: "schemas/pawn-project.schema.json"
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected shape/behavior
+      description: Cite a primary source if possible (compiler source, sampctl docs, open.mp docs).
+    validations:
+      required: true
+  - type: textarea
+    id: actual
+    attributes:
+      label: Actual shape/behavior in this repository
+    validations:
+      required: true
+  - type: textarea
+    id: example
+    attributes:
+      label: Minimal example document
+      description: A document that should validate but doesn't, or vice versa.
+      render: json
+    validations:
+      required: false

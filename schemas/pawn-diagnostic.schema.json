@@ -1,0 +1,95 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://schemas.pawnkit.dev/pawn-diagnostic/v1/schema.json",
+  "title": "Pawn diagnostic and edit interchange format",
+  "description": "Shared diagnostic/edit shape for CLI JSON output, baselines, and editor protocols. See rfcs/0004-diagnostics.md and the shared engineering baseline section 6.4.",
+  "type": "object",
+  "required": ["code", "source", "severity", "message", "range"],
+  "properties": {
+    "code": {
+      "type": "string",
+      "pattern": "^[a-z][a-z0-9-]*:[A-Za-z0-9_-]+$",
+      "description": "Stable, namespaced diagnostic code, e.g. \"pawnlint:no-goto\". Never silently repurposed."
+    },
+    "source": { "type": "string", "minLength": 1, "description": "Tool/subsystem that produced this diagnostic." },
+    "severity": { "type": "string", "enum": ["error", "warning", "info", "hint"] },
+    "message": { "type": "string", "minLength": 1 },
+    "range": { "$ref": "#/$defs/location" },
+    "relatedLocations": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/relatedLocation" }
+    },
+    "notes": { "type": "array", "items": { "type": "string" } },
+    "help": { "type": "string" },
+    "documentationUrl": { "type": "string", "format": "uri" },
+    "tags": {
+      "type": "array",
+      "items": { "type": "string", "examples": ["deprecated", "unnecessary"] }
+    },
+    "fixes": { "type": "array", "items": { "$ref": "#/$defs/edit" } },
+    "unsafeFixes": { "type": "array", "items": { "$ref": "#/$defs/edit" } },
+    "suppression": {
+      "type": "object",
+      "properties": {
+        "suppressed": { "type": "boolean" },
+        "reason": { "type": "string" },
+        "mechanism": { "type": "string", "enum": ["inline-comment", "baseline-file", "config"] }
+      },
+      "required": ["suppressed"],
+      "additionalProperties": false
+    }
+  },
+  "additionalProperties": false,
+  "$defs": {
+    "position": {
+      "type": "object",
+      "required": ["line", "column", "offset"],
+      "properties": {
+        "line": { "type": "integer", "minimum": 1 },
+        "column": { "type": "integer", "minimum": 1 },
+        "offset": { "type": "integer", "minimum": 0, "description": "0-based UTF-8 byte offset." }
+      },
+      "additionalProperties": false
+    },
+    "location": {
+      "type": "object",
+      "required": ["file", "start", "end"],
+      "properties": {
+        "file": { "type": "string", "minLength": 1, "description": "Project-relative path." },
+        "start": { "$ref": "#/$defs/position" },
+        "end": { "$ref": "#/$defs/position" }
+      },
+      "additionalProperties": false
+    },
+    "relatedLocation": {
+      "type": "object",
+      "required": ["file", "start", "end", "message"],
+      "properties": {
+        "file": { "type": "string", "minLength": 1, "description": "Project-relative path." },
+        "start": { "$ref": "#/$defs/position" },
+        "end": { "$ref": "#/$defs/position" },
+        "message": { "type": "string" }
+      },
+      "additionalProperties": false
+    },
+    "edit": {
+      "type": "object",
+      "required": ["file", "range", "newText"],
+      "properties": {
+        "file": { "type": "string" },
+        "range": {
+          "type": "object",
+          "required": ["start", "end"],
+          "properties": {
+            "start": { "$ref": "#/$defs/position" },
+            "end": { "$ref": "#/$defs/position" }
+          },
+          "additionalProperties": false
+        },
+        "newText": { "type": "string" },
+        "version": { "type": ["string", "integer"] }
+      },
+      "additionalProperties": false
+    }
+  }
+}

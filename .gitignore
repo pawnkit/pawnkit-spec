@@ -1,0 +1,10 @@
+# Go build artifacts for the local validation tool.
+/tools/validate/validate
+/tools/validate/validate.exe
+
+# Editor/OS noise.
+.DS_Store
+*.swp
+
+# Local scratch output from running the validator.
+/.validate-cache/

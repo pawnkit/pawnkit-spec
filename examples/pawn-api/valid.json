@@ -1,0 +1,66 @@
+{
+  "schemaVersion": 1,
+  "entries": [
+    {
+      "id": "native:SetPlayerPos",
+      "kind": "native",
+      "name": "SetPlayerPos",
+      "signature": {
+        "parameters": [
+          { "name": "playerid", "tag": "" },
+          { "name": "x", "tag": "Float" },
+          { "name": "y", "tag": "Float" },
+          { "name": "z", "tag": "Float" }
+        ],
+        "returnTag": "bool"
+      },
+      "availability": [
+        { "profile": "samp-037", "since": "0.3.7" },
+        { "profile": "openmp", "since": "1.0.0" }
+      ],
+      "source": {
+        "repository": "openmultiplayer/omp-stdlib",
+        "path": "a_players.inc",
+        "commit": "0000000000000000000000000000000000000f",
+        "license": "Apache-2.0"
+      },
+      "documentationUrl": "https://open.mp/docs/scripting/functions/SetPlayerPos"
+    },
+    {
+      "id": "callback:OnPlayerConnect",
+      "kind": "callback",
+      "name": "OnPlayerConnect",
+      "signature": {
+        "parameters": [
+          { "name": "playerid", "tag": "" }
+        ],
+        "returnTag": ""
+      },
+      "availability": [
+        { "profile": "samp-037", "since": "0.3.7" },
+        { "profile": "openmp", "since": "1.0.0" }
+      ],
+      "source": {
+        "repository": "openmultiplayer/omp-stdlib",
+        "path": "a_samp.inc",
+        "commit": "0000000000000000000000000000000000000f",
+        "license": "Apache-2.0"
+      }
+    },
+    {
+      "id": "constant:MAX_PLAYERS",
+      "kind": "constant",
+      "name": "MAX_PLAYERS",
+      "value": 1000,
+      "availability": [
+        { "profile": "openmp", "since": "1.0.0" }
+      ],
+      "source": {
+        "repository": "openmultiplayer/omp-stdlib",
+        "path": "a_samp.inc",
+        "commit": "0000000000000000000000000000000000000f",
+        "license": "Apache-2.0"
+      }
+    }
+  ]
+}

@@ -1,0 +1,27 @@
+{
+  "id": "openmp",
+  "schemaVersion": 1,
+  "version": "0.1.0",
+  "kind": "source",
+  "displayName": "open.mp compiler (3.10.11 lineage)",
+  "description": "The dialect accepted by the open.mp-bundled compiler (3.10.11, or 3.10.12 for self-built), based on the pawn-lang/compiler lineage, including omp-stdlib expectations. Differs from samp-037 primarily in default include-guard generation (see dialectFlags and language/implementation-defined.md open question).",
+  "compiler": {
+    "lineage": "pawn-3.2.3664",
+    "vendor": "openmultiplayer",
+    "minVersion": "3.10.11",
+    "notes": "open.mp ships its own compiler build; -Z flag or #pragma compat restores pawn-lang/compiler-compatible defaults where they diverge."
+  },
+  "dialectFlags": {
+    "automaticIncludeGuards": false,
+    "tagMismatchIsError": false,
+    "tagMismatchNamesInvolvedTags": true,
+    "pragmaCompatSupported": true,
+    "binaryLiteralsSupported": true,
+    "blockScopedLocals": null
+  },
+  "sourceProfile": "openmp",
+  "references": [
+    { "url": "https://open.mp/blog/release-candidate-1", "note": "Source for automaticIncludeGuards default change; not independently re-verified against compiler source, see language/implementation-defined.md." },
+    { "url": "https://github.com/openmultiplayer/omp-stdlib", "note": "Standard include library this profile assumes is available." }
+  ]
+}

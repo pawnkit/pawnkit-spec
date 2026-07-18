@@ -1,0 +1,7 @@
+{
+  "schemaVersion": 1,
+  "entries": ["tests/**/*.t.pwn"],
+  "runtimeProfile": "openmp",
+  "timeoutSeconds": 30,
+  "reporters": ["human", "junit"]
+}

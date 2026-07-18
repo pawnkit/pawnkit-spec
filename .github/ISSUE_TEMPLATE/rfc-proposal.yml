@@ -1,0 +1,48 @@
+name: RFC proposal
+description: Propose a new RFC or a substantive change to an existing one.
+title: "RFC: "
+labels: ["rfc"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Substantive changes should become a pull request adding/editing a
+        file under `rfcs/` using `rfcs/0000-template.md`. Use this issue to
+        discuss the idea first if it is not yet ready for a full draft.
+  - type: input
+    id: title
+    attributes:
+      label: Proposed title
+      placeholder: "Short, specific title"
+    validations:
+      required: true
+  - type: textarea
+    id: motivation
+    attributes:
+      label: Motivation
+      description: What problem does this solve, and for whom (which PawnKit repository or downstream user)?
+    validations:
+      required: true
+  - type: textarea
+    id: current-behavior
+    attributes:
+      label: Current behavior
+      description: What happens today, in sampctl, upstream compilers, or existing PawnKit repos, without this RFC?
+    validations:
+      required: true
+  - type: dropdown
+    id: breaking
+    attributes:
+      label: Is this a breaking change?
+      options:
+        - "No — additive"
+        - "Yes — breaking"
+        - "Not sure"
+    validations:
+      required: true
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternatives considered
+    validations:
+      required: false

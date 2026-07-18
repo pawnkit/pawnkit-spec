@@ -1,0 +1,5 @@
+blank_issues_enabled: true
+contact_links:
+  - name: PawnKit organization
+    url: https://github.com/pawnkit
+    about: See related repositories (pawn-project, pawn-api, pawnserver, pawnlint) for implementation-specific issues.

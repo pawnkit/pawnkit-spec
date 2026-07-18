@@ -1,0 +1,7 @@
+{
+  "schemaVersion": 1,
+  "indent": { "style": "space", "size": 4 },
+  "lineWidth": 120,
+  "braceStyle": "same-line",
+  "ignore": ["vendor/**"]
+}

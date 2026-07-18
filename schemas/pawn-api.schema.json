@@ -1,0 +1,85 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://schemas.pawnkit.dev/pawn-api/v1/schema.json",
+  "title": "Pawn API metadata (natives, callbacks, constants, tags)",
+  "description": "Machine-readable SA-MP/open.mp API surface facts produced by pawn-api. See rfcs/0005-api-metadata.md.",
+  "type": "object",
+  "required": ["schemaVersion", "entries"],
+  "properties": {
+    "schemaVersion": { "type": "integer", "const": 1 },
+    "entries": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/entry" }
+    }
+  },
+  "additionalProperties": false,
+  "$defs": {
+    "parameter": {
+      "type": "object",
+      "required": ["name"],
+      "properties": {
+        "name": { "type": "string" },
+        "tag": { "type": "string" },
+        "default": { "type": ["string", "number", "boolean", "null"] }
+      },
+      "additionalProperties": false
+    },
+    "availability": {
+      "type": "object",
+      "required": ["profile"],
+      "properties": {
+        "profile": { "type": "string", "pattern": "^[a-z][a-z0-9-]*$" },
+        "since": { "type": "string" },
+        "until": { "type": ["string", "null"] }
+      },
+      "additionalProperties": false
+    },
+    "source": {
+      "type": "object",
+      "required": ["repository", "path", "commit", "license"],
+      "properties": {
+        "repository": { "type": "string", "examples": ["openmultiplayer/omp-stdlib"] },
+        "path": { "type": "string" },
+        "commit": { "type": "string", "pattern": "^[0-9a-f]{7,40}$" },
+        "license": { "type": "string", "description": "SPDX identifier of the source repository." }
+      },
+      "additionalProperties": false
+    },
+    "entry": {
+      "type": "object",
+      "required": ["id", "kind", "name", "availability", "source"],
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^(native|callback|function|constant|tag|define):.+$"
+        },
+        "kind": { "type": "string", "enum": ["native", "callback", "function", "constant", "tag", "define"] },
+        "name": { "type": "string", "minLength": 1 },
+        "signature": {
+          "type": "object",
+          "properties": {
+            "parameters": { "type": "array", "items": { "$ref": "#/$defs/parameter" } },
+            "returnTag": { "type": "string" }
+          },
+          "additionalProperties": false
+        },
+        "value": { "type": ["string", "number"] },
+        "tags": { "type": "array", "items": { "type": "string" } },
+        "availability": { "type": "array", "items": { "$ref": "#/$defs/availability" }, "minItems": 1 },
+        "deprecated": {
+          "type": "object",
+          "required": ["since"],
+          "properties": {
+            "since": { "type": "string" },
+            "replacement": { "type": "string" },
+            "reason": { "type": "string" }
+          },
+          "additionalProperties": false
+        },
+        "source": { "$ref": "#/$defs/source" },
+        "documentationUrl": { "type": "string", "format": "uri" }
+      },
+      "additionalProperties": false
+    }
+  }
+}

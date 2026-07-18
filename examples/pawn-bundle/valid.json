@@ -1,0 +1,35 @@
+{
+  "schemaVersion": 1,
+  "name": "example-openmp-bundle",
+  "version": "1.0.0",
+  "runtimeProfile": "openmp",
+  "server": {
+    "version": "1.4.0.2779",
+    "binary": [
+      { "path": "omp-server", "checksum": "sha256:c81d0b604b5b637dbcaedf58c1d92232e9de227bb1a3abea928e046e96a3b138", "platform": "linux-x86_64" },
+      { "path": "omp-server.exe", "checksum": "sha256:aed883b32a3702a6c6aa50d957d8a58841de7055f21b35b8a15907a0ecdbea36", "platform": "windows-x86_64" }
+    ]
+  },
+  "entryPoints": {
+    "gamemode": "gamemodes/example.amx",
+    "filterscripts": ["filterscripts/example-fs.amx"]
+  },
+  "plugins": [
+    { "name": "streamer", "path": "plugins/streamer.so", "checksum": "sha256:3d24056f87f296cd45babf08579eb788fb998ad2cbfd5bca396ee5bcba53ac0b", "platform": "linux-x86_64" }
+  ],
+  "configuration": {
+    "path": "config.json",
+    "schema": "https://schemas.pawnkit.dev/openmp-config/v1/schema.json"
+  },
+  "services": [
+    { "name": "mysql", "kind": "database", "required": false }
+  ],
+  "persistence": {
+    "paths": ["scriptfiles/", "scriptfiles/db/"]
+  },
+  "health": {
+    "checkPort": 7777,
+    "timeout": 10
+  },
+  "checksum": "sha256:702a0bff044a40d8f5166472acc2b76ced5abb249c9230be22a4671ccacc6fad"
+}
