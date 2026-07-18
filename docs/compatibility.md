@@ -48,8 +48,8 @@ schema version for a different purpose is a breaking change.
 
 Most formats in this repository are still on their first published version.
 Their RFCs record any known compatibility work. RFC 0003 is the exception: its
-early PawnKit lockfile draft now overlaps with the `pawn.lock` introduced by
-sampctl 1.13.0 and must be reconciled before acceptance.
+early PawnKit lockfile draft now overlaps with sampctl's version 1 `pawn.lock`
+and must be reconciled before acceptance.
 
 ## Sampctl compatibility commitment
 
@@ -57,7 +57,7 @@ sampctl 1.13.0 and must be reconciled before acceptance.
 under the optional `pawnkit` key so sampctl projects do not need a second
 manifest.
 
-sampctl also owns the version 1 `pawn.lock` shape introduced in 1.13.0. RFC
-0003 is currently a draft because the older PawnKit schema used the same
-filename for a different structure. PawnKit must adopt the upstream shape or
-use extensions that do not break sampctl before that RFC can advance.
+sampctl owns the version 1 `pawn.lock` shape, introduced in 1.13.0 and still
+current in 1.14.0. RFC 0003 is a draft because the older PawnKit schema used
+the same filename for a different structure. PawnKit must adopt the upstream
+shape or use extensions that do not break sampctl before that RFC can advance.

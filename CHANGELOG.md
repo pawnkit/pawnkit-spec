@@ -32,8 +32,9 @@ calls out schema version changes explicitly.
 
 ### Changed
 
-- Updated RFC 0003 after sampctl 1.13.0 introduced its own version 1
-  `pawn.lock`. The RFC is draft until the schemas are reconciled.
+- Updated RFC 0003 for sampctl's version 1 `pawn.lock`, introduced in 1.13.0
+  and checked against 1.14.0. The RFC is draft until the schemas are
+  reconciled.
 
 ### Notes
 

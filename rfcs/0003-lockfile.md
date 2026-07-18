@@ -22,15 +22,17 @@ CI builds use the same graph.
 
 ## Current behavior
 
-sampctl 1.13.0 added `pawn.lock`, lockfile-aware dependency resolution, and
-integrity tracking. PawnKit MUST read that format without breaking sampctl
-projects. Its own fields need a namespace or a versioned migration rather than
-an incompatible file with the same name.
+sampctl added `pawn.lock` in 1.13.0. The version 1 format remains current in
+1.14.0 and includes dependency resolution, integrity, runtime, and build data.
+PawnKit MUST read that format without breaking sampctl projects. Its own fields
+need a namespace or a versioned migration rather than an incompatible file with
+the same name.
 
 ## Proposal
 
-The current PawnKit schema predates sampctl 1.13.0 and is not compatible with
-sampctl's version 1 lockfile. The field list below records the earlier draft.
+The current PawnKit schema predates sampctl's lockfile and is not compatible
+with the version 1 format in sampctl 1.14.0. The field list below records the
+earlier draft.
 It MUST NOT move to `experimental` until this RFC adopts the upstream shape or
 defines namespaced extensions that sampctl safely ignores.
 
@@ -101,7 +103,7 @@ different meanings.
 - [ ] Additive
 - [x] Breaking
 
-The current schema rejects sampctl 1.13.0 lockfiles and assigns different
+The current schema rejects sampctl 1.14.0 lockfiles and assigns different
 meanings to the same filename. That conflict must be fixed before adoption.
 
 ## Alternatives considered
@@ -130,7 +132,7 @@ Not applicable: this is the first version.
 ## Reference implementation status
 
 `pawn-project` implements the earlier PawnKit draft. It does not yet satisfy
-the sampctl 1.13.0 compatibility requirement.
+the sampctl 1.14.0 compatibility requirement.
 
 ## Conformance tests
 
