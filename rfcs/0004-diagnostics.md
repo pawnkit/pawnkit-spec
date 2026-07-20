@@ -16,12 +16,12 @@ lint baselines, and editor integrations.
 
 ## Motivation
 
-`pawnlint`, `pawnfmt`, `pawn-analysis`, `pawntest`, and `pawn-language-server` all
+`pawnlint`, `pawnfmt`, `pawn-analysis`, `pawntest`, and `pawnlsp` all
 produce findings about source code. Without one shared shape:
 
 - Baselines (suppress known findings) written for one tool would not
   compose with another's output.
-- `pawn-language-server` would need per-tool adapters instead of one translation to the
+- `pawnlsp` would need per-tool adapters instead of one translation to the
   Language Server Protocol.
 - SARIF exporters would need a different source shape for each tool.
 
@@ -75,7 +75,7 @@ diagnostic's `fixes`/`unsafeFixes`; a tool applying them MUST validate that
 edits do not overlap within the same file and MUST support preview
 (showing the diff) before transactional application, per the shared
 baseline: this RFC defines the data shape, not the application algorithm,
-which belongs to the applying tool (e.g. `pawnkit-cli`, `pawn-language-server`).
+which belongs to the applying tool (e.g. `pawnkit-cli`, `pawnlsp`).
 
 ### Exit codes
 
@@ -126,7 +126,7 @@ Not applicable: this is the first version.
 ## Reference implementation status
 
 `pawn-analysis`, `pawn-parser`, and `pawnlint` produce shared diagnostic
-types through `pawnkit-core`. `pawn-language-server` translates them to LSP.
+types through `pawnkit-core`. `pawnlsp` translates them to LSP.
 
 ## Conformance tests
 

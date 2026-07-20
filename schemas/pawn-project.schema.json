@@ -2,7 +2,7 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://schemas.pawnkit.dev/pawn-project/v1/schema.json",
   "title": "Pawn project manifest (pawn.json / pawn.yaml)",
-  "description": "Formalizes the sampctl pawn.json/pawn.yaml package definition shape. See rfcs/0002-project-manifest.md. additionalProperties is true at the top level so an unmodeled sampctl field never fails validation; the pawnkit extension object is closed.",
+  "description": "A Pawn project manifest compatible with sampctl and PawnKit.",
   "type": "object",
   "properties": {
     "entry": { "type": "string", "minLength": 1, "description": "The .pwn file to compile." },
@@ -22,7 +22,7 @@
     "include_path": { "type": "string" },
     "resources": {
       "type": "object",
-      "description": "Extra platform-specific files/archives. Modeled permissively: sampctl's own documentation describes this only at a high level for plugin packages (see RFC 0002 open questions).",
+      "description": "Extra platform-specific files and archives.",
       "additionalProperties": true
     },
     "extract_ignore_patterns": {
@@ -65,34 +65,34 @@
     },
     "pawnkit": {
       "type": "object",
-      "description": "PawnKit-only additive extensions. A manifest with no pawnkit object is a plain sampctl-shaped manifest (RFC 0002 'PawnKit extensions').",
+      "description": "Settings used by PawnKit tools.",
       "required": ["schemaVersion"],
       "properties": {
         "schemaVersion": { "type": "integer", "const": 1 },
         "profile": {
           "type": "string",
           "pattern": "^[a-z][a-z0-9-]*$",
-          "description": "Explicit RFC 0001 profile id, overriding the preset-based default mapping."
+          "description": "Target profile. This overrides the profile inferred from preset."
         },
         "includePaths": {
           "type": "array",
           "items": { "type": "string" },
-          "description": "Additional include roots beyond include_path/the project root."
+          "description": "Extra include directories."
         },
         "tests": {
           "type": "object",
-          "description": "pawntest entry points/options embedded in the manifest; see rfcs/0007-tool-configuration.md.",
+          "description": "Settings passed to pawntest.",
           "additionalProperties": true
         },
         "tool": {
           "type": "object",
-          "description": "Free-form per-tool settings keyed by tool name (e.g. pawnkit.tool.pawnlint), merged per rfcs/0007-tool-configuration.md.",
+          "description": "Settings grouped by tool name, such as pawnlint.",
           "additionalProperties": { "type": "object" }
         },
         "lockfile": {
           "type": "string",
           "default": "pawn.lock",
-          "description": "Path to the RFC 0003 lockfile, in case a project relocates it."
+          "description": "Path to the project lockfile."
         }
       },
       "additionalProperties": false
@@ -102,7 +102,7 @@
   "$defs": {
     "dependencyString": {
       "type": "string",
-      "description": "user/repo with optional :tag, @branch, or #commit, optionally prefixed with plugin://, component://, includes://, or filterscript://.",
+      "description": "Package in user/repo form, with an optional kind and version reference.",
       "pattern": "^(plugin://|component://|includes://|filterscript://)?[A-Za-z0-9_.-]+/[A-Za-z0-9_.-]+([:#@].+)?$"
     },
     "build": {
@@ -129,7 +129,7 @@
     },
     "runtime": {
       "type": "object",
-      "description": "Effectively server.cfg re-expressed as JSON/YAML, matching sampctl's Runtime Configuration Reference field names (mapped 1:1 to server.cfg/SAMP_ env vars). Modeled permissively; see RFC 0002.",
+      "description": "Server runtime settings using sampctl field names.",
       "properties": {
         "name": { "type": "string" },
         "version": { "type": "string" },
