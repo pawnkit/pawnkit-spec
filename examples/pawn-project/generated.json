@@ -1,0 +1,14 @@
+{
+  "entry": "main.pwn",
+  "preset": "samp",
+  "experimental": {
+    "build_file": false
+  },
+  "pawnkit": {
+    "schemaVersion": 1,
+    "profile": "samp",
+    "includePaths": [
+      "include"
+    ]
+  }
+}
