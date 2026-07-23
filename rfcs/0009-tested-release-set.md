@@ -1,7 +1,7 @@
 ---
 rfc: 0009
 title: Tested release set
-status: draft
+status: experimental
 created: 2026-07-23
 updated: 2026-07-23
 supersedes: null
@@ -62,6 +62,8 @@ compatible tested set. A user MAY override a version, but the consumer must not
 describe that combination as tested.
 
 Published sets are immutable. A corrected set gets a new `id`.
+Checked-in sets live under `release-sets/<id>.json`. The website MAY publish
+the newest accepted set at `/release-sets/latest.json`.
 
 ## PawnKit extensions
 
@@ -101,7 +103,7 @@ Not applicable; this is the first version.
 
 ## Reference implementation status
 
-Planned in `pawn-actions`. The checked-in set will live in `pawnkit-spec`.
+In progress in `pawn-actions`. Checked-in sets live in `pawnkit-spec`.
 
 ## Conformance tests
 
@@ -111,7 +113,4 @@ components, unsupported targets, and unavailable artifacts.
 
 ## Open questions
 
-- Which repository publishes the stable `latest.json` pointer after a set is
-  accepted?
-- Should the first set include libraries without downloadable artifacts, or
-  only tools installed by official consumers?
+None.

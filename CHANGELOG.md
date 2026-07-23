@@ -5,6 +5,12 @@ follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/). Schema
 major versions are tracked independently in each schema's `$id`; this log
 calls out schema version changes explicitly.
 
+## [0.1.7] - 2026-07-23
+
+### Changed
+
+- Moved RFC 0009 to experimental for the `pawn-actions` prototype.
+
 ## [0.1.6] - 2026-07-23
 
 ### Added
