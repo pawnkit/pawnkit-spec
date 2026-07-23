@@ -4,9 +4,9 @@
 
 ## Status
 
-RFC 0006 is accepted. The remaining RFCs are draft or experimental, so most
-version 1 schemas are not frozen yet. [GOVERNANCE.md](GOVERNANCE.md) explains
-the states and acceptance rules.
+RFCs 0006 and 0009 are accepted. The remaining RFCs are draft or experimental,
+so most version 1 schemas are not frozen yet. [GOVERNANCE.md](GOVERNANCE.md)
+explains the states and acceptance rules.
 
 ## Find a contract
 

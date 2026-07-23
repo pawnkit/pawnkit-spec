@@ -1,7 +1,7 @@
 ---
 rfc: 0009
 title: Tested release set
-status: experimental
+status: accepted
 created: 2026-07-23
 updated: 2026-07-23
 supersedes: null
@@ -103,13 +103,15 @@ Not applicable; this is the first version.
 
 ## Reference implementation status
 
-In progress in `pawn-actions`. Checked-in sets live in `pawnkit-spec`.
+Implemented in `pawn-actions` v1.1.0. Checked-in sets live in `pawnkit-spec`.
 
 ## Conformance tests
 
-The offline `pawnkit-spec` validator checks schema examples. Acceptance also
-requires `pawn-actions` tests for missing releases, stale hashes, duplicate
-components, unsupported targets, and unavailable artifacts.
+The offline `pawnkit-spec` validator checks schema examples.
+`pawn-actions/releaseset` tests bounded decoding, duplicate components,
+unsupported targets, module replacements, pseudo-versions, missing artifacts,
+size checks, and SHA-256 checks. Its CI runs on Linux, macOS, and Windows and
+validates the example from `pawnkit-spec` v0.1.7.
 
 ## Open questions
 

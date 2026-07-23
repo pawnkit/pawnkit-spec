@@ -5,6 +5,13 @@ follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/). Schema
 major versions are tracked independently in each schema's `$id`; this log
 calls out schema version changes explicitly.
 
+## [0.1.8] - 2026-07-23
+
+### Changed
+
+- Accepted RFC 0009 after the `pawn-actions` v1.1.0 implementation passed CI.
+- Updated the README to list both accepted RFCs.
+
 ## [0.1.7] - 2026-07-23
 
 ### Changed
