@@ -1,0 +1,133 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://schemas.pawnkit.dev/pawn-release-set/v1/schema.json",
+  "title": "PawnKit tested release set",
+  "description": "Pinned PawnKit versions, artifacts, schemas, targets, test evidence, and known limits. See rfcs/0009-tested-release-set.md.",
+  "type": "object",
+  "required": ["schemaVersion", "id", "generatedAt", "source", "targets", "profiles", "components", "schemas", "evidence", "knownLimits"],
+  "properties": {
+    "schemaVersion": { "type": "integer", "const": 1 },
+    "id": { "type": "string", "pattern": "^[a-z0-9][a-z0-9._-]*$" },
+    "generatedAt": { "type": "string", "format": "date-time" },
+    "source": { "$ref": "#/$defs/source" },
+    "targets": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": { "$ref": "#/$defs/target" }
+    },
+    "profiles": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": { "type": "string", "pattern": "^[a-z][a-z0-9-]*$" }
+    },
+    "components": {
+      "type": "array",
+      "minItems": 1,
+      "items": { "$ref": "#/$defs/component" }
+    },
+    "schemas": {
+      "type": "array",
+      "minItems": 1,
+      "items": { "$ref": "#/$defs/schema" }
+    },
+    "evidence": { "$ref": "#/$defs/evidence" },
+    "knownLimits": {
+      "type": "array",
+      "items": { "type": "string", "minLength": 1 }
+    }
+  },
+  "additionalProperties": false,
+  "$defs": {
+    "sha256": {
+      "type": "string",
+      "pattern": "^sha256:[0-9a-f]{64}$"
+    },
+    "commit": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{40}$"
+    },
+    "target": {
+      "type": "string",
+      "pattern": "^(linux|windows|darwin)-(amd64|arm64|386)$"
+    },
+    "source": {
+      "type": "object",
+      "required": ["repository", "commit"],
+      "properties": {
+        "repository": { "type": "string", "pattern": "^pawnkit/[a-z0-9._-]+$" },
+        "commit": { "$ref": "#/$defs/commit" }
+      },
+      "additionalProperties": false
+    },
+    "artifact": {
+      "type": "object",
+      "required": ["target", "url", "size", "checksum"],
+      "properties": {
+        "target": { "$ref": "#/$defs/target" },
+        "url": {
+          "type": "string",
+          "format": "uri",
+          "pattern": "^https://github\\.com/pawnkit/.+/releases/download/.+/.+$"
+        },
+        "size": { "type": "integer", "minimum": 1 },
+        "checksum": { "$ref": "#/$defs/sha256" }
+      },
+      "additionalProperties": false
+    },
+    "component": {
+      "type": "object",
+      "required": ["name", "repository", "version", "commit"],
+      "properties": {
+        "name": { "type": "string", "pattern": "^[a-z0-9][a-z0-9._-]*$" },
+        "repository": { "type": "string", "pattern": "^pawnkit/[a-z0-9._-]+$" },
+        "version": { "type": "string", "pattern": "^v[0-9]+\\.[0-9]+\\.[0-9]+(?:[-+][0-9A-Za-z.-]+)?$" },
+        "commit": { "$ref": "#/$defs/commit" },
+        "artifacts": {
+          "type": "array",
+          "minItems": 1,
+          "items": { "$ref": "#/$defs/artifact" }
+        }
+      },
+      "additionalProperties": false
+    },
+    "schema": {
+      "type": "object",
+      "required": ["name", "version", "url", "checksum"],
+      "properties": {
+        "name": { "type": "string", "pattern": "^[a-z0-9][a-z0-9._-]*$" },
+        "version": { "type": "integer", "minimum": 1 },
+        "url": {
+          "type": "string",
+          "format": "uri",
+          "pattern": "^https://schemas\\.pawnkit\\.dev/.+/v[0-9]+/schema\\.json$"
+        },
+        "checksum": { "$ref": "#/$defs/sha256" }
+      },
+      "additionalProperties": false
+    },
+    "evidence": {
+      "type": "object",
+      "required": ["workflow", "commit", "completedAt", "projects", "targets"],
+      "properties": {
+        "workflow": { "type": "string", "format": "uri", "pattern": "^https://github\\.com/pawnkit/.+/actions/runs/[0-9]+$" },
+        "commit": { "$ref": "#/$defs/commit" },
+        "completedAt": { "type": "string", "format": "date-time" },
+        "projects": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": { "type": "string", "minLength": 1 }
+        },
+        "targets": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": { "$ref": "#/$defs/target" }
+        }
+      },
+      "additionalProperties": false
+    }
+  }
+}

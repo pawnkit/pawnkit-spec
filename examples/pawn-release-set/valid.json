@@ -1,0 +1,54 @@
+{
+  "schemaVersion": 1,
+  "id": "preview-2026-07-23",
+  "generatedAt": "2026-07-23T21:00:00Z",
+  "source": {
+    "repository": "pawnkit/pawn-actions",
+    "commit": "1111111111111111111111111111111111111111"
+  },
+  "targets": ["linux-amd64", "windows-amd64", "darwin-arm64"],
+  "profiles": ["samp-037", "openmp"],
+  "components": [
+    {
+      "name": "pawn",
+      "repository": "pawnkit/pawnkit-cli",
+      "version": "v1.1.3",
+      "commit": "2222222222222222222222222222222222222222",
+      "artifacts": [
+        {
+          "target": "linux-amd64",
+          "url": "https://github.com/pawnkit/pawnkit-cli/releases/download/v1.1.3/pawn-linux-amd64.tar.gz",
+          "size": 1234567,
+          "checksum": "sha256:3333333333333333333333333333333333333333333333333333333333333333"
+        }
+      ]
+    },
+    {
+      "name": "pawn-project",
+      "repository": "pawnkit/pawn-project",
+      "version": "v0.1.10",
+      "commit": "4444444444444444444444444444444444444444"
+    }
+  ],
+  "schemas": [
+    {
+      "name": "pawn-project",
+      "version": 1,
+      "url": "https://schemas.pawnkit.dev/pawn-project/v1/schema.json",
+      "checksum": "sha256:5555555555555555555555555555555555555555555555555555555555555555"
+    }
+  ],
+  "evidence": {
+    "workflow": "https://github.com/pawnkit/pawn-actions/actions/runs/123456789",
+    "commit": "1111111111111111111111111111111111111111",
+    "completedAt": "2026-07-23T21:00:00Z",
+    "projects": [
+      "pawn-corpus/projects/minimal-samp-gamemode",
+      "pawn-corpus/projects/filterscript-with-includes"
+    ],
+    "targets": ["linux-amd64", "windows-amd64", "darwin-arm64"]
+  },
+  "knownLimits": [
+    "Native plugin execution remains experimental."
+  ]
+}
