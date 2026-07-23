@@ -136,13 +136,13 @@ Workspace trust and download verification remain the editor's responsibility.
 
 ## Reference implementation status
 
-Planned for `pawnlsp` and `vscode-pawn`.
+Implemented in `pawnlsp` v0.26.1 and `vscode-pawn` v0.11.1.
 
 ## Conformance tests
 
-Planned in the `pawnlsp/lsp` protocol tests and the `vscode-pawn` client tests.
-They will cover empty roots, invalid relative roots, updates, reloads, and
-compatibility aliases.
+`pawnlsp/lsp/server_test.go` covers empty roots, invalid relative roots,
+updates, reloads, document lifecycle events, and compatibility aliases.
+`vscode-pawn/test/lspProtocol.test.ts` checks the client payload.
 
 ## Open questions
 
