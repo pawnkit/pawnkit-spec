@@ -1,7 +1,9 @@
 # Compiler probes
 
-These small programs answer compatibility questions that are awkward to infer
-from documentation alone. They are probes, not a general compiler test suite.
+These probes answer compatibility questions that are awkward to infer from
+documentation alone. Their source files live in
+[`pawn-corpus`](https://github.com/pawnkit/pawn-corpus/tree/v0.1.5) so other
+tools can use the same evidence.
 
 The current results were recorded against:
 
@@ -22,14 +24,18 @@ self-referential macro does not terminate within two seconds.
 
 ## Run the probes
 
-Build either compiler, then pass one or more `pawncc` paths:
+Check out `pawn-corpus` v0.1.5 beside this repository, then pass one or more
+`pawncc` paths:
 
 ```sh
+git clone --branch v0.1.5 https://github.com/pawnkit/pawn-corpus.git ../pawn-corpus
 ./conformance/compiler/run.sh /path/to/pawncc
 ```
 
+Set `PAWN_CORPUS` if the checkout is elsewhere.
+
 The runner expects GNU `timeout` and gives each compilation two seconds. A
-timeout is the expected result only for `macro-recursion.pwn`.
+timeout is expected only for the self-referential macro probe.
 
 The behavior is also visible in compiler source. Numeric parsing, escapes,
 macro substitution, directives, and compatibility include guards are handled

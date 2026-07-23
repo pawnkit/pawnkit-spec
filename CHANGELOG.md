@@ -7,6 +7,15 @@ calls out schema version changes explicitly.
 
 ## [Unreleased]
 
+## [0.1.1] - 2026-07-23
+
+### Changed
+
+- Moved compiler probe sources to `pawn-corpus` v0.1.5.
+- Added a pinned compiler differential to CI.
+
+## [0.1.0] - 2026-07-20
+
 ### Added
 
 - Initial governance process and RFC template (`GOVERNANCE.md`,

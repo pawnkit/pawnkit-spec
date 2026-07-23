@@ -74,3 +74,27 @@ jobs:
             done < <(grep -oE '\]\(([^:)]+\.md)(#[^)]*)?\)' "$file" | sed -E 's/^\]\(([^)#]+).*/\1/')
           done < <(find . -name '*.md' -not -path './.git/*' -print0)
           exit "$status"
+
+  compiler-probes:
+    name: compiler probes
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Check out pawn-corpus
+        uses: actions/checkout@v4
+        with:
+          repository: pawnkit/pawn-corpus
+          ref: 2711aeac21b8535a945fe1b66590a3022af345e4
+          path: pawn-corpus
+
+      - name: Download Pawn 3.10.10
+        run: |
+          wget -q https://github.com/pawn-lang/compiler/releases/download/v3.10.10/pawnc-3.10.10-linux.tar.gz
+          echo "9bbb1df6e933318fce1fa61951e4196b70613c637a5a1d4c96937e147c18468d  pawnc-3.10.10-linux.tar.gz" | sha256sum -c -
+          tar -xzf pawnc-3.10.10-linux.tar.gz
+
+      - name: Run compiler probes
+        env:
+          PAWN_CORPUS: ${{ github.workspace }}/pawn-corpus
+        run: ./conformance/compiler/run.sh "$PWD/pawnc-3.10.10-linux/bin/pawncc"

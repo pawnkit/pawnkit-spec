@@ -2,9 +2,17 @@
 
 set -u
 
-case_dir=$(CDPATH= cd -- "$(dirname -- "$0")/cases" && pwd)
+script_dir=$(CDPATH= cd -- "$(dirname -- "$0")" && pwd)
+repo_dir=$(CDPATH= cd -- "$script_dir/../.." && pwd)
+corpus_dir=${PAWN_CORPUS:-"$repo_dir/../pawn-corpus"}
 work_dir=$(mktemp -d)
 trap 'rm -rf "$work_dir"' EXIT
+
+if [ ! -d "$corpus_dir" ]; then
+  echo "pawn-corpus not found at $corpus_dir" >&2
+  echo "set PAWN_CORPUS to a pawn-corpus v0.1.5 checkout" >&2
+  exit 2
+fi
 
 if [ "$#" -gt 0 ]; then
   compilers=("$@")
@@ -22,21 +30,29 @@ run_case() {
   compiler=$1
   name=$2
   expected=$3
-  shift 3
+  source=$4
+  source_dir=$(dirname -- "$source")
+  source_name=$(basename -- "$source")
+  compiler_dir=$(dirname -- "$compiler")
+  library_dir=$compiler_dir
+  if [ -d "$compiler_dir/../lib" ]; then
+    library_dir=$(CDPATH= cd -- "$compiler_dir/../lib" && pwd)
+  fi
+  shift 4
 
   output="$work_dir/${name}.txt"
   artifact="$work_dir/${name}.amx"
   status=0
   (
-    cd "$case_dir" || exit 1
-    LD_LIBRARY_PATH="$(dirname -- "$compiler")${LD_LIBRARY_PATH:+:$LD_LIBRARY_PATH}" \
-      timeout 2s "$compiler" "$@" "$name.pwn" -o"$artifact"
+    cd "$corpus_dir/$source_dir" || exit 1
+    LD_LIBRARY_PATH="$library_dir${LD_LIBRARY_PATH:+:$LD_LIBRARY_PATH}" \
+      timeout 2s "$compiler" "$@" "$source_name" -o"$artifact"
   ) >"$output" 2>&1 || status=$?
 
   passed=false
   case "$expected" in
     pass) [ "$status" -eq 0 ] && passed=true ;;
-    fail) [ "$status" -ne 0 ] && [ "$status" -ne 124 ] && passed=true ;;
+    fail) [ "$status" -eq 1 ] && passed=true ;;
     timeout) [ "$status" -eq 124 ] && passed=true ;;
     warning:*)
       code=${expected#warning:}
@@ -56,21 +72,21 @@ run_case() {
 for compiler in "${compilers[@]}"; do
   compiler=$(realpath "$compiler")
   echo "== $compiler =="
-  run_case "$compiler" at-global pass
-  run_case "$compiler" at-identifier fail
-  run_case "$compiler" binary-literal pass
-  run_case "$compiler" block-shadowing warning:219
-  run_case "$compiler" digit-separator pass
-  run_case "$compiler" hex-dollar-suffix fail
-  run_case "$compiler" include-twice fail
-  run_case "$compiler" include-twice pass -Z+
-  run_case "$compiler" macro-recursion timeout
-  run_case "$compiler" macro-redefinition warning:201
-  run_case "$compiler" preproc-elif fail
-  run_case "$compiler" preproc-elseif pass
-  run_case "$compiler" string-prefix pass
-  run_case "$compiler" tag-mismatch warning:213
-  run_case "$compiler" tag-union pass
+  run_case "$compiler" at-global pass syntax/valid/compiler/at_global.pwn
+  run_case "$compiler" at-identifier fail semantics/compiler_at_identifier.pwn
+  run_case "$compiler" binary-literal pass lexer/compiler_binary_literal.pwn
+  run_case "$compiler" block-shadowing warning:219 syntax/valid/compiler/block_shadowing.pwn
+  run_case "$compiler" digit-separator pass lexer/compiler_digit_separator.pwn
+  run_case "$compiler" hex-dollar-suffix fail lexer/compiler_hex_dollar_suffix.pwn
+  run_case "$compiler" include-twice fail preprocessor/compiler_include_twice/main.pwn
+  run_case "$compiler" include-twice pass preprocessor/compiler_include_twice/main.pwn -Z+
+  run_case "$compiler" macro-recursion timeout preprocessor/compiler_macro_self_recursion.pwn
+  run_case "$compiler" macro-redefinition warning:201 preprocessor/compiler_macro_redefinition.pwn
+  run_case "$compiler" preproc-elif fail preprocessor/compiler_elif.pwn
+  run_case "$compiler" preproc-elseif pass preprocessor/compiler_elseif.pwn
+  run_case "$compiler" string-prefix pass lexer/compiler_string_prefix.pwn
+  run_case "$compiler" tag-mismatch warning:213 semantics/compiler_tag_mismatch.pwn
+  run_case "$compiler" tag-union pass semantics/compiler_tag_union.pwn
 done
 
 exit "$failures"
