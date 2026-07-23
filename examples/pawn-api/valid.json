@@ -24,6 +24,8 @@
         "commit": "0000000000000000000000000000000000000f",
         "license": "Apache-2.0"
       },
+      "confidence": "high",
+      "reviewStatus": "reviewed",
       "documentationUrl": "https://open.mp/docs/scripting/functions/SetPlayerPos"
     },
     {
@@ -45,7 +47,9 @@
         "path": "a_samp.inc",
         "commit": "0000000000000000000000000000000000000f",
         "license": "Apache-2.0"
-      }
+      },
+      "confidence": "high",
+      "reviewStatus": "reviewed"
     },
     {
       "id": "constant:MAX_PLAYERS",
@@ -60,7 +64,9 @@
         "path": "a_samp.inc",
         "commit": "0000000000000000000000000000000000000f",
         "license": "Apache-2.0"
-      }
+      },
+      "confidence": "medium",
+      "reviewStatus": "generated"
     }
   ]
 }

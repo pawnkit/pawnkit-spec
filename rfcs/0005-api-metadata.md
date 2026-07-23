@@ -3,7 +3,7 @@ rfc: 0005
 title: API metadata (natives, callbacks, constants, tags)
 status: draft
 created: 2026-07-17
-updated: 2026-07-17
+updated: 2026-07-23
 supersedes: null
 superseded-by: null
 schema: schemas/pawn-api.schema.json
@@ -65,6 +65,21 @@ PawnKit therefore maintains its own index, generated from upstream sources by
   from), `license` (SPDX identifier of the source repository).
 - `documentationUrl` (string, optional): link to rendered open.mp docs for
   this entry, when known.
+- `confidence` (enum): `high` for a fact checked against a primary source,
+  `medium` for a sourced fact that has not been independently checked, or
+  `low` for a provisional or inferred fact.
+- `reviewStatus` (enum): `generated` when only automated extraction has
+  checked the entry, or `reviewed` after a person has checked it against the
+  recorded source.
+
+Confidence and review status answer different questions. A generator may
+extract a high-confidence signature from compiler source, but the entry remains
+`generated` until it is reviewed.
+
+Consumers may use generated entries for completion, navigation, and
+informational diagnostics. A fix or migration that can change program
+behaviour must use a reviewed, high-confidence fact. Consumers should label
+low-confidence documentation and diagnostics as provisional.
 
 ## PawnKit extensions
 
@@ -76,7 +91,9 @@ contract populated from upstream Pawn source and documentation by `pawn-api`.
 
 - [x] Additive (no existing consumer needs to change to keep working).
 
-This is the first version of the API metadata format.
+This is the first version of the API metadata format. The format remains a
+draft, so producers must add the required confidence fields before RFC 0005 is
+accepted.
 
 ## Alternatives considered
 
@@ -101,12 +118,14 @@ Not applicable: this is the first version.
 ## Reference implementation status
 
 `pawn-api` is the reference producer. It validates source entries and generates
-the versioned interchange document consumed by other tools.
+the versioned interchange document consumed by other tools. Its source records
+whether an entry has been reviewed; generation alone does not promote that
+status.
 
 ## Conformance tests
 
 The schema example is validated by `tools/validate`. `pawn-api` tests generated
-shape conformance and keeps source provenance for reviewed entries. Extraction
+shape conformance, confidence, review status, and source provenance. Extraction
 correctness remains the producer's responsibility.
 
 ## Open questions
