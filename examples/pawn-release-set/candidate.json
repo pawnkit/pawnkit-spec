@@ -1,0 +1,63 @@
+{
+  "schemaVersion": 1,
+  "id": "preview-candidate-2026-07-23",
+  "generatedAt": "2026-07-23T22:25:00Z",
+  "source": {
+    "repository": "pawnkit/pawn-actions",
+    "commit": "ad01bab823877ed8cc50e44136f10d68becdd2e9"
+  },
+  "targets": ["linux-amd64", "windows-amd64", "darwin-arm64"],
+  "profiles": ["samp-037", "openmp"],
+  "components": [
+    {
+      "name": "pawn",
+      "repository": "pawnkit/pawnkit-cli",
+      "version": "v1.1.3",
+      "commit": "b00731e222c5f74d7f2808ae6a842ff37f9c9315",
+      "artifacts": [
+        {
+          "target": "linux-amd64",
+          "url": "https://github.com/pawnkit/pawnkit-cli/releases/download/v1.1.3/pawn-linux-amd64.tar.gz",
+          "size": 3212419,
+          "checksum": "sha256:573407a0ec7adda5fa74c0afeda162170c3a98530270f71f2cf31e2ea968df55"
+        },
+        {
+          "target": "windows-amd64",
+          "url": "https://github.com/pawnkit/pawnkit-cli/releases/download/v1.1.3/pawn-windows-amd64.tar.gz",
+          "size": 3294828,
+          "checksum": "sha256:19baf567bc1933b40b3b1ebbf811d3b9deb95febbc0deb9f6ffed9bc0e9547fb"
+        },
+        {
+          "target": "darwin-arm64",
+          "url": "https://github.com/pawnkit/pawnkit-cli/releases/download/v1.1.3/pawn-darwin-arm64.tar.gz",
+          "size": 2975810,
+          "checksum": "sha256:e12a10d2e91e5f60605ca947754b25e0c9cb8c837702e79ad1ee861529823d82"
+        }
+      ]
+    }
+  ],
+  "schemas": [
+    {
+      "name": "pawn-project",
+      "version": 1,
+      "url": "https://schemas.pawnkit.dev/pawn-project/v1/schema.json",
+      "checksum": "sha256:b9c15d88bf3d6c4b30079ac88247714c3370281e3cca812c37dd537e25840905"
+    },
+    {
+      "name": "pawn-release-set",
+      "version": 1,
+      "url": "https://schemas.pawnkit.dev/pawn-release-set/v1/schema.json",
+      "checksum": "sha256:4f15c7092149abaa9373df0a6ea6b1c6bc845b77fb8d441ba0a10cc9e71fa8a1"
+    }
+  ],
+  "evidence": {
+    "workflow": "https://github.com/pawnkit/pawn-actions/actions/runs/30049611703",
+    "commit": "ad01bab823877ed8cc50e44136f10d68becdd2e9",
+    "completedAt": "2026-07-23T22:24:00Z",
+    "projects": ["pawn-actions release-set validation"],
+    "targets": ["linux-amd64", "windows-amd64", "darwin-arm64"]
+  },
+  "knownLimits": [
+    "This candidate proves release integrity, not project compatibility."
+  ]
+}
