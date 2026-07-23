@@ -5,7 +5,11 @@ follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/). Schema
 major versions are tracked independently in each schema's `$id`; this log
 calls out schema version changes explicitly.
 
-## [Unreleased]
+## [0.1.3] - 2026-07-23
+
+### Added
+
+- Draft RFC 0008 for editor-managed tool state.
 
 ## [0.1.2] - 2026-07-23
 
