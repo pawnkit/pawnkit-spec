@@ -54,6 +54,14 @@ run_case() {
     pass) [ "$status" -eq 0 ] && passed=true ;;
     fail) [ "$status" -eq 1 ] && passed=true ;;
     timeout) [ "$status" -eq 124 ] && passed=true ;;
+    error-at:*)
+      location=${expected#error-at:}
+      location_file=${location%:*}
+      location_line=${location##*:}
+      [ "$status" -eq 1 ] &&
+        grep -Fq "$location_file($location_line)" "$output" &&
+        passed=true
+      ;;
     warning:*)
       code=${expected#warning:}
       [ "$status" -eq 0 ] && grep -Eq "warning 0*$code:" "$output" && passed=true
@@ -80,8 +88,12 @@ for compiler in "${compilers[@]}"; do
   run_case "$compiler" hex-dollar-suffix fail lexer/compiler_hex_dollar_suffix.pwn
   run_case "$compiler" include-twice fail preprocessor/compiler_include_twice/main.pwn
   run_case "$compiler" include-twice pass preprocessor/compiler_include_twice/main.pwn -Z+
+  run_case "$compiler" include-order pass preprocessor/compiler_include_order/main.pwn
+  run_case "$compiler" include-location error-at:broken.inc:2 preprocessor/compiler_source_location/main.pwn
   run_case "$compiler" macro-recursion timeout preprocessor/compiler_macro_self_recursion.pwn
   run_case "$compiler" macro-redefinition warning:201 preprocessor/compiler_macro_redefinition.pwn
+  run_case "$compiler" active-regions pass preprocessor/active_regions_nested.pwn
+  run_case "$compiler" profile-openmp pass preprocessor/profile_openmp_define.pwn __OPEN_MP__=1
   run_case "$compiler" preproc-elif fail preprocessor/compiler_elif.pwn
   run_case "$compiler" preproc-elseif pass preprocessor/compiler_elseif.pwn
   run_case "$compiler" string-prefix pass lexer/compiler_string_prefix.pwn

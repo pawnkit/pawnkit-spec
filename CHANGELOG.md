@@ -7,6 +7,13 @@ calls out schema version changes explicitly.
 
 ## [Unreleased]
 
+## [0.1.2] - 2026-07-23
+
+### Added
+
+- Compiler checks for include order, source locations, active regions, and
+  profile defines.
+
 ## [0.1.1] - 2026-07-23
 
 ### Changed

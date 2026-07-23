@@ -2,7 +2,7 @@
 
 These probes answer compatibility questions that are awkward to infer from
 documentation alone. Their source files live in
-[`pawn-corpus`](https://github.com/pawnkit/pawn-corpus/tree/v0.1.5) so other
+[`pawn-corpus`](https://github.com/pawnkit/pawn-corpus/tree/v0.1.6) so other
 tools can use the same evidence.
 
 The current results were recorded against:
@@ -24,11 +24,11 @@ self-referential macro does not terminate within two seconds.
 
 ## Run the probes
 
-Check out `pawn-corpus` v0.1.5 beside this repository, then pass one or more
+Check out `pawn-corpus` v0.1.6 beside this repository, then pass one or more
 `pawncc` paths:
 
 ```sh
-git clone --branch v0.1.5 https://github.com/pawnkit/pawn-corpus.git ../pawn-corpus
+git clone --branch v0.1.6 https://github.com/pawnkit/pawn-corpus.git ../pawn-corpus
 ./conformance/compiler/run.sh /path/to/pawncc
 ```
 
