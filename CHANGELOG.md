@@ -5,6 +5,13 @@ follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/). Schema
 major versions are tracked independently in each schema's `$id`; this log
 calls out schema version changes explicitly.
 
+## [0.1.17] - 2026-07-23
+
+### Added
+
+- Added draft RFCs for preprocessing, public syntax and semantic APIs, and
+  schema versioning.
+
 ## [0.1.16] - 2026-07-23
 
 ### Changed
