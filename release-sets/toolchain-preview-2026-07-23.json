@@ -1,10 +1,10 @@
 {
   "schemaVersion": 1,
-  "id": "candidate-2026-07-23",
-  "generatedAt": "2026-07-23T22:55:00Z",
+  "id": "toolchain-preview-2026-07-23",
+  "generatedAt": "2026-07-23T23:00:00Z",
   "source": {
     "repository": "pawnkit/pawn-actions",
-    "commit": "a9309beb4e07fceb619232633c3eb08c4249ac16"
+    "commit": "c6c3d722a883d3a60c331aabd96a46925dde4e0d"
   },
   "targets": ["linux-amd64", "windows-amd64", "darwin-arm64"],
   "profiles": ["samp-037", "openmp"],
@@ -155,9 +155,9 @@
     }
   ],
   "evidence": {
-    "workflow": "https://github.com/pawnkit/pawn-actions/actions/runs/30051241791",
-    "commit": "a9309beb4e07fceb619232633c3eb08c4249ac16",
-    "completedAt": "2026-07-23T22:51:37Z",
+    "workflow": "https://github.com/pawnkit/pawn-actions/actions/runs/30051658493",
+    "commit": "c6c3d722a883d3a60c331aabd96a46925dde4e0d",
+    "completedAt": "2026-07-23T22:59:04Z",
     "projects": [
       "pawn-corpus/projects/minimal-samp-gamemode",
       "pawn-corpus/projects/filterscript-with-includes"
@@ -165,7 +165,8 @@
     "targets": ["linux-amd64", "windows-amd64", "darwin-arm64"]
   },
   "knownLimits": [
-    "This is a bootstrap candidate. Its full cross-tool smoke test has not run.",
+    "The LSP is checked for installation and version output, not protocol behavior.",
+    "Format and lint run standalone; the CLI checks project discovery and lint.",
     "Build, test, and run still need configured compilers and runtime providers.",
     "Native plugin execution and debugging remain experimental."
   ]
