@@ -170,15 +170,17 @@ network listeners only when requested and should default to loopback.
 
 ## Reference implementation status
 
-Open. `pawn-project` owns request construction. `pawnkit-cli` owns invocation.
-The first adapters belong with the CLI unless a reusable implementation
-emerges.
+`pawn-project` v0.2.0 constructs requests. `pawnkit-cli` v1.2.0 invokes
+external backends and provides the direct compiler adapter. `pawn-actions`
+v1.4.0 forwards resolved build choices to the CLI. The sampctl adapter is
+still open.
 
 ## Conformance tests
 
-Open. Tests need valid and invalid messages, Windows path cases, cancellation,
-partial writes, bounded output, a clean sampctl project, and the small SA-MP
-and open.mp corpus projects.
+The schema has valid, failed, cancelled, and invalid examples. The direct
+adapter builds the small SA-MP and open.mp corpus projects with Pawn 3.10.10.
+Windows paths, forced cancellation, partial writes, and a clean sampctl
+project remain open.
 
 ## Open questions
 

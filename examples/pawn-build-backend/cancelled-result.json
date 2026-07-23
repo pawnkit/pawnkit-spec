@@ -1,0 +1,15 @@
+{
+  "kind": "result",
+  "schemaVersion": 1,
+  "status": "cancelled",
+  "backend": {
+    "name": "pawn-direct",
+    "version": "0.1.0"
+  },
+  "artifacts": [],
+  "diagnostics": [],
+  "process": {
+    "stderr": "build cancelled",
+    "truncated": false
+  }
+}
