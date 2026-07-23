@@ -1,12 +1,15 @@
 // Command validate checks pawnkit-spec's schemas, profiles, examples,
-// release sets, conformance documents, and RFC front matter without network access.
-// Directories are identified by base name, so argument order doesn't matter.
+// release sets, conformance documents, and RFC front matter.
+// It uses the network only with --verify-urls.
 package main
 
 import (
 	"bytes"
 	"encoding/json"
+	"errors"
 	"fmt"
+	"io"
+	"net/http"
 	"os"
 	"path/filepath"
 	"regexp"
@@ -24,6 +27,8 @@ var validStatuses = map[string]bool{
 	"deprecated":   true,
 	"superseded":   true,
 }
+
+const maxSchemaBytes = 8 << 20
 
 type failure struct {
 	file   string
@@ -49,6 +54,7 @@ type validator struct {
 func main() {
 	start := time.Now()
 	v := &validator{compiled: map[string]*jsonschema.Schema{}}
+	verifyURLs := false
 
 	if len(os.Args) < 2 {
 		fmt.Fprintln(os.Stderr, "usage: validate <dir>...")
@@ -56,6 +62,10 @@ func main() {
 	}
 
 	for _, arg := range os.Args[1:] {
+		if arg == "--verify-urls" {
+			verifyURLs = true
+			continue
+		}
 		abs, err := filepath.Abs(arg)
 		if err != nil {
 			fmt.Fprintf(os.Stderr, "invalid path %q: %v\n", arg, err)
@@ -82,6 +92,9 @@ func main() {
 
 	if v.schemasDir != "" {
 		v.loadSchemas()
+		if verifyURLs {
+			v.verifySchemaURLs()
+		}
 	}
 	if v.conformanceDir != "" {
 		v.checkConformanceSchema()
@@ -111,6 +124,76 @@ func main() {
 	}
 
 	fmt.Printf("ok: validated %d documents in %s\n", v.documentsChecked, elapsed)
+}
+
+func (v *validator) verifySchemaURLs() {
+	entries, err := os.ReadDir(v.schemasDir)
+	if err != nil {
+		v.fail(v.schemasDir, fmt.Sprintf("cannot read schemas dir: %v", err))
+		return
+	}
+	client := schemaHTTPClient()
+	for _, entry := range entries {
+		if entry.IsDir() || !strings.HasSuffix(entry.Name(), ".schema.json") {
+			continue
+		}
+		path := filepath.Join(v.schemasDir, entry.Name())
+		local, err := os.ReadFile(path)
+		if err != nil {
+			v.fail(path, fmt.Sprintf("cannot read: %v", err))
+			continue
+		}
+		var document struct {
+			ID string `json:"$id"`
+		}
+		if err := json.Unmarshal(local, &document); err != nil || document.ID == "" {
+			continue
+		}
+		if err := verifySchemaURL(client, document.ID, local); err != nil {
+			v.fail(path, err.Error())
+		}
+	}
+}
+
+func schemaHTTPClient() *http.Client {
+	return &http.Client{
+		Timeout: 20 * time.Second,
+		CheckRedirect: func(request *http.Request, via []*http.Request) error {
+			if len(via) != 1 ||
+				request.URL.Scheme != "https" ||
+				request.URL.Hostname() != "pawnkit.dev" ||
+				request.URL.Path != via[0].URL.Path {
+				return errors.New("unexpected schema redirect")
+			}
+			return nil
+		},
+	}
+}
+
+func verifySchemaURL(client *http.Client, url string, local []byte) error {
+	request, err := http.NewRequest(http.MethodGet, url, nil)
+	if err != nil {
+		return fmt.Errorf("invalid schema URL %q: %w", url, err)
+	}
+	response, err := client.Do(request)
+	if err != nil {
+		return fmt.Errorf("fetching %s: %w", url, err)
+	}
+	defer response.Body.Close()
+	if response.StatusCode != http.StatusOK {
+		return fmt.Errorf("fetching %s: status %s", url, response.Status)
+	}
+	published, err := io.ReadAll(io.LimitReader(response.Body, maxSchemaBytes+1))
+	if err != nil {
+		return fmt.Errorf("reading %s: %w", url, err)
+	}
+	if len(published) > maxSchemaBytes {
+		return fmt.Errorf("reading %s: response exceeds %d bytes", url, maxSchemaBytes)
+	}
+	if !bytes.Equal(local, published) {
+		return fmt.Errorf("published schema differs from %s", url)
+	}
+	return nil
 }
 
 func (v *validator) checkReleaseSets() {

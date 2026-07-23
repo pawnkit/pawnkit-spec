@@ -5,6 +5,8 @@ on:
     branches: [main]
   pull_request:
   workflow_dispatch:
+  schedule:
+    - cron: "17 4 * * *"
 
 permissions:
   contents: read
@@ -98,3 +100,20 @@ jobs:
         env:
           PAWN_CORPUS: ${{ github.workspace }}/pawn-corpus
         run: ./conformance/compiler/run.sh "$PWD/pawnc-3.10.10-linux/bin/pawncc"
+
+  published-schemas:
+    name: published schema URLs
+    if: github.event_name == 'schedule' || github.event_name == 'workflow_dispatch'
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: tools/validate
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-go@v5
+        with:
+          go-version: "1.26"
+
+      - name: Compare published schemas
+        run: go run . --verify-urls ../../schemas
