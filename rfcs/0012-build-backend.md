@@ -6,7 +6,7 @@ created: 2026-07-23
 updated: 2026-07-23
 supersedes: null
 superseded-by: null
-schema: null
+schema: schemas/pawn-build-backend.schema.json
 ---
 
 ## Summary
@@ -51,6 +51,7 @@ Capability negotiation runs:
 
 The response contains:
 
+- `kind`: `capabilities`;
 - `protocolVersion`: `1`;
 - `name` and `version`: backend identity;
 - `operations`: any of `restore`, `build`, and `run`;
@@ -71,6 +72,7 @@ limits on projects with many includes or defines.
 
 A request contains:
 
+- `kind`: `request`;
 - `schemaVersion`: `1`;
 - `operation`: `restore`, `build`, or `run`;
 - `projectRoot`: the absolute canonical project root;
@@ -94,6 +96,7 @@ that files still match the request.
 
 A result contains:
 
+- `kind`: `result`;
 - `schemaVersion`: `1`;
 - `status`: `passed`, `failed`, or `cancelled`;
 - `backend`: name and version;

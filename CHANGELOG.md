@@ -5,6 +5,13 @@ follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/). Schema
 major versions are tracked independently in each schema's `$id`; this log
 calls out schema version changes explicitly.
 
+## [0.1.19] - 2026-07-23
+
+### Added
+
+- Added the draft build-backend schema with valid and invalid examples.
+- Added offline validation for negative schema examples.
+
 ## [0.1.18] - 2026-07-23
 
 ### Added

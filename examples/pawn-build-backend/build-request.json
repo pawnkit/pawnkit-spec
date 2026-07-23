@@ -1,0 +1,23 @@
+{
+  "kind": "request",
+  "schemaVersion": 1,
+  "operation": "build",
+  "projectRoot": "/workspace/example",
+  "profile": "openmp",
+  "target": "openmp",
+  "entry": "/workspace/example/gamemodes/main.pwn",
+  "output": "/workspace/example/build/main.amx",
+  "includePaths": [
+    "/workspace/example/include",
+    "/workspace/example/dependencies"
+  ],
+  "defines": {
+    "OPEN_MP": "1"
+  },
+  "compiler": {
+    "path": "/opt/pawn/bin/pawncc",
+    "version": "3.10.10",
+    "sha256": "0000000000000000000000000000000000000000000000000000000000000000"
+  },
+  "arguments": []
+}

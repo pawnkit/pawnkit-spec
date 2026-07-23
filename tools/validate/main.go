@@ -43,6 +43,7 @@ type validator struct {
 	schemasDir       string
 	profilesDir      string
 	examplesDir      string
+	invalidExamples  string
 	conformanceDir   string
 	releaseSetsDir   string
 	rfcsDir          string
@@ -78,6 +79,8 @@ func main() {
 			v.profilesDir = abs
 		case "examples":
 			v.examplesDir = abs
+		case "invalid-examples":
+			v.invalidExamples = abs
 		case "conformance":
 			v.conformanceDir = abs
 		case "release-sets":
@@ -85,7 +88,7 @@ func main() {
 		case "rfcs":
 			v.rfcsDir = abs
 		default:
-			fmt.Fprintf(os.Stderr, "unrecognized directory (expected schemas/profiles/examples/conformance/release-sets/rfcs): %s\n", abs)
+			fmt.Fprintf(os.Stderr, "unrecognized directory (expected schemas/profiles/examples/invalid-examples/conformance/release-sets/rfcs): %s\n", abs)
 			os.Exit(2)
 		}
 	}
@@ -104,6 +107,9 @@ func main() {
 	}
 	if v.examplesDir != "" {
 		v.checkExamples()
+	}
+	if v.invalidExamples != "" {
+		v.checkInvalidExamples()
 	}
 	if v.releaseSetsDir != "" {
 		v.checkReleaseSets()
@@ -124,6 +130,62 @@ func main() {
 	}
 
 	fmt.Printf("ok: validated %d documents in %s\n", v.documentsChecked, elapsed)
+}
+
+func (v *validator) checkInvalidExamples() {
+	entries, err := os.ReadDir(v.invalidExamples)
+	if err != nil {
+		v.fail(v.invalidExamples, fmt.Sprintf("cannot read invalid examples dir: %v", err))
+		return
+	}
+	for _, entry := range entries {
+		if !entry.IsDir() {
+			continue
+		}
+		schema := v.compiled[entry.Name()]
+		if schema == nil {
+			v.fail(filepath.Join(v.invalidExamples, entry.Name()), "no matching compiled schema")
+			continue
+		}
+		dir := filepath.Join(v.invalidExamples, entry.Name())
+		files, err := os.ReadDir(dir)
+		if err != nil {
+			v.fail(dir, fmt.Sprintf("cannot read: %v", err))
+			continue
+		}
+		found := false
+		for _, file := range files {
+			if file.IsDir() || !strings.HasSuffix(file.Name(), ".json") {
+				continue
+			}
+			found = true
+			path := filepath.Join(dir, file.Name())
+			raw, err := os.ReadFile(path)
+			if err != nil {
+				v.fail(path, fmt.Sprintf("cannot read: %v", err))
+				continue
+			}
+			if len(raw) > 1<<20 {
+				v.fail(path, "exceeds 1 MiB size limit")
+				continue
+			}
+			var document any
+			decoder := json.NewDecoder(bytes.NewReader(raw))
+			decoder.UseNumber()
+			if err := decoder.Decode(&document); err != nil {
+				v.fail(path, fmt.Sprintf("invalid JSON: %v", err))
+				continue
+			}
+			if err := schema.Validate(document); err == nil {
+				v.fail(path, "invalid example unexpectedly passed schema validation")
+				continue
+			}
+			v.documentsChecked++
+		}
+		if !found {
+			v.fail(dir, "no invalid example .json files found")
+		}
+	}
 }
 
 func (v *validator) verifySchemaURLs() {

@@ -1,0 +1,157 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://schemas.pawnkit.dev/pawn-build-backend/v1/schema.json",
+  "title": "Pawn build backend protocol",
+  "description": "Capabilities, resolved requests, and results for local Pawn build backends.",
+  "oneOf": [
+    { "$ref": "#/$defs/capabilities" },
+    { "$ref": "#/$defs/request" },
+    { "$ref": "#/$defs/result" }
+  ],
+  "$defs": {
+    "identity": {
+      "type": "object",
+      "required": ["name", "version"],
+      "properties": {
+        "name": { "type": "string", "minLength": 1 },
+        "version": { "type": "string", "minLength": 1 }
+      },
+      "additionalProperties": false
+    },
+    "capabilities": {
+      "type": "object",
+      "required": ["kind", "protocolVersion", "name", "version", "operations", "profiles"],
+      "properties": {
+        "kind": { "const": "capabilities" },
+        "protocolVersion": { "type": "integer", "const": 1 },
+        "name": { "type": "string", "minLength": 1 },
+        "version": { "type": "string", "minLength": 1 },
+        "operations": {
+          "type": "array",
+          "items": { "enum": ["restore", "build", "run"] },
+          "uniqueItems": true
+        },
+        "profiles": {
+          "type": "array",
+          "items": { "type": "string", "pattern": "^[a-z][a-z0-9-]*$" },
+          "uniqueItems": true
+        },
+        "features": {
+          "type": "array",
+          "items": { "type": "string", "pattern": "^[a-z][a-z0-9-]*$" },
+          "uniqueItems": true
+        }
+      },
+      "additionalProperties": false
+    },
+    "compiler": {
+      "type": "object",
+      "required": ["path"],
+      "properties": {
+        "path": { "type": "string", "minLength": 1 },
+        "version": { "type": "string" },
+        "sha256": { "type": "string", "pattern": "^[0-9a-f]{64}$" }
+      },
+      "additionalProperties": false
+    },
+    "request": {
+      "type": "object",
+      "required": ["kind", "schemaVersion", "operation", "projectRoot", "profile", "target", "includePaths", "defines", "arguments"],
+      "properties": {
+        "kind": { "const": "request" },
+        "schemaVersion": { "type": "integer", "const": 1 },
+        "operation": { "enum": ["restore", "build", "run"] },
+        "projectRoot": { "type": "string", "minLength": 1 },
+        "profile": { "type": "string", "pattern": "^[a-z][a-z0-9-]*$" },
+        "target": { "type": "string", "minLength": 1 },
+        "entry": { "type": "string", "minLength": 1 },
+        "output": { "type": "string", "minLength": 1 },
+        "includePaths": {
+          "type": "array",
+          "items": { "type": "string", "minLength": 1 },
+          "uniqueItems": true
+        },
+        "defines": {
+          "type": "object",
+          "additionalProperties": { "type": "string" }
+        },
+        "compiler": { "$ref": "#/$defs/compiler" },
+        "arguments": {
+          "type": "array",
+          "items": { "type": "string" }
+        }
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": { "operation": { "const": "build" } },
+            "required": ["operation"]
+          },
+          "then": { "required": ["entry", "output"] }
+        },
+        {
+          "if": {
+            "properties": { "operation": { "const": "run" } },
+            "required": ["operation"]
+          },
+          "then": { "required": ["output"] }
+        }
+      ],
+      "additionalProperties": false
+    },
+    "artifact": {
+      "type": "object",
+      "required": ["path", "mediaType", "size"],
+      "properties": {
+        "path": { "type": "string", "minLength": 1 },
+        "mediaType": { "type": "string", "minLength": 1 },
+        "size": { "type": "integer", "minimum": 0 },
+        "sha256": { "type": "string", "pattern": "^[0-9a-f]{64}$" }
+      },
+      "additionalProperties": false
+    },
+    "process": {
+      "type": "object",
+      "properties": {
+        "exitCode": { "type": "integer" },
+        "stdout": { "type": "string" },
+        "stderr": { "type": "string" },
+        "truncated": { "type": "boolean" }
+      },
+      "additionalProperties": false
+    },
+    "runtime": {
+      "type": "object",
+      "required": ["tier", "implementation"],
+      "properties": {
+        "tier": {
+          "enum": ["pure-amx", "platform-simulation", "native-plugin-integration", "real-server-integration"]
+        },
+        "implementation": { "type": "string", "minLength": 1 },
+        "version": { "type": "string" }
+      },
+      "additionalProperties": false
+    },
+    "result": {
+      "type": "object",
+      "required": ["kind", "schemaVersion", "status", "backend", "artifacts", "diagnostics"],
+      "properties": {
+        "kind": { "const": "result" },
+        "schemaVersion": { "type": "integer", "const": 1 },
+        "status": { "enum": ["passed", "failed", "cancelled"] },
+        "backend": { "$ref": "#/$defs/identity" },
+        "artifacts": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/artifact" }
+        },
+        "diagnostics": {
+          "type": "array",
+          "items": { "$ref": "https://schemas.pawnkit.dev/pawn-diagnostic/v1/schema.json" }
+        },
+        "process": { "$ref": "#/$defs/process" },
+        "runtime": { "$ref": "#/$defs/runtime" }
+      },
+      "additionalProperties": false
+    }
+  }
+}

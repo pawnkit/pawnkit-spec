@@ -1,0 +1,9 @@
+{
+  "kind": "capabilities",
+  "protocolVersion": 1,
+  "name": "pawn-direct",
+  "version": "0.1.0",
+  "operations": ["build"],
+  "profiles": ["samp-037", "openmp"],
+  "features": []
+}

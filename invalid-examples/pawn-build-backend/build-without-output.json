@@ -1,0 +1,12 @@
+{
+  "kind": "request",
+  "schemaVersion": 1,
+  "operation": "build",
+  "projectRoot": "/workspace/example",
+  "profile": "openmp",
+  "target": "openmp",
+  "entry": "/workspace/example/gamemodes/main.pwn",
+  "includePaths": [],
+  "defines": {},
+  "arguments": []
+}
