@@ -39,7 +39,7 @@ Run the same schema, example, profile, conformance, and RFC checks used by CI:
 
 ```sh
 cd tools/validate
-go run . ../../schemas ../../profiles ../../examples ../../conformance ../../rfcs
+go run . ../../schemas ../../profiles ../../examples ../../conformance ../../release-sets ../../rfcs
 ```
 
 The Go module exists only inside `tools/validate`; `pawnkit-spec` is not a public Go library.

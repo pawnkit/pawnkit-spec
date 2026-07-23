@@ -11,7 +11,7 @@ Run the same offline check as CI:
 
 ```sh
 cd tools/validate
-go run . ../../schemas ../../profiles ../../examples ../../conformance ../../rfcs
+go run . ../../schemas ../../profiles ../../examples ../../conformance ../../release-sets ../../rfcs
 ```
 
 ## RFCs

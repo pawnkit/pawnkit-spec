@@ -1,5 +1,5 @@
 // Command validate checks pawnkit-spec's schemas, profiles, examples,
-// conformance documents, and RFC front matter without network access.
+// release sets, conformance documents, and RFC front matter without network access.
 // Directories are identified by base name, so argument order doesn't matter.
 package main
 
@@ -39,6 +39,7 @@ type validator struct {
 	profilesDir      string
 	examplesDir      string
 	conformanceDir   string
+	releaseSetsDir   string
 	rfcsDir          string
 	compiled         map[string]*jsonschema.Schema // name -> compiled
 	failures         []failure
@@ -69,10 +70,12 @@ func main() {
 			v.examplesDir = abs
 		case "conformance":
 			v.conformanceDir = abs
+		case "release-sets":
+			v.releaseSetsDir = abs
 		case "rfcs":
 			v.rfcsDir = abs
 		default:
-			fmt.Fprintf(os.Stderr, "unrecognized directory (expected schemas/profiles/examples/conformance/rfcs): %s\n", abs)
+			fmt.Fprintf(os.Stderr, "unrecognized directory (expected schemas/profiles/examples/conformance/release-sets/rfcs): %s\n", abs)
 			os.Exit(2)
 		}
 	}
@@ -88,6 +91,9 @@ func main() {
 	}
 	if v.examplesDir != "" {
 		v.checkExamples()
+	}
+	if v.releaseSetsDir != "" {
+		v.checkReleaseSets()
 	}
 	if v.rfcsDir != "" {
 		v.checkRFCs()
@@ -105,6 +111,30 @@ func main() {
 	}
 
 	fmt.Printf("ok: validated %d documents in %s\n", v.documentsChecked, elapsed)
+}
+
+func (v *validator) checkReleaseSets() {
+	sch := v.compiled["pawn-release-set"]
+	if sch == nil {
+		v.fail(v.releaseSetsDir, "schemas/pawn-release-set.schema.json was not loaded/compiled; cannot validate release sets")
+		return
+	}
+	entries, err := os.ReadDir(v.releaseSetsDir)
+	if err != nil {
+		v.fail(v.releaseSetsDir, fmt.Sprintf("cannot read release sets dir: %v", err))
+		return
+	}
+	found := false
+	for _, entry := range entries {
+		if entry.IsDir() || !strings.HasSuffix(entry.Name(), ".json") {
+			continue
+		}
+		found = true
+		v.validateAgainst(filepath.Join(v.releaseSetsDir, entry.Name()), sch)
+	}
+	if !found {
+		v.fail(v.releaseSetsDir, "no release set .json files found")
+	}
 }
 
 func (v *validator) loadSchemas() {

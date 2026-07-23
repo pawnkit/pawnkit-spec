@@ -47,8 +47,8 @@ jobs:
           go mod tidy
           git diff --exit-code -- go.mod go.sum
 
-      - name: Validate schemas, profiles, examples, conformance docs, and RFC front matter
-        run: go run . ../../schemas ../../profiles ../../examples ../../conformance ../../rfcs
+      - name: Validate schemas, profiles, examples, conformance docs, release sets, and RFC front matter
+        run: go run . ../../schemas ../../profiles ../../examples ../../conformance ../../release-sets ../../rfcs
 
   markdown-lint:
     name: markdown link/format check
