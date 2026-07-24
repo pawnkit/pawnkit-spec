@@ -19,26 +19,26 @@
     {
       "name": "pawn",
       "repository": "pawnkit/pawnkit-cli",
-      "version": "v1.2.0",
-      "commit": "f4ad27a5031c4454b605dda0218032df46d608a3",
+      "version": "v1.2.1",
+      "commit": "02d261af40bbffb027f5654313ed0526e0fc81e6",
       "artifacts": [
         {
           "target": "linux-amd64",
-          "url": "https://github.com/pawnkit/pawnkit-cli/releases/download/v1.2.0/pawn-linux-amd64.tar.gz",
-          "size": 3236217,
-          "checksum": "sha256:530b6da4c697a3dbc8d19498ea730025191f667b0af4d390ac20d98e263e8e5a"
+          "url": "https://github.com/pawnkit/pawnkit-cli/releases/download/v1.2.1/pawn-linux-amd64.tar.gz",
+          "size": 3236847,
+          "checksum": "sha256:efd98955e4bb53a082acc39f441ff1ada359e07eb86a6d3d7a9e4112caca499c"
         },
         {
           "target": "windows-amd64",
-          "url": "https://github.com/pawnkit/pawnkit-cli/releases/download/v1.2.0/pawn-windows-amd64.tar.gz",
-          "size": 3322067,
-          "checksum": "sha256:7d0cf31c6542a25ba16d3725ab8d1cb7f3a85a948031153626a12765198ebffc"
+          "url": "https://github.com/pawnkit/pawnkit-cli/releases/download/v1.2.1/pawn-windows-amd64.tar.gz",
+          "size": 3322832,
+          "checksum": "sha256:dea9a68c13a3ace8d26fde060c4df13fa0946d8e36b9b7f0c84057b58a28905d"
         },
         {
           "target": "darwin-arm64",
-          "url": "https://github.com/pawnkit/pawnkit-cli/releases/download/v1.2.0/pawn-darwin-arm64.tar.gz",
-          "size": 2999811,
-          "checksum": "sha256:e959351871a1cd555ccecb7f81f7ecc033c55b071871ff7ce6c9446fce7bbac7"
+          "url": "https://github.com/pawnkit/pawnkit-cli/releases/download/v1.2.1/pawn-darwin-arm64.tar.gz",
+          "size": 3000951,
+          "checksum": "sha256:1f6ecb4d522b61717d713f23f0a8152e79959bf454909534d28b672d1f493d34"
         }
       ]
     },
@@ -71,52 +71,52 @@
     {
       "name": "pawnlint",
       "repository": "pawnkit/pawnlint",
-      "version": "v1.1.4",
-      "commit": "1ef0f687fd30a7914af97854e3689ca8f91392b4",
+      "version": "v1.1.5",
+      "commit": "14e23cc8cdfb15cc963c8ad45edb4f93e5db6097",
       "artifacts": [
         {
           "target": "linux-amd64",
-          "url": "https://github.com/pawnkit/pawnlint/releases/download/v1.1.4/pawnlint_1.1.4_linux_amd64.tar.gz",
-          "size": 3667676,
-          "checksum": "sha256:55c08f79e5805ae176ba195b6994b36902f143cee302fe381feebce91a54e4b1"
+          "url": "https://github.com/pawnkit/pawnlint/releases/download/v1.1.5/pawnlint_1.1.5_linux_amd64.tar.gz",
+          "size": 3668550,
+          "checksum": "sha256:fdd4e0d3d65cba981ec68ab67632bde3ac9e62d6e31f24de82531190ff240d33"
         },
         {
           "target": "windows-amd64",
-          "url": "https://github.com/pawnkit/pawnlint/releases/download/v1.1.4/pawnlint_1.1.4_windows_amd64.zip",
-          "size": 3752890,
-          "checksum": "sha256:29466f46db85b35353fab2ee9964e4e6c7d3f1158548b56a45f9e86b0a988a2b"
+          "url": "https://github.com/pawnkit/pawnlint/releases/download/v1.1.5/pawnlint_1.1.5_windows_amd64.zip",
+          "size": 3753607,
+          "checksum": "sha256:4e00fbb58109adcff93931728d8a407d0167f9e1e9e16b671755b92b79232197"
         },
         {
           "target": "darwin-arm64",
-          "url": "https://github.com/pawnkit/pawnlint/releases/download/v1.1.4/pawnlint_1.1.4_darwin_arm64.tar.gz",
-          "size": 3395707,
-          "checksum": "sha256:e7d5f6fd2c2a99888ef9590c18660e3ae47f99736a58a33022a30ad394fe4c58"
+          "url": "https://github.com/pawnkit/pawnlint/releases/download/v1.1.5/pawnlint_1.1.5_darwin_arm64.tar.gz",
+          "size": 3396640,
+          "checksum": "sha256:0c0185f736987baab661475d660721d833eeffc7f3007841603f4354d9db9637"
         }
       ]
     },
     {
       "name": "pawnlsp",
       "repository": "pawnkit/pawnlsp",
-      "version": "v0.26.2",
-      "commit": "7fb38fd06d2a76b5c51ebd30a41ca0a56e0509a4",
+      "version": "v0.26.4",
+      "commit": "64885c4ed988c1f7200d719a7c4b1a3f8934f2a4",
       "artifacts": [
         {
           "target": "linux-amd64",
-          "url": "https://github.com/pawnkit/pawnlsp/releases/download/v0.26.2/pawnlsp_0.26.2_linux_amd64.tar.gz",
-          "size": 3102283,
-          "checksum": "sha256:1485de7752ab5848474a9bcace6b47739450d5ce7ca50c738460dc94618c36df"
+          "url": "https://github.com/pawnkit/pawnlsp/releases/download/v0.26.4/pawnlsp_0.26.4_linux_amd64.tar.gz",
+          "size": 3105254,
+          "checksum": "sha256:d45242bacd5241086a1bbee7be0880b331eeadf22e370650be6278b07ac63a12"
         },
         {
           "target": "windows-amd64",
-          "url": "https://github.com/pawnkit/pawnlsp/releases/download/v0.26.2/pawnlsp_0.26.2_windows_amd64.zip",
-          "size": 3176830,
-          "checksum": "sha256:c51f6214cad1d37e77ad0a7dc77a3c9f78e8f777946a680f25da81b88c420f8a"
+          "url": "https://github.com/pawnkit/pawnlsp/releases/download/v0.26.4/pawnlsp_0.26.4_windows_amd64.zip",
+          "size": 3179838,
+          "checksum": "sha256:ff66b1e43fce5bab2ed32e57755b7a8ad4f37a32fe59549e9dca892dca924b2a"
         },
         {
           "target": "darwin-arm64",
-          "url": "https://github.com/pawnkit/pawnlsp/releases/download/v0.26.2/pawnlsp_0.26.2_darwin_arm64.tar.gz",
-          "size": 2900696,
-          "checksum": "sha256:0fe3c8ed1e72f16f20ac368ca463060bd6bcc1353fa101167d3adf3d28f2c2d0"
+          "url": "https://github.com/pawnkit/pawnlsp/releases/download/v0.26.4/pawnlsp_0.26.4_darwin_arm64.tar.gz",
+          "size": 2903239,
+          "checksum": "sha256:9c52338bb6ccc2300b337228d894dbf167889d2c5faffa24beaaea24b1f049db"
         }
       ]
     },
@@ -186,6 +186,7 @@
     "Format and lint run standalone; the CLI checks project discovery and lint.",
     "Direct compiler builds are checked on Linux with Pawn 3.10.10.",
     "External build backends, sampctl, test, and run still need integration evidence.",
-    "Native plugin execution and debugging remain experimental."
+    "Native plugin execution and debugging remain experimental.",
+    "pawn, pawnlint, and pawnlsp were updated to v1.2.1, v1.1.5, and v0.26.4 after this set's evidence run; per-artifact checksums are verified against the published releases, but the combination has not been through a fresh pawn-actions integration run."
   ]
 }
