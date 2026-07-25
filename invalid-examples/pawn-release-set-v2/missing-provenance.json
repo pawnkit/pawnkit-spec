@@ -1,0 +1,50 @@
+{
+  "schemaVersion": 2,
+  "id": "invalid",
+  "generatedAt": "2026-07-25T23:30:00Z",
+  "source": {
+    "repository": "pawnkit/pawn-actions",
+    "commit": "1111111111111111111111111111111111111111"
+  },
+  "targets": ["linux-amd64"],
+  "profiles": ["openmp"],
+  "components": [
+    {
+      "name": "pawn",
+      "repository": "pawnkit/pawnkit-cli",
+      "version": "v1.3.0",
+      "commit": "2222222222222222222222222222222222222222"
+    }
+  ],
+  "moduleGraph": [
+    {
+      "repository": "pawnkit/pawnkit-cli",
+      "module": "github.com/pawnkit/pawnkit-cli",
+      "version": "v1.3.0",
+      "commit": "2222222222222222222222222222222222222222",
+      "dependencies": [
+        {
+          "repository": "pawnkit/pawn-corpus",
+          "version": "v0.1.10",
+          "kind": "test"
+        }
+      ]
+    }
+  ],
+  "schemas": [
+    {
+      "name": "pawn-release-set",
+      "version": 2,
+      "url": "https://schemas.pawnkit.dev/pawn-release-set/v2/schema.json",
+      "checksum": "sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+    }
+  ],
+  "evidence": {
+    "workflow": "https://github.com/pawnkit/pawn-actions/actions/runs/123456789",
+    "commit": "1111111111111111111111111111111111111111",
+    "completedAt": "2026-07-25T23:20:00Z",
+    "projects": ["pawn-corpus/projects/minimal-openmp"],
+    "targets": ["linux-amd64"]
+  },
+  "knownLimits": []
+}

@@ -29,7 +29,8 @@ Every schema declares a stable `$id` of the form:
 https://schemas.pawnkit.dev/<name>/v<major>/schema.json
 ```
 
-`https://schemas.pawnkit.dev/` does not serve the files yet. For now, treat each `$id` as an identifier and load schemas from a pinned commit or tag in this repository.
+`https://schemas.pawnkit.dev/` serves the checked-in schemas. Release automation
+pins both the URL and its SHA-256 hash.
 
 Formats with a `schemaVersion` field use the same major version as their schema URL. The transition policy is in [docs/compatibility.md](docs/compatibility.md).
 
@@ -39,7 +40,7 @@ Run the same schema, example, profile, conformance, and RFC checks used by CI:
 
 ```sh
 cd tools/validate
-go run . ../../schemas ../../profiles ../../examples ../../conformance ../../release-sets ../../rfcs
+go run . ../../schemas ../../profiles ../../examples ../../invalid-examples ../../conformance ../../release-sets ../../rfcs
 ```
 
 The Go module exists only inside `tools/validate`; `pawnkit-spec` is not a public Go library.

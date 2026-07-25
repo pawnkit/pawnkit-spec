@@ -5,6 +5,17 @@ follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/). Schema
 major versions are tracked independently in each schema's `$id`; this log
 calls out schema version changes explicitly.
 
+## [0.1.27] - 2026-07-25
+
+### Added
+
+- Added release-set v2 with checked module dependency graphs.
+
+### Changed
+
+- Added preprocessor conformance references and schema migration checks.
+- Set a 12-month support window for the previous schema major.
+
 ## [0.1.26] - 2026-07-25
 
 ### Added

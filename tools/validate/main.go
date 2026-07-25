@@ -107,6 +107,7 @@ func main() {
 	}
 	if v.examplesDir != "" {
 		v.checkExamples()
+		v.checkSchemaMigrations()
 	}
 	if v.invalidExamples != "" {
 		v.checkInvalidExamples()
@@ -130,6 +131,74 @@ func main() {
 	}
 
 	fmt.Printf("ok: validated %d documents in %s\n", v.documentsChecked, elapsed)
+}
+
+func (v *validator) checkSchemaMigrations() {
+	groups := map[string][]string{}
+	versionSuffix := regexp.MustCompile(`-v[0-9]+$`)
+	for name := range v.compiled {
+		base := versionSuffix.ReplaceAllString(name, "")
+		groups[base] = append(groups[base], name)
+	}
+	for _, names := range groups {
+		if len(names) < 2 {
+			continue
+		}
+		sort.Strings(names)
+		for _, sourceName := range names {
+			dir := filepath.Join(v.examplesDir, sourceName)
+			entries, err := os.ReadDir(dir)
+			if err != nil {
+				v.fail(dir, fmt.Sprintf("cannot read migration examples: %v", err))
+				continue
+			}
+			for _, entry := range entries {
+				if entry.IsDir() || !strings.HasSuffix(entry.Name(), ".json") {
+					continue
+				}
+				path := filepath.Join(dir, entry.Name())
+				raw, err := os.ReadFile(path)
+				if err != nil {
+					v.fail(path, fmt.Sprintf("cannot read migration example: %v", err))
+					continue
+				}
+				document := mustReDecode(raw)
+				if !hasSchemaVersion(document) {
+					continue
+				}
+				for _, targetName := range names {
+					if targetName == sourceName {
+						continue
+					}
+					if err := v.compiled[targetName].Validate(document); err == nil {
+						v.fail(path, fmt.Sprintf("also passes incompatible schema %s", targetName))
+					}
+					v.documentsChecked++
+				}
+			}
+		}
+	}
+}
+
+func hasSchemaVersion(value any) bool {
+	switch current := value.(type) {
+	case map[string]any:
+		if _, ok := current["schemaVersion"]; ok {
+			return true
+		}
+		for _, child := range current {
+			if hasSchemaVersion(child) {
+				return true
+			}
+		}
+	case []any:
+		for _, child := range current {
+			if hasSchemaVersion(child) {
+				return true
+			}
+		}
+	}
+	return false
 }
 
 func (v *validator) checkInvalidExamples() {

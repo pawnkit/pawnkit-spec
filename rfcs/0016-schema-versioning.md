@@ -1,9 +1,9 @@
 ---
 rfc: 0016
 title: Schema versioning and migration
-status: draft
+status: experimental
 created: 2026-07-23
-updated: 2026-07-23
+updated: 2026-07-25
 supersedes: null
 superseded-by: null
 schema: null
@@ -34,8 +34,11 @@ Every published schema has:
 - a stable name;
 - an integer major in its `$id`, using
   `https://schemas.pawnkit.dev/<name>/v<major>/schema.json`;
-- a matching document `schemaVersion`;
 - a SHA-256 hash recorded by tested release sets.
+
+A schema-owned document has a matching `schemaVersion`. Fragment schemas and
+documents owned by another project may identify their major through `$id`
+alone.
 
 A published major URL is immutable. Fixing wording outside validation rules is
 allowed only through a new checked-in spec release; the served schema bytes
@@ -56,8 +59,9 @@ The following require a new major after a schema is accepted:
 - changing unknown-property handling.
 
 Producers MUST emit one declared major. Readers MUST reject unknown majors
-clearly and SHOULD read the current and previous supported major during a
-migration. The tested release set records the required majors and hashes.
+clearly. They MUST read the current and previous major for at least 12 months
+after a replacement is accepted. The tested release set records the required
+majors and hashes.
 
 Each new major needs valid examples, failure examples, a migration note, and a
 compatibility reader or `pawnmigrate` rule where projects store the document.
@@ -98,15 +102,15 @@ retain the previous one.
 
 ## Reference implementation status
 
-`pawnkit-spec/tools/validate` checks local schemas and examples. Remote
-immutability and migration checks remain open.
+`pawnkit-spec/tools/validate` checks local schemas, examples, migration
+boundaries, and published bytes. Diagnostic and build-backend v2 exercise the
+first major migrations.
 
 ## Conformance tests
 
-The offline validator, valid and invalid examples, and a CI URL/hash check form
-the conformance suite.
+The offline validator, valid and invalid examples, cross-major rejection
+checks, and the CI URL/hash check form the conformance suite.
 
 ## Open questions
 
-- How long should the previous accepted major remain supported?
 - Should unversioned convenience URLs redirect or be omitted?

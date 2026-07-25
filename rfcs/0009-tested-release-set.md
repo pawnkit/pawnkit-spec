@@ -3,10 +3,10 @@ rfc: 0009
 title: Tested release set
 status: accepted
 created: 2026-07-23
-updated: 2026-07-23
+updated: 2026-07-25
 supersedes: null
 superseded-by: null
-schema: schemas/pawn-release-set.schema.json
+schema: schemas/pawn-release-set-v2.schema.json
 ---
 
 ## Summary
@@ -33,17 +33,19 @@ There is no current PawnKit format for a tested set.
 
 ## Proposal
 
-`schemas/pawn-release-set.schema.json` defines version 1.
+`schemas/pawn-release-set-v2.schema.json` defines version 2. Version 1 remains
+available during the migration window.
 
 A release set MUST contain:
 
-- `schemaVersion`: `1`;
+- `schemaVersion`: `2`;
 - `id`: an immutable identifier;
 - `generatedAt`: the UTC completion time;
 - `source`: the repository and commit that produced the set;
 - `targets`: the operating-system and architecture pairs tested;
 - `profiles`: the Pawn profiles tested;
 - `components`: exact repository versions and commits;
+- `moduleGraph`: checked PawnKit modules and their direct dependencies;
 - `schemas`: exact schema URLs and SHA-256 hashes;
 - `evidence`: the workflow, commit, projects, targets, and completion time;
 - `knownLimits`: confirmed limits that affect the named set.
@@ -56,6 +58,10 @@ Every version and commit MUST exist publicly before the set is published. The
 set generator MUST reject local replacements, PawnKit pseudo-versions, missing
 artifacts, checksum mismatches, duplicate component names, and untested
 targets.
+
+Each module graph entry records its repository, module path, version, commit,
+and direct PawnKit dependencies. Runtime dependencies must follow RFC 0013.
+Test and generated-data edges need a short provenance note.
 
 Official PawnKit consumers SHOULD select their default versions from the latest
 compatible tested set. A user MAY override a version, but the consumer must not
@@ -71,10 +77,11 @@ None.
 
 ## Compatibility impact
 
-- [x] Additive
-- [ ] Breaking
+- [ ] Additive
+- [x] Breaking
 
-Not applicable; this is the first version.
+Version 2 requires the checked module graph. Version 1 readers must reject it
+as an unsupported major.
 
 ## Alternatives considered
 
@@ -99,11 +106,14 @@ private URLs, logs, or environment values.
 
 ## Migration plan
 
-Not applicable; this is the first version.
+Producers move to version 2 after the graph validator is released. Readers
+support versions 1 and 2 for at least 12 months under RFC 0016.
 
 ## Reference implementation status
 
-Implemented in `pawn-actions` v1.1.0. Checked-in sets live in `pawnkit-spec`.
+Version 1 is implemented in `pawn-actions` v1.1.0. Version 2 graph validation
+is implemented on the `pawn-actions` main branch. Checked-in sets live in
+`pawnkit-spec`.
 
 ## Conformance tests
 
@@ -111,7 +121,8 @@ The offline `pawnkit-spec` validator checks schema examples.
 `pawn-actions/releaseset` tests bounded decoding, duplicate components,
 unsupported targets, module replacements, pseudo-versions, missing artifacts,
 size checks, and SHA-256 checks. Its CI runs on Linux, macOS, and Windows and
-validates the example from `pawnkit-spec` v0.1.7.
+validates the example from `pawnkit-spec` v0.1.7. Version 2 adds invalid graph
+and provenance cases.
 
 ## Open questions
 

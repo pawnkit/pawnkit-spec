@@ -1,9 +1,9 @@
 ---
 rfc: 0013
 title: Repository dependency boundaries
-status: draft
+status: experimental
 created: 2026-07-23
-updated: 2026-07-23
+updated: 2026-07-25
 supersedes: null
 superseded-by: null
 schema: null
@@ -142,16 +142,18 @@ deprecation process.
 
 ## Reference implementation status
 
-Open. `pawn-actions` and the release-set validator own organisation graph
-checks. Individual repositories keep their native dependency checks.
+`pawn-actions/releaseset` parses Go modules, rejects local replacements and
+pseudo-versions, enforces layers, and detects cycles. Release-set v2 records
+the checked graph. Individual repositories keep their native dependency
+checks.
 
 ## Conformance tests
 
-Open. Fixtures need valid layered graphs plus cycles, reversed edges, local
-replacements, pseudo-versions, unpublished tags, and stale generated data.
+`pawn-actions/releaseset` covers valid graphs, cycles, reversed edges, local
+replacements, and pseudo-versions. Release-set v2 requires provenance for test
+and generated-data edges.
 
 ## Open questions
 
-- Should same-layer tool imports require an explicit allow-list?
 - How should generated bindings record their owner when one output combines
   several tagged sources?

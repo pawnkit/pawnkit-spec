@@ -1,9 +1,9 @@
 ---
 rfc: 0014
 title: Preprocessor compatibility
-status: draft
+status: experimental
 created: 2026-07-23
-updated: 2026-07-23
+updated: 2026-07-25
 supersedes: null
 superseded-by: null
 schema: null
@@ -106,11 +106,11 @@ limits are implemented; the compatibility table remains open.
 
 ## Conformance tests
 
-`pawn-corpus/preprocessor` and the compiler differential suite are the
-conformance source. The RFC needs a checked-in index mapping each required
-behavior to its fixture.
+`pawn-corpus` v0.1.11 maps required behavior to fixtures in
+`preprocessor/README.md`.
+`pawn-analysis/query/agreement_test.go` checks clean and incremental results.
+The compiler differential runs the fixtures tagged `compiler-probe`.
 
 ## Open questions
 
-- Which compiler revisions define each named compatibility profile?
 - Which warning-only compiler quirks should PawnKit reproduce?
