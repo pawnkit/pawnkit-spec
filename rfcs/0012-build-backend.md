@@ -164,9 +164,10 @@ network listeners only when requested and should default to loopback.
 
 ## Reference implementation status
 
-`pawn-project` constructs requests. `pawnkit-cli` invokes external backends and
-provides the direct compiler adapter. `pawn-actions` and VS Code forward build
-choices to the CLI. The sampctl adapter is still open.
+`pawn-project` v0.3.0 constructs v2 requests. `pawnkit-cli` v1.3.0 invokes
+external backends and provides the direct compiler adapter. `pawn-actions`
+v1.4.7 verifies v2 results. VS Code forwards build choices to the CLI. The
+sampctl adapter is still open.
 
 ## Conformance tests
 

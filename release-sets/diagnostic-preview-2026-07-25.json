@@ -1,0 +1,197 @@
+{
+  "schemaVersion": 1,
+  "id": "diagnostic-preview-2026-07-25",
+  "generatedAt": "2026-07-25T23:03:49Z",
+  "source": {
+    "repository": "pawnkit/pawn-actions",
+    "commit": "0f1e86f85d58342448dc909d48048418b6999790"
+  },
+  "targets": [
+    "linux-amd64",
+    "windows-amd64",
+    "darwin-arm64"
+  ],
+  "profiles": [
+    "samp-037",
+    "openmp"
+  ],
+  "components": [
+    {
+      "name": "pawn",
+      "repository": "pawnkit/pawnkit-cli",
+      "version": "v1.3.0",
+      "commit": "6361f42d0c43a3decc9954db28e1780703915d42",
+      "artifacts": [
+        {
+          "target": "linux-amd64",
+          "url": "https://github.com/pawnkit/pawnkit-cli/releases/download/v1.3.0/pawn-linux-amd64.tar.gz",
+          "size": 3240950,
+          "checksum": "sha256:0e0f037cf8efc0c22dfcc8693c36e006f34f6521292d5c8dfb96d18216939b9f"
+        },
+        {
+          "target": "windows-amd64",
+          "url": "https://github.com/pawnkit/pawnkit-cli/releases/download/v1.3.0/pawn-windows-amd64.tar.gz",
+          "size": 3325935,
+          "checksum": "sha256:866e416ef1ee142d67d9be875389e54413aecab36abb6550afad7d32d16fe05f"
+        },
+        {
+          "target": "darwin-arm64",
+          "url": "https://github.com/pawnkit/pawnkit-cli/releases/download/v1.3.0/pawn-darwin-arm64.tar.gz",
+          "size": 3004677,
+          "checksum": "sha256:8e3ff45dae17ded62cb4b81dd668fec11136b06f67e17f6439cc3e22a6e94cf7"
+        }
+      ]
+    },
+    {
+      "name": "pawnfmt",
+      "repository": "pawnkit/pawnfmt",
+      "version": "v1.3.5",
+      "commit": "54bfb8aac65e27b70fbfcc13914d93658b5db2de",
+      "artifacts": [
+        {
+          "target": "linux-amd64",
+          "url": "https://github.com/pawnkit/pawnfmt/releases/download/v1.3.5/pawnfmt_1.3.5_linux_amd64.tar.gz",
+          "size": 2366183,
+          "checksum": "sha256:4374c1b48d1d212cd8d760bd30c1daadee31a36f55b4b5524383b3318de9d4a7"
+        },
+        {
+          "target": "windows-amd64",
+          "url": "https://github.com/pawnkit/pawnfmt/releases/download/v1.3.5/pawnfmt_1.3.5_windows_amd64.zip",
+          "size": 2432065,
+          "checksum": "sha256:91a11084c1bfcf47adc50df05966d5bdb072c644636275153dcc3cfc4d6877fc"
+        },
+        {
+          "target": "darwin-arm64",
+          "url": "https://github.com/pawnkit/pawnfmt/releases/download/v1.3.5/pawnfmt_1.3.5_darwin_arm64.tar.gz",
+          "size": 2183044,
+          "checksum": "sha256:44819902c67b6e52e2b1b3ab5c0a0310b2baf7f9189f89b42b3137f1dcb1ce6e"
+        }
+      ]
+    },
+    {
+      "name": "pawnlint",
+      "repository": "pawnkit/pawnlint",
+      "version": "v1.1.5",
+      "commit": "14e23cc8cdfb15cc963c8ad45edb4f93e5db6097",
+      "artifacts": [
+        {
+          "target": "linux-amd64",
+          "url": "https://github.com/pawnkit/pawnlint/releases/download/v1.1.5/pawnlint_1.1.5_linux_amd64.tar.gz",
+          "size": 3668550,
+          "checksum": "sha256:fdd4e0d3d65cba981ec68ab67632bde3ac9e62d6e31f24de82531190ff240d33"
+        },
+        {
+          "target": "windows-amd64",
+          "url": "https://github.com/pawnkit/pawnlint/releases/download/v1.1.5/pawnlint_1.1.5_windows_amd64.zip",
+          "size": 3753607,
+          "checksum": "sha256:4e00fbb58109adcff93931728d8a407d0167f9e1e9e16b671755b92b79232197"
+        },
+        {
+          "target": "darwin-arm64",
+          "url": "https://github.com/pawnkit/pawnlint/releases/download/v1.1.5/pawnlint_1.1.5_darwin_arm64.tar.gz",
+          "size": 3396640,
+          "checksum": "sha256:0c0185f736987baab661475d660721d833eeffc7f3007841603f4354d9db9637"
+        }
+      ]
+    },
+    {
+      "name": "pawnlsp",
+      "repository": "pawnkit/pawnlsp",
+      "version": "v0.26.4",
+      "commit": "64885c4ed988c1f7200d719a7c4b1a3f8934f2a4",
+      "artifacts": [
+        {
+          "target": "linux-amd64",
+          "url": "https://github.com/pawnkit/pawnlsp/releases/download/v0.26.4/pawnlsp_0.26.4_linux_amd64.tar.gz",
+          "size": 3105254,
+          "checksum": "sha256:d45242bacd5241086a1bbee7be0880b331eeadf22e370650be6278b07ac63a12"
+        },
+        {
+          "target": "windows-amd64",
+          "url": "https://github.com/pawnkit/pawnlsp/releases/download/v0.26.4/pawnlsp_0.26.4_windows_amd64.zip",
+          "size": 3179838,
+          "checksum": "sha256:ff66b1e43fce5bab2ed32e57755b7a8ad4f37a32fe59549e9dca892dca924b2a"
+        },
+        {
+          "target": "darwin-arm64",
+          "url": "https://github.com/pawnkit/pawnlsp/releases/download/v0.26.4/pawnlsp_0.26.4_darwin_arm64.tar.gz",
+          "size": 2903239,
+          "checksum": "sha256:9c52338bb6ccc2300b337228d894dbf167889d2c5faffa24beaaea24b1f049db"
+        }
+      ]
+    },
+    {
+      "name": "pawntest",
+      "repository": "pawnkit/pawntest",
+      "version": "v1.1.4",
+      "commit": "504adee68aa9f87175e357b464158a95fa9667c7",
+      "artifacts": [
+        {
+          "target": "linux-amd64",
+          "url": "https://github.com/pawnkit/pawntest/releases/download/v1.1.4/pawntest_1.1.4_linux_amd64.tar.gz",
+          "size": 6104202,
+          "checksum": "sha256:ddad53e66bc723ce2db24d3415afd49bb39d61d9127f821f15841559e4c122ab"
+        },
+        {
+          "target": "windows-amd64",
+          "url": "https://github.com/pawnkit/pawntest/releases/download/v1.1.4/pawntest_1.1.4_windows_amd64.zip",
+          "size": 6253542,
+          "checksum": "sha256:8e4531941fc99ef377965154981724a4b8c6d4966d0c67e295e4795629a08fda"
+        },
+        {
+          "target": "darwin-arm64",
+          "url": "https://github.com/pawnkit/pawntest/releases/download/v1.1.4/pawntest_1.1.4_darwin_arm64.tar.gz",
+          "size": 5855088,
+          "checksum": "sha256:79a0b4f67195d5084fd6453cba3052f06dd1faee31cca8e0b9d8547b56d0815d"
+        }
+      ]
+    }
+  ],
+  "schemas": [
+    {
+      "name": "pawn-project",
+      "version": 1,
+      "url": "https://schemas.pawnkit.dev/pawn-project/v1/schema.json",
+      "checksum": "sha256:b9c15d88bf3d6c4b30079ac88247714c3370281e3cca812c37dd537e25840905"
+    },
+    {
+      "name": "pawn-release-set",
+      "version": 1,
+      "url": "https://schemas.pawnkit.dev/pawn-release-set/v1/schema.json",
+      "checksum": "sha256:4f15c7092149abaa9373df0a6ea6b1c6bc845b77fb8d441ba0a10cc9e71fa8a1"
+    },
+    {
+      "name": "pawn-diagnostic",
+      "version": 2,
+      "url": "https://schemas.pawnkit.dev/pawn-diagnostic/v2/schema.json",
+      "checksum": "sha256:cbff2074ffbd945c965d7aa6c99073d78f66344f81221a14dba1b7783ad208d1"
+    },
+    {
+      "name": "pawn-build-backend",
+      "version": 2,
+      "url": "https://schemas.pawnkit.dev/pawn-build-backend/v2/schema.json",
+      "checksum": "sha256:c23d0a2f45e6a1ad4490a7af8c35003d7107cf0e3020ca2058ae996f81480a68"
+    }
+  ],
+  "evidence": {
+    "workflow": "https://github.com/pawnkit/pawn-actions/actions/runs/30178693102",
+    "commit": "0f1e86f85d58342448dc909d48048418b6999790",
+    "completedAt": "2026-07-25T23:03:49Z",
+    "projects": [
+      "pawn-corpus/projects/minimal-samp-gamemode",
+      "pawn-corpus/projects/filterscript-with-includes"
+    ],
+    "targets": [
+      "linux-amd64",
+      "windows-amd64",
+      "darwin-arm64"
+    ]
+  },
+  "knownLimits": [
+    "The LSP is checked for installation and version output, not protocol behavior.",
+    "Format and lint run standalone; the CLI checks project discovery and lint.",
+    "Direct compiler builds and diagnostic v2 results are checked on Linux with Pawn 3.10.10.",
+    "External build backends, sampctl, test, and run still need integration evidence.",
+    "Native plugin execution and debugging remain experimental."
+  ]
+}

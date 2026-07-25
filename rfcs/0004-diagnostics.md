@@ -125,15 +125,16 @@ single-document workspace edit.
 
 ## Reference implementation status
 
-`pawnkit-core` is the reference implementation. `pawn-analysis`,
-`pawn-parser`, and `pawnlint` produce its diagnostic types; `pawnlsp`
-translates them to LSP.
+`pawnkit-core` v0.2.0 is the reference implementation. `pawn-project` v0.3.0
+and `pawnkit-cli` v1.3.0 exchange v2 diagnostics through build results.
+`pawn-analysis`, `pawn-parser`, and `pawnlint` produce core diagnostic types;
+`pawnlsp` translates them to LSP.
 
 ## Conformance tests
 
-Valid and invalid v2 examples are checked by `tools/validate`.
-`pawnkit-core` freezes one fixture per supported wire version. Producing tools
-test their own diagnostic codes.
+Valid and invalid v2 examples are checked by `tools/validate`. `pawnkit-core`
+freezes both v1 shapes and v2. The Actions release-set smoke verifies v2 build
+results against the small corpus projects.
 
 ## Open questions
 
