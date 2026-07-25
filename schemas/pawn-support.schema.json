@@ -1,0 +1,133 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://schemas.pawnkit.dev/pawn-support/v1/schema.json",
+  "title": "PawnKit repository support record",
+  "description": "Tested platforms, profiles, compilers, contracts, and known limits for one PawnKit repository.",
+  "type": "object",
+  "required": [
+    "schemaVersion",
+    "repository",
+    "maturity",
+    "platforms",
+    "profiles",
+    "compilers",
+    "contracts",
+    "limitations"
+  ],
+  "properties": {
+    "schemaVersion": { "type": "integer", "const": 1 },
+    "repository": {
+      "type": "string",
+      "pattern": "^pawnkit/[a-z0-9][a-z0-9._-]*$"
+    },
+    "maturity": {
+      "type": "string",
+      "enum": ["stable", "preview", "experimental", "infrastructure", "deprecated"]
+    },
+    "platforms": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": { "$ref": "#/$defs/target" }
+    },
+    "profiles": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "pattern": "^[a-z][a-z0-9-]*$"
+      }
+    },
+    "compilers": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/compiler" }
+    },
+    "contracts": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/contract" }
+    },
+    "limitations": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 512
+      }
+    },
+    "deprecated": { "$ref": "#/$defs/deprecated" }
+  },
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "maturity": { "const": "deprecated" }
+        },
+        "required": ["maturity"]
+      },
+      "then": { "required": ["deprecated"] },
+      "else": {
+        "not": { "required": ["deprecated"] }
+      }
+    }
+  ],
+  "additionalProperties": false,
+  "$defs": {
+    "target": {
+      "type": "string",
+      "pattern": "^(linux|windows|darwin)-(amd64|arm64|386)$"
+    },
+    "compiler": {
+      "type": "object",
+      "required": ["name", "version"],
+      "properties": {
+        "name": {
+          "type": "string",
+          "enum": ["pawncc", "openmp-pawncc"]
+        },
+        "version": {
+          "type": "string",
+          "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$"
+        }
+      },
+      "additionalProperties": false
+    },
+    "contract": {
+      "type": "object",
+      "required": ["name", "major"],
+      "properties": {
+        "name": {
+          "type": "string",
+          "pattern": "^[a-z0-9][a-z0-9._-]*$"
+        },
+        "major": {
+          "type": "integer",
+          "minimum": 1
+        }
+      },
+      "additionalProperties": false
+    },
+    "deprecated": {
+      "type": "object",
+      "properties": {
+        "replacement": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 128
+        },
+        "endOfSupport": {
+          "type": "string",
+          "format": "date"
+        },
+        "removalMilestone": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 128
+        }
+      },
+      "anyOf": [
+        { "required": ["endOfSupport"] },
+        { "required": ["removalMilestone"] }
+      ],
+      "additionalProperties": false
+    }
+  }
+}

@@ -1,12 +1,12 @@
 ---
 rfc: 0010
 title: Support and lifecycle
-status: draft
+status: experimental
 created: 2026-07-23
-updated: 2026-07-23
+updated: 2026-07-25
 supersedes: null
 superseded-by: null
-schema: null
+schema: schemas/pawn-support.schema.json
 ---
 
 ## Summary
@@ -130,17 +130,16 @@ support evidence.
 
 ## Reference implementation status
 
-Open. `pawnkit-spec` owns the schema and validator. Repository CI templates in
-`pawn-actions` will check support records.
+`pawnkit-spec` owns the schema and examples. `pawn-actions` validates owner
+records against configured release targets. `pawnkit.dev` builds its support
+page from pinned owner records.
 
 ## Conformance tests
 
-Open. The schema needs valid and invalid examples. `pawn-actions` needs tests
-that compare support claims with configured release targets.
+The offline spec validator covers valid and invalid records. `pawn-actions`
+tests platform comparison, duplicate values, repository matching, and
+deprecation data.
 
 ## Open questions
 
-- Should compiler support allow inclusive version ranges after exact-version
-  evidence exists?
-- Should a repository record support for source builds separately from release
-  artifacts?
+None.

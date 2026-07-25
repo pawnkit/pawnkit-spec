@@ -1,0 +1,10 @@
+{
+  "schemaVersion": 1,
+  "repository": "pawnkit/pawnlint",
+  "maturity": "preview",
+  "platforms": ["freebsd-amd64"],
+  "profiles": [],
+  "compilers": [],
+  "contracts": [],
+  "limitations": []
+}
