@@ -1,0 +1,71 @@
+{
+  "schemaVersion": 2,
+  "code": "pawnlint:unused-variable",
+  "source": "pawnlint",
+  "severity": "warning",
+  "message": "Variable x is never used.",
+  "primary": {
+    "uri": "file:///gamemodes/main.pwn",
+    "span": { "start": 42, "end": 43 },
+    "range": {
+      "start": { "line": 3, "character": 8 },
+      "end": { "line": 3, "character": 9 }
+    }
+  },
+  "related": [
+    {
+      "location": {
+        "uri": "file:///gamemodes/main.pwn",
+        "span": { "start": 30, "end": 31 }
+      },
+      "message": "x is declared here"
+    }
+  ],
+  "notes": ["Remove the declaration if it is no longer needed."],
+  "help": "Remove x.",
+  "docsUrl": "https://pawnkit.dev/reference/rule/unused-variable.html",
+  "tags": ["unnecessary"],
+  "safeFixes": [
+    {
+      "message": "Remove x",
+      "kind": "safe",
+      "edit": {
+        "documents": [
+          {
+            "uri": "file:///gamemodes/main.pwn",
+            "version": 7,
+            "edits": [
+              {
+                "span": { "start": 38, "end": 44 },
+                "newText": ""
+              }
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "reviewFixes": [
+    {
+      "message": "Replace x with a constant",
+      "kind": "review-required",
+      "edit": {
+        "documents": [
+          {
+            "uri": "file:///gamemodes/main.pwn",
+            "edits": [
+              {
+                "span": { "start": 42, "end": 43 },
+                "newText": "0"
+              }
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "suppressed": {
+    "kind": "baseline-file",
+    "reason": "Kept while callers migrate."
+  }
+}

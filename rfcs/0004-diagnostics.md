@@ -3,10 +3,10 @@ rfc: 0004
 title: Diagnostics and edits
 status: experimental
 created: 2026-07-17
-updated: 2026-07-17
+updated: 2026-07-24
 supersedes: null
 superseded-by: null
-schema: schemas/pawn-diagnostic.schema.json
+schema: schemas/pawn-diagnostic-v2.schema.json
 ---
 
 ## Summary
@@ -27,55 +27,44 @@ produce findings about source code. Without one shared shape:
 
 ## Current behavior
 
-PawnKit tools now exchange the shared diagnostic types from `pawnkit-core`.
-They may keep richer internal findings, but serialized diagnostics, CLI JSON,
-and baselines use this RFC's shape.
+The published v1 schema and the `pawnkit-core` v1 wire format disagree. The
+schema uses `range`, `relatedLocations`, and `fixes`; released core code uses
+`primary`, `related`, `safeFixes`, and `reviewFixes`.
+
+Version 1 remains published at its original URL. Version 2 matches the released
+core data model and becomes the current format.
 
 ## Proposal
 
-`schemas/pawn-diagnostic.schema.json` defines a `Diagnostic` object:
+`schemas/pawn-diagnostic-v2.schema.json` defines a `Diagnostic` object:
 
+- `schemaVersion` (integer): `2`.
 - `code` (string, stable, namespaced e.g. `pawnlint:no-goto`): never
   silently repurposed (shared baseline 6.9).
 - `source` (string): the tool/subsystem that produced it (e.g. `pawnlint`,
   `pawn-analysis`, `pawnfmt`).
 - `severity` (enum): `error`, `warning`, `info`, `hint`.
 - `message` (string): human-readable, imperative-neutral description.
-- `range` (object): primary file + range: `file` (string, project-relative
-  path), `start`/`end` (`{ "line": int, "column": int, "offset": int }`,
-  1-based line/column, 0-based byte offset, matching common LSP + tooling
-  convention: offsets are UTF-8 byte offsets per `language/lexical.md`'s
-  source-encoding rules).
-- `relatedLocations` (array, optional): same range shape plus a `message`
-  each, for secondary locations ("previous declaration here").
+- `primary` (object): primary URI and half-open byte span. A derived
+  line/character range may also be present.
+- `related` (array, optional): locations with a short message.
 - `notes` (array of strings, optional): supplementary non-fix text.
 - `help` (string, optional): actionable guidance text.
-- `documentationUrl` (string, optional): link to rule/behavior docs.
+- `docsUrl` (string, optional): link to rule or behavior docs.
 - `tags` (array of strings, optional): e.g. `deprecated`, `unnecessary`,
   matching LSP `DiagnosticTag` naming where overlapping, for cheap
   translation.
-- `fixes` (array of `Edit`, optional): **safe** fixes, appliable without
-  review.
-- `unsafeFixes` (array of `Edit`, optional): fixes requiring review (e.g.
-  behavior-changing).
-- `suppression` (object, optional): `suppressed` (bool), `reason` (string),
-  `mechanism` (string, e.g. `inline-comment`, `baseline-file`).
+- `safeFixes` (array, optional): fixes that may be applied without review.
+- `reviewFixes` (array, optional): fixes that need user review.
+- `suppressed` (object, optional): suppression kind and reason.
 
-An `Edit` object:
+A fix contains a message, a fixed kind, and a workspace edit. Workspace edits
+group byte-span replacements by URI and may include a document version.
+Consumers MUST reject overlapping edits within one document and SHOULD offer a
+preview before applying a multi-file change.
 
-- `file` (string).
-- `range` (same shape as above).
-- `newText` (string).
-- `version` (integer or string, optional): document version this edit
-  applies to, for version-aware application and staleness detection (shared
-  baseline 6.4, "version-aware text edits with overlap validation").
-
-Multi-file edit sets are represented as an array of `Edit` under a
-diagnostic's `fixes`/`unsafeFixes`; a tool applying them MUST validate that
-edits do not overlap within the same file and MUST support preview
-(showing the diff) before transactional application, per the shared
-baseline: this RFC defines the data shape, not the application algorithm,
-which belongs to the applying tool (e.g. `pawnkit-cli`, `pawnlsp`).
+Line and character values are zero-based. Their encoding is negotiated by the
+transport. Byte spans are authoritative and use zero-based UTF-8 byte offsets.
 
 ### Exit codes
 
@@ -97,9 +86,10 @@ with a pre-existing PawnKit format.
 
 ## Compatibility impact
 
-- [x] Additive (no existing consumer needs to change to keep working).
+- [x] Breaking (migration plan required).
 
-This is the first version of the shared diagnostic format.
+The v1 URL and checked-in schema remain unchanged. Producers move to v2.
+Consumers must accept v1 and v2 during the migration window.
 
 ## Alternatives considered
 
@@ -121,25 +111,32 @@ This is the first version of the shared diagnostic format.
 
 ## Migration plan
 
-Not applicable: this is the first version.
+1. Publish the v2 schema without modifying the v1 schema.
+2. Update `pawnkit-core` to emit v2 and read both versions.
+3. Release producers before consumers.
+4. Keep v1 decoding for at least the current and previous supported core
+   release.
+
+The old schema and the released core v1 format used the same version number for
+different shapes. A v1 decoder must inspect the fields: `range` identifies the
+published schema, while `primary` identifies the released core format. Both map
+to the v2 data model. V1 paths become URI strings, and each old fix becomes a
+single-document workspace edit.
 
 ## Reference implementation status
 
-`pawn-analysis`, `pawn-parser`, and `pawnlint` produce shared diagnostic
-types through `pawnkit-core`. `pawnlsp` translates them to LSP.
+`pawnkit-core` is the reference implementation. `pawn-analysis`,
+`pawn-parser`, and `pawnlint` produce its diagnostic types; `pawnlsp`
+translates them to LSP.
 
 ## Conformance tests
 
-The schema example is validated by `tools/validate`. `pawnkit-core` freezes
-wire-format fixtures, while producing tools test their own diagnostic codes.
+Valid and invalid v2 examples are checked by `tools/validate`.
+`pawnkit-core` freezes one fixture per supported wire version. Producing tools
+test their own diagnostic codes.
 
 ## Open questions
 
-- Should `range.start`/`end` use UTF-16 code units instead of byte offsets
-  for the LSP-facing translation layer (LSP conventionally uses UTF-16)?
-  This RFC specifies UTF-8 byte offsets as the canonical interchange
-  representation and leaves UTF-16 conversion to the language-server adapter.
-  `pawn-parser` and `pawn-analysis` operate on UTF-8 source bytes.
 - Exact list of standard `tags` values beyond `deprecated`/`unnecessary`
   (the two given as examples in the shared engineering baseline) is not
   yet enumerated; recorded as an open item rather than inventing a closed

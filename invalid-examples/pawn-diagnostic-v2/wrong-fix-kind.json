@@ -1,0 +1,30 @@
+{
+  "schemaVersion": 2,
+  "code": "pawnlint:unused-variable",
+  "source": "pawnlint",
+  "severity": "warning",
+  "message": "Variable x is never used.",
+  "primary": {
+    "uri": "file:///gamemodes/main.pwn",
+    "span": { "start": 42, "end": 43 }
+  },
+  "safeFixes": [
+    {
+      "message": "Remove x",
+      "kind": "review-required",
+      "edit": {
+        "documents": [
+          {
+            "uri": "file:///gamemodes/main.pwn",
+            "edits": [
+              {
+                "span": { "start": 38, "end": 44 },
+                "newText": ""
+              }
+            ]
+          }
+        ]
+      }
+    }
+  ]
+}

@@ -5,6 +5,16 @@ follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/). Schema
 major versions are tracked independently in each schema's `$id`; this log
 calls out schema version changes explicitly.
 
+## [0.1.22] - 2026-07-24
+
+### Added
+
+- Added diagnostic schema v2 with valid and invalid examples.
+
+### Changed
+
+- Updated RFC 0004 to match the shared diagnostic wire format.
+
 ## [0.1.21] - 2026-07-24
 
 ### Added
