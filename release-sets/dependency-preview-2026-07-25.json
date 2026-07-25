@@ -1,0 +1,221 @@
+{
+  "schemaVersion": 2,
+  "id": "dependency-preview-2026-07-25",
+  "generatedAt": "2026-07-25T23:30:00Z",
+  "source": {
+    "repository": "pawnkit/pawn-actions",
+    "commit": "81de481a18289318cd937f65987350f68aabeac6"
+  },
+  "targets": [
+    "linux-amd64",
+    "windows-amd64",
+    "darwin-arm64"
+  ],
+  "profiles": [
+    "samp-037",
+    "openmp"
+  ],
+  "components": [
+    {
+      "name": "pawn",
+      "repository": "pawnkit/pawnkit-cli",
+      "version": "v1.3.0",
+      "commit": "6361f42d0c43a3decc9954db28e1780703915d42"
+    }
+  ],
+  "moduleGraph": [
+    {
+      "repository": "pawnkit/pawnkit-cli",
+      "module": "github.com/pawnkit/pawnkit-cli",
+      "version": "v1.3.0",
+      "commit": "6361f42d0c43a3decc9954db28e1780703915d42",
+      "dependencies": [
+        {
+          "repository": "pawnkit/pawn-project",
+          "version": "v0.3.0",
+          "kind": "runtime"
+        },
+        {
+          "repository": "pawnkit/pawnfmt",
+          "version": "v1.3.5",
+          "kind": "runtime"
+        },
+        {
+          "repository": "pawnkit/pawnkit-core",
+          "version": "v0.2.0",
+          "kind": "runtime"
+        },
+        {
+          "repository": "pawnkit/pawnlint",
+          "version": "v1.1.5",
+          "kind": "runtime"
+        },
+        {
+          "repository": "pawnkit/pawn-analysis",
+          "version": "v0.1.15",
+          "kind": "runtime"
+        },
+        {
+          "repository": "pawnkit/pawn-parser",
+          "version": "v1.1.9",
+          "kind": "runtime"
+        }
+      ]
+    },
+    {
+      "repository": "pawnkit/pawn-project",
+      "module": "github.com/pawnkit/pawn-project",
+      "version": "v0.3.0",
+      "commit": "e1aaeac607dd55ba1c67564b174f57e5ebaee245",
+      "dependencies": [
+        {
+          "repository": "pawnkit/pawnkit-core",
+          "version": "v0.2.0",
+          "kind": "runtime"
+        }
+      ]
+    },
+    {
+      "repository": "pawnkit/pawnfmt",
+      "module": "github.com/pawnkit/pawnfmt",
+      "version": "v1.3.5",
+      "commit": "54bfb8aac65e27b70fbfcc13914d93658b5db2de",
+      "dependencies": [
+        {
+          "repository": "pawnkit/pawn-parser",
+          "version": "v1.1.9",
+          "kind": "runtime"
+        },
+        {
+          "repository": "pawnkit/pawn-project",
+          "version": "v0.1.5",
+          "kind": "runtime"
+        },
+        {
+          "repository": "pawnkit/pawnkit-core",
+          "version": "v0.1.0",
+          "kind": "runtime"
+        }
+      ]
+    },
+    {
+      "repository": "pawnkit/pawnkit-core",
+      "module": "github.com/pawnkit/pawnkit-core",
+      "version": "v0.2.0",
+      "commit": "a30495c39b4b35baa2b49def52635821e18b18dd",
+      "dependencies": []
+    },
+    {
+      "repository": "pawnkit/pawnlint",
+      "module": "github.com/pawnkit/pawnlint",
+      "version": "v1.1.5",
+      "commit": "14e23cc8cdfb15cc963c8ad45edb4f93e5db6097",
+      "dependencies": [
+        {
+          "repository": "pawnkit/pawn-parser",
+          "version": "v1.1.9",
+          "kind": "runtime"
+        },
+        {
+          "repository": "pawnkit/pawn-analysis",
+          "version": "v0.1.15",
+          "kind": "runtime"
+        },
+        {
+          "repository": "pawnkit/pawn-project",
+          "version": "v0.1.9",
+          "kind": "runtime"
+        },
+        {
+          "repository": "pawnkit/pawnkit-core",
+          "version": "v0.1.0",
+          "kind": "runtime"
+        }
+      ]
+    },
+    {
+      "repository": "pawnkit/pawn-analysis",
+      "module": "github.com/pawnkit/pawn-analysis",
+      "version": "v0.1.15",
+      "commit": "8b7e62ab0aabd53e2aada2ad2dcca4548853d1ff",
+      "dependencies": [
+        {
+          "repository": "pawnkit/pawn-parser",
+          "version": "v1.1.9",
+          "kind": "runtime"
+        },
+        {
+          "repository": "pawnkit/pawnkit-core",
+          "version": "v0.1.0",
+          "kind": "runtime"
+        }
+      ]
+    },
+    {
+      "repository": "pawnkit/pawn-parser",
+      "module": "github.com/pawnkit/pawn-parser",
+      "version": "v1.1.9",
+      "commit": "fcf6429aedafbbb82a341f9f3abc6b2a0efdadcd",
+      "dependencies": []
+    },
+    {
+      "repository": "pawnkit/pawn-project",
+      "module": "github.com/pawnkit/pawn-project",
+      "version": "v0.1.5",
+      "commit": "991bbe806731ce0c0cc0c48c58c2f0598a417d50",
+      "dependencies": [
+        {
+          "repository": "pawnkit/pawnkit-core",
+          "version": "v0.1.0",
+          "kind": "runtime"
+        }
+      ]
+    },
+    {
+      "repository": "pawnkit/pawnkit-core",
+      "module": "github.com/pawnkit/pawnkit-core",
+      "version": "v0.1.0",
+      "commit": "f2b63dec6a6a2b0f07852057a532877d5e479bf8",
+      "dependencies": []
+    },
+    {
+      "repository": "pawnkit/pawn-project",
+      "module": "github.com/pawnkit/pawn-project",
+      "version": "v0.1.9",
+      "commit": "774df2245adcd2b2be1010a3e7161d57420a081d",
+      "dependencies": [
+        {
+          "repository": "pawnkit/pawnkit-core",
+          "version": "v0.1.0",
+          "kind": "runtime"
+        }
+      ]
+    }
+  ],
+  "schemas": [
+    {
+      "name": "pawn-release-set",
+      "version": 2,
+      "url": "https://schemas.pawnkit.dev/pawn-release-set/v2/schema.json",
+      "checksum": "sha256:892949120f09a4aa2b5cd2a6d55a486cce030790d164620d691465100b19ea6c"
+    }
+  ],
+  "evidence": {
+    "workflow": "https://github.com/pawnkit/pawn-actions/actions/runs/30178855760",
+    "commit": "81de481a18289318cd937f65987350f68aabeac6",
+    "completedAt": "2026-07-25T23:09:22Z",
+    "projects": [
+      "pawn-corpus/projects/minimal-samp-gamemode",
+      "pawn-corpus/projects/filterscript-with-includes"
+    ],
+    "targets": [
+      "linux-amd64",
+      "windows-amd64",
+      "darwin-arm64"
+    ]
+  },
+  "knownLimits": [
+    "This preview records the PawnKit CLI v1.3.0 module graph.",
+    "The evidence predates release-set v2; a promotion needs a v2 validation run."
+  ]
+}

@@ -328,11 +328,6 @@ func verifySchemaURL(client *http.Client, url string, local []byte) error {
 }
 
 func (v *validator) checkReleaseSets() {
-	sch := v.compiled["pawn-release-set"]
-	if sch == nil {
-		v.fail(v.releaseSetsDir, "schemas/pawn-release-set.schema.json was not loaded/compiled; cannot validate release sets")
-		return
-	}
 	entries, err := os.ReadDir(v.releaseSetsDir)
 	if err != nil {
 		v.fail(v.releaseSetsDir, fmt.Sprintf("cannot read release sets dir: %v", err))
@@ -344,7 +339,29 @@ func (v *validator) checkReleaseSets() {
 			continue
 		}
 		found = true
-		v.validateAgainst(filepath.Join(v.releaseSetsDir, entry.Name()), sch)
+		path := filepath.Join(v.releaseSetsDir, entry.Name())
+		raw, err := os.ReadFile(path)
+		if err != nil {
+			v.fail(path, fmt.Sprintf("cannot read: %v", err))
+			continue
+		}
+		var header struct {
+			SchemaVersion int `json:"schemaVersion"`
+		}
+		if err := json.Unmarshal(raw, &header); err != nil {
+			v.fail(path, fmt.Sprintf("invalid JSON: %v", err))
+			continue
+		}
+		schemaName := "pawn-release-set"
+		if header.SchemaVersion > 1 {
+			schemaName = fmt.Sprintf("pawn-release-set-v%d", header.SchemaVersion)
+		}
+		schema := v.compiled[schemaName]
+		if schema == nil {
+			v.fail(path, fmt.Sprintf("unsupported release-set schema version %d", header.SchemaVersion))
+			continue
+		}
+		v.validateAgainst(path, schema)
 	}
 	if !found {
 		v.fail(v.releaseSetsDir, "no release set .json files found")
