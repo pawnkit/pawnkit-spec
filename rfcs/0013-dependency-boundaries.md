@@ -142,7 +142,7 @@ deprecation process.
 
 ## Reference implementation status
 
-`pawn-actions/releaseset` parses Go modules, rejects local replacements and
+`pawn-actions` v1.5.4 parses Go modules, rejects local replacements and
 pseudo-versions, enforces layers, and detects cycles. Release-set v2 records
 the checked graph. Individual repositories keep their native dependency
 checks.
@@ -151,7 +151,8 @@ checks.
 
 `pawn-actions/releaseset` covers valid graphs, cycles, reversed edges, local
 replacements, and pseudo-versions. Release-set v2 requires provenance for test
-and generated-data edges.
+and generated-data edges. Workflow run 30179782803 validated the first graph
+candidate before passing the Linux, Windows, and macOS smoke matrix.
 
 ## Open questions
 

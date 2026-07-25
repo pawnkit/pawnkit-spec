@@ -6,7 +6,7 @@ created: 2026-07-23
 updated: 2026-07-25
 supersedes: null
 superseded-by: null
-schema: schemas/pawn-release-set-v2.schema.json
+schema: schemas/pawn-release-set.schema.json
 ---
 
 ## Summary
@@ -33,19 +33,17 @@ There is no current PawnKit format for a tested set.
 
 ## Proposal
 
-`schemas/pawn-release-set-v2.schema.json` defines version 2. Version 1 remains
-available during the migration window.
+`schemas/pawn-release-set.schema.json` defines version 1.
 
 A release set MUST contain:
 
-- `schemaVersion`: `2`;
+- `schemaVersion`: `1`;
 - `id`: an immutable identifier;
 - `generatedAt`: the UTC completion time;
 - `source`: the repository and commit that produced the set;
 - `targets`: the operating-system and architecture pairs tested;
 - `profiles`: the Pawn profiles tested;
 - `components`: exact repository versions and commits;
-- `moduleGraph`: checked PawnKit modules and their direct dependencies;
 - `schemas`: exact schema URLs and SHA-256 hashes;
 - `evidence`: the workflow, commit, projects, targets, and completion time;
 - `knownLimits`: confirmed limits that affect the named set.
@@ -59,10 +57,6 @@ set generator MUST reject local replacements, PawnKit pseudo-versions, missing
 artifacts, checksum mismatches, duplicate component names, and untested
 targets.
 
-Each module graph entry records its repository, module path, version, commit,
-and direct PawnKit dependencies. Runtime dependencies must follow RFC 0013.
-Test and generated-data edges need a short provenance note.
-
 Official PawnKit consumers SHOULD select their default versions from the latest
 compatible tested set. A user MAY override a version, but the consumer must not
 describe that combination as tested.
@@ -71,17 +65,21 @@ Published sets are immutable. A corrected set gets a new `id`.
 Checked-in sets live under `release-sets/<id>.json`. The website MAY publish
 the newest accepted set at `/release-sets/latest.json`.
 
+Release-set v2 is an experimental extension under RFC 0013. It adds a checked
+`moduleGraph` and requires provenance for test and generated-data edges.
+Version 1 remains the accepted contract until the breaking-change process is
+complete.
+
 ## PawnKit extensions
 
 None.
 
 ## Compatibility impact
 
-- [ ] Additive
-- [x] Breaking
+- [x] Additive
+- [ ] Breaking
 
-Version 2 requires the checked module graph. Version 1 readers must reject it
-as an unsupported major.
+Not applicable; this is the first version.
 
 ## Alternatives considered
 
@@ -106,14 +104,12 @@ private URLs, logs, or environment values.
 
 ## Migration plan
 
-Producers move to version 2 after the graph validator is released. Readers
-support versions 1 and 2 for at least 12 months under RFC 0016.
+Not applicable; this is the first version.
 
 ## Reference implementation status
 
-Version 1 is implemented in `pawn-actions` v1.1.0. Version 2 graph validation
-is implemented on the `pawn-actions` main branch. Checked-in sets live in
-`pawnkit-spec`.
+Implemented in `pawn-actions` v1.1.0. Checked-in sets live in `pawnkit-spec`.
+The experimental v2 validator is available in `pawn-actions` v1.5.4.
 
 ## Conformance tests
 
@@ -121,8 +117,8 @@ The offline `pawnkit-spec` validator checks schema examples.
 `pawn-actions/releaseset` tests bounded decoding, duplicate components,
 unsupported targets, module replacements, pseudo-versions, missing artifacts,
 size checks, and SHA-256 checks. Its CI runs on Linux, macOS, and Windows and
-validates the example from `pawnkit-spec` v0.1.7. Version 2 adds invalid graph
-and provenance cases.
+validates the example from `pawnkit-spec` v0.1.7. The v2 preview adds invalid
+graph and provenance cases.
 
 ## Open questions
 
