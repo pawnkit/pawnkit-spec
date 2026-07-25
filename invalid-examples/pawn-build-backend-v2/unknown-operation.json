@@ -1,0 +1,11 @@
+{
+  "kind": "request",
+  "schemaVersion": 2,
+  "operation": "deploy",
+  "projectRoot": "/workspace/example",
+  "profile": "openmp",
+  "target": "openmp",
+  "includePaths": [],
+  "defines": {},
+  "arguments": []
+}

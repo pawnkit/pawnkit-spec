@@ -3,10 +3,10 @@ rfc: 0012
 title: Build backend protocol
 status: draft
 created: 2026-07-23
-updated: 2026-07-23
+updated: 2026-07-25
 supersedes: null
 superseded-by: null
-schema: schemas/pawn-build-backend.schema.json
+schema: schemas/pawn-build-backend-v2.schema.json
 ---
 
 ## Summary
@@ -26,22 +26,18 @@ putting either implementation inside the CLI.
 
 ## Current behavior
 
-`pawn check` accepts `--build-tool` and `--test-tool`. It probes:
+`pawn build` accepts a direct compiler or an external backend. `pawn-project`
+constructs the resolved request. Actions and VS Code call the CLI.
 
-```text
-<tool> capabilities --output json
-```
-
-It then runs the selected command with `--project` and `--output json`.
-Protocol version 1 returns a status and message, but it does not carry the
-resolved project model or structured diagnostics.
-
-There are no standalone `pawn restore`, `pawn build`, or `pawn run` commands.
+The first schema referred to diagnostic v1. Diagnostic v2 corrected a mismatch
+between the published schema and released core wire format, so build-backend v2
+updates that nested contract.
 
 ## Proposal
 
-PawnKit defines build backend protocol version 1. Backends are local
-executables. The CLI does not evaluate a command through a shell.
+PawnKit defines build backend protocol version 1 with request and result schema
+version 2. Backends are local executables. The CLI does not evaluate a command
+through a shell.
 
 Capability negotiation runs:
 
@@ -73,7 +69,7 @@ limits on projects with many includes or defines.
 A request contains:
 
 - `kind`: `request`;
-- `schemaVersion`: `1`;
+- `schemaVersion`: `2`;
 - `operation`: `restore`, `build`, or `run`;
 - `projectRoot`: the absolute canonical project root;
 - `profile`: the selected Pawn profile;
@@ -97,11 +93,11 @@ that files still match the request.
 A result contains:
 
 - `kind`: `result`;
-- `schemaVersion`: `1`;
+- `schemaVersion`: `2`;
 - `status`: `passed`, `failed`, or `cancelled`;
 - `backend`: name and version;
 - `artifacts`: paths, media types, sizes, and optional SHA-256 hashes;
-- `diagnostics`: PawnKit diagnostic version 1 values;
+- `diagnostics`: PawnKit diagnostic version 2 values;
 - `process`: optional exit code and bounded standard output and error;
 - `runtime`: runtime-fidelity metadata for a completed run.
 
@@ -129,12 +125,11 @@ does not change `pawn.json`, `pawn.yaml`, or `pawn.lock`.
 
 ## Compatibility impact
 
-- [x] Additive
-- [ ] Breaking
+- [ ] Additive
+- [x] Breaking
 
-The existing `pawn check --build-tool` adapter can remain during one CLI minor
-release. New backends use `execute`; old adapters are not described as tested
-build backends.
+Build-backend v1 remains available at its published URL. Version 2 changes only
+the nested diagnostic shape and the request/result schema number.
 
 ## Alternatives considered
 
@@ -162,18 +157,16 @@ network listeners only when requested and should default to loopback.
 
 ## Migration plan
 
-1. `pawnkit-spec` publishes request, result, and capability schemas.
-2. `pawn-project` constructs deterministic requests.
-3. Sampctl and direct compiler adapters implement protocol version 1.
-4. `pawnkit-cli` adds restore, build, and run commands.
-5. The old project-directory adapter remains for one CLI minor release.
+1. Publish build-backend v2 without changing v1.
+2. Update `pawn-project` to construct schema version 2 messages.
+3. Update direct and external backend callers.
+4. Read schema version 1 results during one CLI minor release.
 
 ## Reference implementation status
 
-`pawn-project` v0.2.0 constructs requests. `pawnkit-cli` v1.2.0 invokes
-external backends and provides the direct compiler adapter. `pawn-actions`
-v1.4.0 forwards resolved build choices to the CLI. The sampctl adapter is
-still open.
+`pawn-project` constructs requests. `pawnkit-cli` invokes external backends and
+provides the direct compiler adapter. `pawn-actions` and VS Code forward build
+choices to the CLI. The sampctl adapter is still open.
 
 ## Conformance tests
 
