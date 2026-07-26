@@ -1,9 +1,9 @@
 ---
 rfc: 0015
 title: Syntax and semantic API stability
-status: draft
+status: experimental
 created: 2026-07-23
-updated: 2026-07-23
+updated: 2026-07-25
 supersedes: null
 superseded-by: null
 schema: null
@@ -85,15 +85,16 @@ supported compatibility path.
 
 ## Reference implementation status
 
-`pawn-parser` and `pawn-analysis` are the reference implementations. Package
-labels and downstream API tests remain open.
+`pawn-parser` labels its stable public packages and `pawn-analysis` labels its
+preview public packages. Both modules compile a small supported-surface test
+from an external test package.
 
 ## Conformance tests
 
-Each module's public-package tests and the tagged downstream build matrix will
-form the compatibility suite. The tested release set records the versions used.
+Each module has an external-package test for its supported entry points and
+types. The tagged downstream build matrix and tested release set record the
+versions used.
 
 ## Open questions
 
-- Which current analysis packages are ready to be labelled stable?
 - Should syntax-kind names receive a language-neutral interchange schema?
