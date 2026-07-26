@@ -1,5 +1,7 @@
 # pawnkit-spec
 
+[![Maturity: infrastructure](https://img.shields.io/badge/maturity-infrastructure-lightgrey)](.pawnkit/support.json)
+
 `pawnkit-spec` contains the contracts shared by PawnKit tools: RFCs, language profiles, JSON Schemas, and conformance data for SA-MP 0.3.7 and open.mp projects.
 
 ## Status

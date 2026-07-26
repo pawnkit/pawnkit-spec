@@ -1,0 +1,11 @@
+{
+  "schemaVersion": 1,
+  "runtimeTier": "native-plugin-integration",
+  "engine": {
+    "name": "pawntest",
+    "version": "1.2.0"
+  },
+  "target": "openmp",
+  "capabilities": ["amx"],
+  "limitations": []
+}

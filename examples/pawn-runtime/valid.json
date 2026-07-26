@@ -1,0 +1,17 @@
+{
+  "schemaVersion": 1,
+  "runtimeTier": "platform-simulation",
+  "engine": {
+    "name": "pawntest",
+    "version": "1.2.0"
+  },
+  "target": "openmp",
+  "capabilities": [
+    "amx",
+    "openmp.natives",
+    "openmp.state"
+  ],
+  "limitations": [
+    "Network and real server scheduling are not simulated."
+  ]
+}

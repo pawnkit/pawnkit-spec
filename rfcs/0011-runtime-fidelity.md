@@ -1,12 +1,12 @@
 ---
 rfc: 0011
 title: Runtime fidelity
-status: draft
+status: experimental
 created: 2026-07-23
-updated: 2026-07-23
+updated: 2026-07-25
 supersedes: null
 superseded-by: null
-schema: null
+schema: schemas/pawn-runtime.schema.json
 ---
 
 ## Summary
@@ -128,13 +128,15 @@ default and marked as inferred.
 
 ## Reference implementation status
 
-Open. `goamx`, `pawntest`, `pawndebug`, `pawn-plugin-host`, and `pawnserver`
-own their tier-specific behavior. `pawntest` owns test-result reporting.
+The v1 schema defines the shared metadata. `goamx`, `pawntest`, `pawndebug`,
+`pawn-plugin-host`, and `pawnserver` own their tier-specific behavior.
+`pawntest` owns test-result reporting.
 
 ## Conformance tests
 
-Open. Pawntest needs one report fixture per implemented tier. Goamx, plugin
-host, and real-server adapters need differential and failure-path fixtures.
+The schema suite covers platform simulation and rejects incomplete plugin
+metadata and unknown tiers. Runtime repositories still need differential and
+failure-path fixtures for each tier they implement.
 
 ## Open questions
 

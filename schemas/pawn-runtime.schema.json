@@ -1,0 +1,141 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://schemas.pawnkit.dev/pawn-runtime/v1/schema.json",
+  "title": "PawnKit runtime metadata",
+  "description": "The runtime environment used to produce a PawnKit result.",
+  "type": "object",
+  "required": [
+    "schemaVersion",
+    "runtimeTier",
+    "engine",
+    "target",
+    "capabilities",
+    "limitations"
+  ],
+  "properties": {
+    "schemaVersion": { "type": "integer", "const": 1 },
+    "runtimeTier": {
+      "type": "string",
+      "enum": [
+        "pure-amx",
+        "platform-simulation",
+        "native-plugin-integration",
+        "real-server-integration"
+      ]
+    },
+    "engine": { "$ref": "#/$defs/component" },
+    "target": {
+      "type": "string",
+      "pattern": "^[a-z][a-z0-9-]*$"
+    },
+    "capabilities": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "pattern": "^[a-z][a-z0-9.-]*$"
+      }
+    },
+    "limitations": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 512
+      }
+    },
+    "providers": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": { "$ref": "#/$defs/component" }
+    },
+    "plugin": {
+      "type": "object",
+      "required": ["name", "architecture", "workerProtocol"],
+      "properties": {
+        "name": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 128
+        },
+        "architecture": {
+          "type": "string",
+          "enum": ["x86", "x64"]
+        },
+        "workerProtocol": {
+          "type": "integer",
+          "minimum": 1
+        }
+      },
+      "additionalProperties": false
+    },
+    "server": {
+      "type": "object",
+      "required": ["artifact", "version", "profile", "adapterProtocol", "sessionCompleted"],
+      "properties": {
+        "artifact": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 256
+        },
+        "version": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 64
+        },
+        "profile": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 128
+        },
+        "adapterProtocol": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "sessionCompleted": { "type": "boolean" }
+      },
+      "additionalProperties": false
+    }
+  },
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "runtimeTier": { "const": "native-plugin-integration" }
+        },
+        "required": ["runtimeTier"]
+      },
+      "then": { "required": ["plugin"] },
+      "else": { "not": { "required": ["plugin"] } }
+    },
+    {
+      "if": {
+        "properties": {
+          "runtimeTier": { "const": "real-server-integration" }
+        },
+        "required": ["runtimeTier"]
+      },
+      "then": { "required": ["server"] },
+      "else": { "not": { "required": ["server"] } }
+    }
+  ],
+  "additionalProperties": false,
+  "$defs": {
+    "component": {
+      "type": "object",
+      "required": ["name", "version"],
+      "properties": {
+        "name": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9._-]*$"
+        },
+        "version": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 64
+        }
+      },
+      "additionalProperties": false
+    }
+  }
+}
