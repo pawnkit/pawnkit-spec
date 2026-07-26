@@ -5,6 +5,12 @@ follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/). Schema
 major versions are tracked independently in each schema's `$id`; this log
 calls out schema version changes explicitly.
 
+## [0.1.34] - 2026-07-26
+
+### Fixed
+
+- Corrected the archive filenames in the July 26 tested release set.
+
 ## [0.1.33] - 2026-07-26
 
 ### Added
