@@ -1,7 +1,7 @@
 ---
 rfc: 0018
 title: Release supply-chain evidence
-status: draft
+status: accepted
 created: 2026-07-29
 updated: 2026-07-29
 supersedes: null
@@ -28,7 +28,7 @@ the shared document.
 
 ## Proposal
 
-Release-set v3 artifacts may contain:
+Release-set v3 artifacts contain:
 
 - `sbom`: an immutable release asset URL, byte size, and SHA-256 checksum;
 - `provenance`: the GitHub repository, workflow identity, and artifact subject
@@ -39,9 +39,8 @@ The SBOM URL must belong to the same repository and tag as the artifact.
 attestation signature and signer identity with GitHub's artifact-attestation
 verification, not by trusting this record alone.
 
-A release set may omit these fields while v3 remains experimental. A set must
-not claim complete supply-chain coverage unless every downloadable artifact
-contains both records.
+Every v3 artifact contains both records. Earlier schema versions remain
+unchanged.
 
 ## PawnKit extensions
 
@@ -52,8 +51,7 @@ None.
 - [x] Additive
 - [ ] Breaking
 
-The fields are optional in the experimental v3 schema. Versions 1 and 2 are
-unchanged.
+Version 3 requires both fields. Versions 1 and 2 are unchanged.
 
 ## Alternatives considered
 
@@ -70,13 +68,14 @@ to the release-set size limits.
 
 ## Migration plan
 
-Release generators may add evidence to v3 candidates as tool releases become
-available. Version 1 consumers continue to ignore the experimental candidate.
+Generators must add evidence before publishing a v3 set. Version 1 and version
+2 consumers continue to use their existing formats.
 
 ## Reference implementation status
 
-`pawn-actions` validates the records structurally and verifies SBOM assets.
-Cryptographic attestation verification remains a release-workflow task.
+`pawn-actions` verifies archive and SBOM hashes, then uses GitHub's attestation
+verifier to check the signature, signer workflow, source tag, source commit,
+and transparency-log record.
 
 ## Conformance tests
 
@@ -86,4 +85,4 @@ SBOM checksums.
 
 ## Open questions
 
-- Should a future stable version require evidence for every artifact?
+None.

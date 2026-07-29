@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.1.46 - 2026-07-29
+
+- Accept RFC 0018 and require SBOM and provenance records in release-set v3.
+- Add a signed five-tool release set for Linux, Windows, and macOS.
+- Add an invalid v3 example without provenance.
+
 ## 0.1.45 - 2026-07-29
 
 - Promote the tested `pawn v1.5.0` toolchain set.

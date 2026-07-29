@@ -92,7 +92,7 @@
     },
     "artifact": {
       "type": "object",
-      "required": ["target", "url", "size", "checksum"],
+      "required": ["target", "url", "size", "checksum", "sbom", "provenance"],
       "properties": {
         "target": { "$ref": "#/$defs/target" },
         "url": {
@@ -239,4 +239,3 @@
     }
   }
 }
-
