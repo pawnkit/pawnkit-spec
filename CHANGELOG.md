@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.1.43 - 2026-07-29
+
+- Add the `pawn v1.5.0` compatibility candidate.
+
 ## 0.1.42 - 2026-07-29
 
 - Add the first tested pawnserver release set.
