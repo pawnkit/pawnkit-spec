@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.1.44 - 2026-07-29
+
+- Restore the immutable release-set v2 schema.
+- Move supply-chain evidence to the new experimental v3 schema.
+
 ## 0.1.43 - 2026-07-29
 
 - Add the `pawn v1.5.0` compatibility candidate.

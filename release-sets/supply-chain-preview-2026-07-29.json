@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 2,
+  "schemaVersion": 3,
   "id": "supply-chain-preview-2026-07-29",
   "generatedAt": "2026-07-29T09:32:20Z",
   "source": {
@@ -116,9 +116,9 @@
   "schemas": [
     {
       "name": "pawn-release-set",
-      "version": 2,
-      "url": "https://schemas.pawnkit.dev/pawn-release-set/v2/schema.json",
-      "checksum": "sha256:a28103c5d5dbca81df3fd27030c8b76ba4b81b40e980f3740e8077e2972403cf"
+      "version": 3,
+      "url": "https://schemas.pawnkit.dev/pawn-release-set/v3/schema.json",
+      "checksum": "sha256:25172d0967b5723b6719a2536bd654fd97340d85bf6745e05b6743f3533c7e1e"
     }
   ],
   "evidence": {
@@ -135,7 +135,7 @@
     ]
   },
   "knownLimits": [
-    "Supply-chain fields remain experimental under RFC 0018.",
+    "Release-set v3 supply-chain fields remain experimental under RFC 0018.",
     "Attestation signatures require GitHub or Sigstore verification.",
     "This preview covers the PawnKit CLI release only."
   ]

@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://schemas.pawnkit.dev/pawn-release-set/v2/schema.json",
+  "$id": "https://schemas.pawnkit.dev/pawn-release-set/v3/schema.json",
   "title": "PawnKit tested release set",
   "description": "Pinned releases, contracts, test evidence, and their checked PawnKit module graph.",
   "type": "object",
@@ -18,7 +18,7 @@
     "knownLimits"
   ],
   "properties": {
-    "schemaVersion": { "type": "integer", "const": 2 },
+    "schemaVersion": { "type": "integer", "const": 3 },
     "id": { "$ref": "#/$defs/name" },
     "generatedAt": { "type": "string", "format": "date-time" },
     "source": { "$ref": "#/$defs/source" },
@@ -101,7 +101,36 @@
           "pattern": "^https://github\\.com/pawnkit/.+/releases/download/.+/.+$"
         },
         "size": { "type": "integer", "minimum": 1 },
+        "checksum": { "$ref": "#/$defs/sha256" },
+        "sbom": { "$ref": "#/$defs/evidenceAsset" },
+        "provenance": { "$ref": "#/$defs/provenance" }
+      },
+      "additionalProperties": false
+    },
+    "evidenceAsset": {
+      "type": "object",
+      "required": ["url", "size", "checksum"],
+      "properties": {
+        "url": {
+          "type": "string",
+          "format": "uri",
+          "pattern": "^https://github\\.com/pawnkit/.+/releases/download/.+/.+$"
+        },
+        "size": { "type": "integer", "minimum": 1 },
         "checksum": { "$ref": "#/$defs/sha256" }
+      },
+      "additionalProperties": false
+    },
+    "provenance": {
+      "type": "object",
+      "required": ["repository", "workflow", "subject"],
+      "properties": {
+        "repository": { "$ref": "#/$defs/repository" },
+        "workflow": {
+          "type": "string",
+          "pattern": "^https://github\\.com/pawnkit/.+/.github/workflows/.+@refs/tags/v.+$"
+        },
+        "subject": { "$ref": "#/$defs/sha256" }
       },
       "additionalProperties": false
     },
@@ -210,3 +239,4 @@
     }
   }
 }
+
