@@ -1,10 +1,10 @@
 {
   "schemaVersion": 3,
   "id": "toolchain-signed-2026-07-29",
-  "generatedAt": "2026-07-29T10:20:00Z",
+  "generatedAt": "2026-07-29T10:43:00Z",
   "source": {
     "repository": "pawnkit/pawn-actions",
-    "commit": "eb059fcbdb58f3ba286a7b3a74431641ec33a355"
+    "commit": "a13bdc0d178695863d7c78247c01df6faa8efb9b"
   },
   "targets": [
     "linux-amd64",

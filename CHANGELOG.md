@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.1.48 - 2026-07-29
+
+- Match the signed set source commit to its compatibility run.
+
 ## 0.1.47 - 2026-07-29
 
 - Update the signed toolchain set to pawn v1.5.1.
