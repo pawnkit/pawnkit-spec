@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 1,
+  "runtimeTier": "native-plugin-integration",
+  "engine": {
+    "name": "pawntest",
+    "version": "1.2.3"
+  },
+  "target": "openmp",
+  "capabilities": [
+    "amx",
+    "native-plugins"
+  ],
+  "limitations": [
+    "The plugin worker is not a security sandbox."
+  ],
+  "plugin": {
+    "name": "example-plugin",
+    "architecture": "x86",
+    "workerProtocol": 1
+  }
+}

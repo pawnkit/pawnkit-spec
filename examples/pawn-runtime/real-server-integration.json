@@ -1,0 +1,20 @@
+{
+  "schemaVersion": 1,
+  "runtimeTier": "real-server-integration",
+  "engine": {
+    "name": "openmp-server",
+    "version": "1.4.0"
+  },
+  "target": "openmp",
+  "capabilities": [
+    "openmp-server"
+  ],
+  "limitations": [],
+  "server": {
+    "artifact": "omp-server",
+    "version": "1.4.0",
+    "profile": "openmp",
+    "adapterProtocol": 1,
+    "sessionCompleted": true
+  }
+}

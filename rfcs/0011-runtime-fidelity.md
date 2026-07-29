@@ -134,9 +134,10 @@ The v1 schema defines the shared metadata. `goamx`, `pawntest`, `pawndebug`,
 
 ## Conformance tests
 
-The schema suite covers platform simulation and rejects incomplete plugin
-metadata and unknown tiers. Runtime repositories still need differential and
-failure-path fixtures for each tier they implement.
+The schema suite covers all four tiers. It rejects unknown tiers, incomplete
+plugin or server metadata, and plugin metadata on a pure AMX result. Runtime
+repositories still need differential and failure-path fixtures for each tier
+they implement.
 
 ## Open questions
 

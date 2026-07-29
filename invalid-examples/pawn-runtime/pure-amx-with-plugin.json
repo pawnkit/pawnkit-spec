@@ -1,0 +1,18 @@
+{
+  "schemaVersion": 1,
+  "runtimeTier": "pure-amx",
+  "engine": {
+    "name": "goamx",
+    "version": "1.1.2"
+  },
+  "target": "openmp",
+  "capabilities": [
+    "amx"
+  ],
+  "limitations": [],
+  "plugin": {
+    "name": "example-plugin",
+    "architecture": "x86",
+    "workerProtocol": 1
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "schemaVersion": 1,
+  "runtimeTier": "real-server-integration",
+  "engine": {
+    "name": "openmp-server",
+    "version": "1.4.0"
+  },
+  "target": "openmp",
+  "capabilities": [
+    "openmp-server"
+  ],
+  "limitations": []
+}
