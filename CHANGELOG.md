@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.1.49 - 2026-07-29
+
+- Add invalid examples for the stable bundle and release-set contracts.
+- List the stable contracts and their compatibility policy.
+
 ## 0.1.48 - 2026-07-29
 
 - Match the signed set source commit to its compatibility run.

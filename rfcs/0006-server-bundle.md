@@ -123,7 +123,8 @@ installation against this contract.
 
 ## Conformance tests
 
-`examples/pawn-bundle/valid.json` is validated by `tools/validate`.
+`tools/validate` accepts `examples/pawn-bundle/valid.json` and rejects the
+invalid checksum example under `invalid-examples/pawn-bundle`.
 Archive, checksum, path, platform, and installation cases are owned by
 `pawnserver`.
 

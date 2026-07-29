@@ -29,6 +29,14 @@ RFCs follow the lifecycle in `GOVERNANCE.md`: `draft`, `experimental`, then
 `accepted`. They may later become `deprecated` or `superseded`. A schema is not
 stable while its RFC is still a draft or experiment.
 
+The stable contracts are:
+
+| Contract | Schema | Compatibility |
+|---|---|---|
+| Server bundle | `pawn-bundle/v1` | Readers accept version 1. |
+| Tested release set | `pawn-release-set/v1` | Readers accept version 1. |
+| Release evidence | `pawn-release-set/v3` | Readers keep v1 and v2 support during migration. |
+
 Profiles have two versions. `schemaVersion` selects the profile schema;
 `version` tracks revisions to that particular profile.
 

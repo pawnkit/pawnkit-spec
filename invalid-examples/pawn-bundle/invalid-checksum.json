@@ -1,0 +1,20 @@
+{
+  "schemaVersion": 1,
+  "name": "unsafe-bundle",
+  "version": "1.0.0",
+  "runtimeProfile": "openmp",
+  "server": {
+    "version": "1.4.0",
+    "binary": [
+      {
+        "path": "omp-server",
+        "checksum": "not-a-checksum",
+        "platform": "linux-x86_64"
+      }
+    ]
+  },
+  "entryPoints": {
+    "gamemode": "gamemodes/main.amx"
+  },
+  "checksum": "sha256:702a0bff044a40d8f5166472acc2b76ced5abb249c9230be22a4671ccacc6fad"
+}

@@ -113,7 +113,8 @@ The experimental v2 validator is available in `pawn-actions` v1.5.4.
 
 ## Conformance tests
 
-The offline `pawnkit-spec` validator checks schema examples.
+The offline `pawnkit-spec` validator checks valid examples and rejects the
+invalid examples for every stable release-set schema.
 `pawn-actions/releaseset` tests bounded decoding, duplicate components,
 unsupported targets, module replacements, pseudo-versions, missing artifacts,
 size checks, and SHA-256 checks. Its CI runs on Linux, macOS, and Windows and
