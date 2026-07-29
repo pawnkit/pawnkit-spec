@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.1.45 - 2026-07-29
+
+- Promote the tested `pawn v1.5.0` toolchain set.
+
 ## 0.1.44 - 2026-07-29
 
 - Restore the immutable release-set v2 schema.
