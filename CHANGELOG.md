@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.1.51 - 2026-07-29
+
+- Promote the pawnlint v1.7.39 and pawnlsp v0.33.67 toolchain after the
+  three-platform compatibility run passed.
+
 ## 0.1.50 - 2026-07-29
 
 - Add a cross-platform candidate with pawnlint v1.7.39 and pawnlsp v0.33.67.
