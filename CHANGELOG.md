@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.1.42 - 2026-07-29
+
+- Add the first tested pawnserver release set.
+- Add a CLI supply-chain preview with SBOM and provenance records.
+
 ## 0.1.41 - 2026-07-29
 
 - Draft the release supply-chain evidence contract.

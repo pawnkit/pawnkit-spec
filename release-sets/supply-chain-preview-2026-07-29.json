@@ -1,0 +1,142 @@
+{
+  "schemaVersion": 2,
+  "id": "supply-chain-preview-2026-07-29",
+  "generatedAt": "2026-07-29T09:32:20Z",
+  "source": {
+    "repository": "pawnkit/pawnkit-cli",
+    "commit": "52ea8a32b753f43f7cb84a06b788b3a34867cc16"
+  },
+  "targets": [
+    "linux-amd64",
+    "windows-amd64",
+    "darwin-arm64"
+  ],
+  "profiles": [
+    "samp-037",
+    "openmp"
+  ],
+  "components": [
+    {
+      "name": "pawn",
+      "repository": "pawnkit/pawnkit-cli",
+      "version": "v1.5.0",
+      "commit": "52ea8a32b753f43f7cb84a06b788b3a34867cc16",
+      "artifacts": [
+        {
+          "target": "linux-amd64",
+          "url": "https://github.com/pawnkit/pawnkit-cli/releases/download/v1.5.0/pawn-linux-amd64.tar.gz",
+          "size": 3251139,
+          "checksum": "sha256:4a0d2621551b4ee32880ad7609df0a367960565ca155d08d7c9499e4f40259e0",
+          "sbom": {
+            "url": "https://github.com/pawnkit/pawnkit-cli/releases/download/v1.5.0/pawn-linux-amd64.tar.gz.sbom.json",
+            "size": 20614,
+            "checksum": "sha256:7695d09b30b301de9b75ba9860121679155510a8b67bb3af2474dac49ce17aea"
+          },
+          "provenance": {
+            "repository": "pawnkit/pawnkit-cli",
+            "workflow": "https://github.com/pawnkit/pawnkit-cli/.github/workflows/release.yml@refs/tags/v1.5.0",
+            "subject": "sha256:4a0d2621551b4ee32880ad7609df0a367960565ca155d08d7c9499e4f40259e0"
+          }
+        },
+        {
+          "target": "windows-amd64",
+          "url": "https://github.com/pawnkit/pawnkit-cli/releases/download/v1.5.0/pawn-windows-amd64.tar.gz",
+          "size": 3337478,
+          "checksum": "sha256:0ed386f722bb5cd23bab29b347006e6b31bcd73c15fb380edb7b642e74f1a496",
+          "sbom": {
+            "url": "https://github.com/pawnkit/pawnkit-cli/releases/download/v1.5.0/pawn-windows-amd64.tar.gz.sbom.json",
+            "size": 21651,
+            "checksum": "sha256:f0eae654dba7ba6a5f21aefb22f5cac1343f65ea743d9307b31541cd431705ad"
+          },
+          "provenance": {
+            "repository": "pawnkit/pawnkit-cli",
+            "workflow": "https://github.com/pawnkit/pawnkit-cli/.github/workflows/release.yml@refs/tags/v1.5.0",
+            "subject": "sha256:0ed386f722bb5cd23bab29b347006e6b31bcd73c15fb380edb7b642e74f1a496"
+          }
+        },
+        {
+          "target": "darwin-arm64",
+          "url": "https://github.com/pawnkit/pawnkit-cli/releases/download/v1.5.0/pawn-darwin-arm64.tar.gz",
+          "size": 3014394,
+          "checksum": "sha256:56c243414646f16ade1a381e0c47673ccf199afc5048d1c6bc62a173e645cea3",
+          "sbom": {
+            "url": "https://github.com/pawnkit/pawnkit-cli/releases/download/v1.5.0/pawn-darwin-arm64.tar.gz.sbom.json",
+            "size": 20632,
+            "checksum": "sha256:51200b93acb35aecd5ab0c6426ad5894ee4fa2bd41e225a6ddc3e1a2fa848bd1"
+          },
+          "provenance": {
+            "repository": "pawnkit/pawnkit-cli",
+            "workflow": "https://github.com/pawnkit/pawnkit-cli/.github/workflows/release.yml@refs/tags/v1.5.0",
+            "subject": "sha256:56c243414646f16ade1a381e0c47673ccf199afc5048d1c6bc62a173e645cea3"
+          }
+        }
+      ]
+    }
+  ],
+  "moduleGraph": [
+    {
+      "repository": "pawnkit/pawnkit-cli",
+      "module": "github.com/pawnkit/pawnkit-cli",
+      "version": "v1.5.0",
+      "commit": "52ea8a32b753f43f7cb84a06b788b3a34867cc16",
+      "dependencies": [
+        {
+          "repository": "pawnkit/pawn-analysis",
+          "version": "v0.1.15",
+          "kind": "runtime"
+        },
+        {
+          "repository": "pawnkit/pawn-parser",
+          "version": "v1.1.9",
+          "kind": "runtime"
+        },
+        {
+          "repository": "pawnkit/pawn-project",
+          "version": "v0.3.0",
+          "kind": "runtime"
+        },
+        {
+          "repository": "pawnkit/pawnfmt",
+          "version": "v1.3.5",
+          "kind": "runtime"
+        },
+        {
+          "repository": "pawnkit/pawnkit-core",
+          "version": "v0.2.0",
+          "kind": "runtime"
+        },
+        {
+          "repository": "pawnkit/pawnlint",
+          "version": "v1.1.5",
+          "kind": "runtime"
+        }
+      ]
+    }
+  ],
+  "schemas": [
+    {
+      "name": "pawn-release-set",
+      "version": 2,
+      "url": "https://schemas.pawnkit.dev/pawn-release-set/v2/schema.json",
+      "checksum": "sha256:a28103c5d5dbca81df3fd27030c8b76ba4b81b40e980f3740e8077e2972403cf"
+    }
+  ],
+  "evidence": {
+    "workflow": "https://github.com/pawnkit/pawnkit-cli/actions/runs/30439901607",
+    "commit": "52ea8a32b753f43f7cb84a06b788b3a34867cc16",
+    "completedAt": "2026-07-29T09:32:20Z",
+    "projects": [
+      "pawnkit-cli package and integration tests"
+    ],
+    "targets": [
+      "linux-amd64",
+      "windows-amd64",
+      "darwin-arm64"
+    ]
+  },
+  "knownLimits": [
+    "Supply-chain fields remain experimental under RFC 0018.",
+    "Attestation signatures require GitHub or Sigstore verification.",
+    "This preview covers the PawnKit CLI release only."
+  ]
+}
