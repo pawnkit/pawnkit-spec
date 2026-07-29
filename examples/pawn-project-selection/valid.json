@@ -1,0 +1,9 @@
+{
+  "schemaVersion": 1,
+  "root": "/work/pawn-project",
+  "manifest": "/work/pawn-project/pawn.json",
+  "entry": "/work/pawn-project/gamemodes/main.pwn",
+  "profile": "openmp",
+  "build": "development",
+  "runtime": "local"
+}

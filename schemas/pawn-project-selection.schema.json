@@ -1,0 +1,40 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://schemas.pawnkit.dev/pawn-project-selection/v1/schema.json",
+  "title": "PawnKit project selection report",
+  "description": "Resolved profile, build, runtime, and paths for one Pawn project.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schemaVersion", "root", "manifest", "entry", "profile", "build", "runtime"],
+  "properties": {
+    "schemaVersion": {
+      "const": 1
+    },
+    "root": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Absolute project root."
+    },
+    "manifest": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Absolute pawn.json or pawn.yaml path."
+    },
+    "entry": {
+      "type": "string",
+      "description": "Resolved entry source, or an empty string when unset."
+    },
+    "profile": {
+      "type": "string",
+      "description": "Resolved target profile, or an empty string when unset."
+    },
+    "build": {
+      "type": "string",
+      "description": "Selected build name, or an empty string."
+    },
+    "runtime": {
+      "type": "string",
+      "description": "Selected runtime name, or an empty string."
+    }
+  }
+}
