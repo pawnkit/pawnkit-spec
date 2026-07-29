@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.1.50 - 2026-07-29
+
+- Add a cross-platform candidate with pawnlint v1.7.39 and pawnlsp v0.33.67.
+
 ## 0.1.49 - 2026-07-29
 
 - Add invalid examples for the stable bundle and release-set contracts.
