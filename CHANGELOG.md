@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.1.47 - 2026-07-29
+
+- Update the signed toolchain set to pawn v1.5.1.
+
 ## 0.1.46 - 2026-07-29
 
 - Accept RFC 0018 and require SBOM and provenance records in release-set v3.

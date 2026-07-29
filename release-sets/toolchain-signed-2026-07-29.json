@@ -19,55 +19,55 @@
     {
       "name": "pawn",
       "repository": "pawnkit/pawnkit-cli",
-      "version": "v1.5.0",
-      "commit": "52ea8a32b753f43f7cb84a06b788b3a34867cc16",
+      "version": "v1.5.1",
+      "commit": "e325911a22737b12c3d7140364891ac81732e2f1",
       "artifacts": [
         {
           "target": "linux-amd64",
-          "url": "https://github.com/pawnkit/pawnkit-cli/releases/download/v1.5.0/pawn-linux-amd64.tar.gz",
-          "size": 3251139,
-          "checksum": "sha256:4a0d2621551b4ee32880ad7609df0a367960565ca155d08d7c9499e4f40259e0",
+          "url": "https://github.com/pawnkit/pawnkit-cli/releases/download/v1.5.1/pawn-linux-amd64.tar.gz",
+          "size": 3251149,
+          "checksum": "sha256:f289229cd2f60ca35c2427a2ad9de58ab26e8935739840df4b2850c6b2be12ec",
           "sbom": {
-            "url": "https://github.com/pawnkit/pawnkit-cli/releases/download/v1.5.0/pawn-linux-amd64.tar.gz.sbom.json",
+            "url": "https://github.com/pawnkit/pawnkit-cli/releases/download/v1.5.1/pawn-linux-amd64.tar.gz.sbom.json",
             "size": 20614,
-            "checksum": "sha256:7695d09b30b301de9b75ba9860121679155510a8b67bb3af2474dac49ce17aea"
+            "checksum": "sha256:60b7ef6d07d585ab78760166e26ba5e615d95765e13c3227507afeee84187ce7"
           },
           "provenance": {
             "repository": "pawnkit/pawnkit-cli",
-            "workflow": "https://github.com/pawnkit/pawnkit-cli/.github/workflows/release.yml@refs/tags/v1.5.0",
-            "subject": "sha256:4a0d2621551b4ee32880ad7609df0a367960565ca155d08d7c9499e4f40259e0"
+            "workflow": "https://github.com/pawnkit/pawnkit-cli/.github/workflows/release.yml@refs/tags/v1.5.1",
+            "subject": "sha256:f289229cd2f60ca35c2427a2ad9de58ab26e8935739840df4b2850c6b2be12ec"
           }
         },
         {
           "target": "windows-amd64",
-          "url": "https://github.com/pawnkit/pawnkit-cli/releases/download/v1.5.0/pawn-windows-amd64.tar.gz",
-          "size": 3337478,
-          "checksum": "sha256:0ed386f722bb5cd23bab29b347006e6b31bcd73c15fb380edb7b642e74f1a496",
+          "url": "https://github.com/pawnkit/pawnkit-cli/releases/download/v1.5.1/pawn-windows-amd64.tar.gz",
+          "size": 3337500,
+          "checksum": "sha256:ab03746060bfa79f745f9fed10259adf45b3163c68cf280b7f2106bb9f3dce05",
           "sbom": {
-            "url": "https://github.com/pawnkit/pawnkit-cli/releases/download/v1.5.0/pawn-windows-amd64.tar.gz.sbom.json",
+            "url": "https://github.com/pawnkit/pawnkit-cli/releases/download/v1.5.1/pawn-windows-amd64.tar.gz.sbom.json",
             "size": 21651,
-            "checksum": "sha256:f0eae654dba7ba6a5f21aefb22f5cac1343f65ea743d9307b31541cd431705ad"
+            "checksum": "sha256:9cd79277ad6538b234f463ed58874565a2d6c780eb54b16a80b93bb32b5dc5e1"
           },
           "provenance": {
             "repository": "pawnkit/pawnkit-cli",
-            "workflow": "https://github.com/pawnkit/pawnkit-cli/.github/workflows/release.yml@refs/tags/v1.5.0",
-            "subject": "sha256:0ed386f722bb5cd23bab29b347006e6b31bcd73c15fb380edb7b642e74f1a496"
+            "workflow": "https://github.com/pawnkit/pawnkit-cli/.github/workflows/release.yml@refs/tags/v1.5.1",
+            "subject": "sha256:ab03746060bfa79f745f9fed10259adf45b3163c68cf280b7f2106bb9f3dce05"
           }
         },
         {
           "target": "darwin-arm64",
-          "url": "https://github.com/pawnkit/pawnkit-cli/releases/download/v1.5.0/pawn-darwin-arm64.tar.gz",
-          "size": 3014394,
-          "checksum": "sha256:56c243414646f16ade1a381e0c47673ccf199afc5048d1c6bc62a173e645cea3",
+          "url": "https://github.com/pawnkit/pawnkit-cli/releases/download/v1.5.1/pawn-darwin-arm64.tar.gz",
+          "size": 3014398,
+          "checksum": "sha256:3a7851a23d5b0c6ecc1a57c6874caafd05c598da3ade0b114128e53bd81babd9",
           "sbom": {
-            "url": "https://github.com/pawnkit/pawnkit-cli/releases/download/v1.5.0/pawn-darwin-arm64.tar.gz.sbom.json",
+            "url": "https://github.com/pawnkit/pawnkit-cli/releases/download/v1.5.1/pawn-darwin-arm64.tar.gz.sbom.json",
             "size": 20632,
-            "checksum": "sha256:51200b93acb35aecd5ab0c6426ad5894ee4fa2bd41e225a6ddc3e1a2fa848bd1"
+            "checksum": "sha256:dc492f3bf3a71b38e443db5e3938e9f49bedf7e3b660077b99859d3846beda8b"
           },
           "provenance": {
             "repository": "pawnkit/pawnkit-cli",
-            "workflow": "https://github.com/pawnkit/pawnkit-cli/.github/workflows/release.yml@refs/tags/v1.5.0",
-            "subject": "sha256:56c243414646f16ade1a381e0c47673ccf199afc5048d1c6bc62a173e645cea3"
+            "workflow": "https://github.com/pawnkit/pawnkit-cli/.github/workflows/release.yml@refs/tags/v1.5.1",
+            "subject": "sha256:3a7851a23d5b0c6ecc1a57c6874caafd05c598da3ade0b114128e53bd81babd9"
           }
         }
       ]
@@ -327,8 +327,8 @@
     {
       "repository": "pawnkit/pawnkit-cli",
       "module": "github.com/pawnkit/pawnkit-cli",
-      "version": "v1.5.0",
-      "commit": "52ea8a32b753f43f7cb84a06b788b3a34867cc16",
+      "version": "v1.5.1",
+      "commit": "e325911a22737b12c3d7140364891ac81732e2f1",
       "dependencies": [
         {
           "repository": "pawnkit/pawn-analysis",
