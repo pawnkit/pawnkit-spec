@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.1.41 - 2026-07-29
+
+- Draft the release supply-chain evidence contract.
+- Add SBOM and build-attestation records to release-set v2.
+
 All notable changes to this repository are documented here. Format loosely
 follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/). Schema
 major versions are tracked independently in each schema's `$id`; this log

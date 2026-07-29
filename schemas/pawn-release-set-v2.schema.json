@@ -101,7 +101,36 @@
           "pattern": "^https://github\\.com/pawnkit/.+/releases/download/.+/.+$"
         },
         "size": { "type": "integer", "minimum": 1 },
+        "checksum": { "$ref": "#/$defs/sha256" },
+        "sbom": { "$ref": "#/$defs/evidenceAsset" },
+        "provenance": { "$ref": "#/$defs/provenance" }
+      },
+      "additionalProperties": false
+    },
+    "evidenceAsset": {
+      "type": "object",
+      "required": ["url", "size", "checksum"],
+      "properties": {
+        "url": {
+          "type": "string",
+          "format": "uri",
+          "pattern": "^https://github\\.com/pawnkit/.+/releases/download/.+/.+$"
+        },
+        "size": { "type": "integer", "minimum": 1 },
         "checksum": { "$ref": "#/$defs/sha256" }
+      },
+      "additionalProperties": false
+    },
+    "provenance": {
+      "type": "object",
+      "required": ["repository", "workflow", "subject"],
+      "properties": {
+        "repository": { "$ref": "#/$defs/repository" },
+        "workflow": {
+          "type": "string",
+          "pattern": "^https://github\\.com/pawnkit/.+/.github/workflows/.+@refs/tags/v.+$"
+        },
+        "subject": { "$ref": "#/$defs/sha256" }
       },
       "additionalProperties": false
     },
