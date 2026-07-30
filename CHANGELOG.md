@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.1.60 - 2026-07-30
+
+- Add reviewed Pawn 3.10.8 artifacts for older sampctl projects.
+
 ## 0.1.59 - 2026-07-30
 
 - Record the released compiler-index implementation and consumer order.
