@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.1.55 - 2026-07-30
+
+- Clarify that dependency schemes share the same source checkout layout before
+  scheme-specific resources are installed.
+
 ## 0.1.54 - 2026-07-30
 
 - Align the `pawn.lock` schema and RFC with sampctl 1.14.1.

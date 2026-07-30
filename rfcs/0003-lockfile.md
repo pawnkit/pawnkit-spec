@@ -64,6 +64,12 @@ and output hash.
 Object keys in `dependencies` are identities, not filesystem paths. Readers
 must use the dependency fields and scheme to choose an install target.
 
+Remote dependency sources are checked out below `dependencies/<repo>`,
+including `plugin`, `component`, `includes`, and `filterscript` schemes. The
+scheme controls how declared package resources are used after the source is
+restored; it does not change the source checkout location. Local schemes keep
+their project-relative path and are not copied.
+
 ### Earlier PawnKit draft
 
 Readers MAY accept the earlier `schemaVersion`/`packages` shape until
@@ -115,8 +121,9 @@ temporary reader path for the earlier PawnKit draft.
 ## Reference implementation status
 
 sampctl 1.14.1 is the source implementation for the version 1 shape.
-`pawn-project` currently implements only the earlier PawnKit draft and must be
-updated before native dependency installation uses the lockfile.
+`pawn-project` v0.3.6 reads both lockfile shapes and restores locked source,
+development, include, and local dependencies. Scheme-specific resource
+extraction remains open.
 
 ## Conformance tests
 
