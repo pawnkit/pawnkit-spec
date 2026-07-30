@@ -113,17 +113,20 @@ Not applicable; this is the first version.
 
 ## Reference implementation status
 
-The schema and first reviewed index are implemented in `pawnkit-spec`.
-`pawn-project/toolchain` is the planned reader. `pawnkit-cli`, `pawn-actions`,
-and `vscode-pawn` will consume that implementation rather than maintaining
-their own compiler tables.
+The schema and first reviewed index are implemented in `pawnkit-spec` v0.1.58.
+`pawn-project` v0.5.0 validates, selects, installs, and caches indexed
+artifacts. `pawnkit.dev` v0.3.26 publishes immutable index URLs, and
+`pawnkit-cli` v1.10.0 uses the index for native builds.
+
+`pawn-actions` and `vscode-pawn` still consume the CLI through tested release
+sets. They do not carry their own compiler tables.
 
 ## Conformance tests
 
-The offline `pawnkit-spec` validator checks valid and invalid examples, every
-checked-in index, and duplicate coordinates. Implementation tests still need
-to cover target selection, size and hash failures, archive traversal,
-interrupted updates, and offline cache use.
+The offline validator checks valid and invalid examples, every checked-in
+index, and duplicate coordinates. `pawn-project` tests target selection, size
+and hash failures, archive traversal, recoverable cache updates, and offline
+cache use. The CLI tests the cache, `PATH`, and indexed-download order.
 
 ## Open questions
 

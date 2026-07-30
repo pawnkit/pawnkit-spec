@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.1.59 - 2026-07-30
+
+- Record the released compiler-index implementation and consumer order.
+
 ## 0.1.58 - 2026-07-30
 
 - Publish reviewed Pawn 3.10.10 and open.mp 3.10.11 compiler artifacts for
