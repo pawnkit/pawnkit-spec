@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 1,
+  "id": "unsafe-path",
+  "generatedAt": "2026-07-30T12:00:00Z",
+  "artifacts": [
+    {
+      "vendor": "pawn-lang",
+      "version": "3.10.10",
+      "profiles": ["samp-037"],
+      "target": "linux-amd64",
+      "source": {
+        "repository": "pawn-lang/compiler",
+        "tag": "v3.10.10",
+        "commit": "0123456789abcdef0123456789abcdef01234567"
+      },
+      "archive": {
+        "url": "https://github.com/pawn-lang/compiler/releases/download/v3.10.10/compiler.tar.gz",
+        "format": "tar.gz",
+        "size": 123456,
+        "checksum": "sha256:9bbb1df6e933318fce1fa61951e4196b70613c637a5a1d4c96937e147c18468d"
+      },
+      "executable": {
+        "path": "../pawncc",
+        "architecture": "386",
+        "checksum": "sha256:0123456789abcdef0123456789abcdef0123456789abcdef0123456789abcdef"
+      }
+    }
+  ]
+}

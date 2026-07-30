@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.1.57 - 2026-07-30
+
+- Draft a reviewed compiler artifact index with archive and executable hashes.
+
 ## 0.1.56 - 2026-07-30
 
 - Correct `resources` to sampctl's array shape and document its resource fields.

@@ -1,0 +1,119 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://schemas.pawnkit.dev/pawn-compiler-index/v1/schema.json",
+  "title": "Pawn compiler artifact index",
+  "description": "Reviewed compiler downloads and the hashes needed to install them.",
+  "type": "object",
+  "required": ["schemaVersion", "id", "generatedAt", "artifacts"],
+  "properties": {
+    "schemaVersion": { "type": "integer", "const": 1 },
+    "id": {
+      "type": "string",
+      "pattern": "^[a-z0-9][a-z0-9._-]*$"
+    },
+    "generatedAt": { "type": "string", "format": "date-time" },
+    "artifacts": {
+      "type": "array",
+      "minItems": 1,
+      "items": { "$ref": "#/$defs/artifact" }
+    }
+  },
+  "additionalProperties": false,
+  "$defs": {
+    "sha256": {
+      "type": "string",
+      "pattern": "^sha256:[0-9a-f]{64}$"
+    },
+    "profile": {
+      "type": "string",
+      "pattern": "^[a-z][a-z0-9-]*$"
+    },
+    "target": {
+      "type": "string",
+      "pattern": "^(linux|windows|darwin)-(amd64|arm64|386)$"
+    },
+    "source": {
+      "type": "object",
+      "required": ["repository", "tag", "commit"],
+      "properties": {
+        "repository": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9_.-]+/[A-Za-z0-9_.-]+$"
+        },
+        "tag": { "type": "string", "minLength": 1, "maxLength": 128 },
+        "commit": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{40}$"
+        }
+      },
+      "additionalProperties": false
+    },
+    "archive": {
+      "type": "object",
+      "required": ["url", "format", "size", "checksum"],
+      "properties": {
+        "url": {
+          "type": "string",
+          "format": "uri",
+          "pattern": "^https://github\\.com/[A-Za-z0-9_.-]+/[A-Za-z0-9_.-]+/releases/download/[^/]+/[^/]+$"
+        },
+        "format": {
+          "type": "string",
+          "enum": ["raw", "zip", "tar.gz"]
+        },
+        "size": { "type": "integer", "minimum": 1 },
+        "checksum": { "$ref": "#/$defs/sha256" }
+      },
+      "additionalProperties": false
+    },
+    "executable": {
+      "type": "object",
+      "required": ["path", "architecture", "checksum"],
+      "properties": {
+        "path": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9_.-]*(?:/[A-Za-z0-9][A-Za-z0-9_.-]*)*$"
+        },
+        "architecture": {
+          "type": "string",
+          "enum": ["386", "amd64", "arm64"]
+        },
+        "checksum": { "$ref": "#/$defs/sha256" }
+      },
+      "additionalProperties": false
+    },
+    "artifact": {
+      "type": "object",
+      "required": [
+        "vendor",
+        "version",
+        "profiles",
+        "target",
+        "source",
+        "archive",
+        "executable"
+      ],
+      "properties": {
+        "vendor": {
+          "type": "string",
+          "enum": ["pawn-lang", "openmultiplayer", "original-pawn"]
+        },
+        "version": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9._+-]*$"
+        },
+        "profiles": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": { "$ref": "#/$defs/profile" }
+        },
+        "target": { "$ref": "#/$defs/target" },
+        "source": { "$ref": "#/$defs/source" },
+        "archive": { "$ref": "#/$defs/archive" },
+        "executable": { "$ref": "#/$defs/executable" }
+      },
+      "additionalProperties": false
+    }
+  }
+}

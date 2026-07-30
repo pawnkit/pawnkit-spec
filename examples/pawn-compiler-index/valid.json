@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 1,
+  "id": "pawn-3.10.10-reviewed",
+  "generatedAt": "2026-07-30T12:00:00Z",
+  "artifacts": [
+    {
+      "vendor": "pawn-lang",
+      "version": "3.10.10",
+      "profiles": ["samp-037", "openmp"],
+      "target": "linux-amd64",
+      "source": {
+        "repository": "pawn-lang/compiler",
+        "tag": "v3.10.10",
+        "commit": "289cfeb1268f833ae1796debbab1e464306296ca"
+      },
+      "archive": {
+        "url": "https://github.com/pawn-lang/compiler/releases/download/v3.10.10/pawnc-3.10.10-linux.tar.gz",
+        "format": "tar.gz",
+        "size": 336397,
+        "checksum": "sha256:9bbb1df6e933318fce1fa61951e4196b70613c637a5a1d4c96937e147c18468d"
+      },
+      "executable": {
+        "path": "pawnc-3.10.10-linux/bin/pawncc",
+        "architecture": "386",
+        "checksum": "sha256:189c9579c3affe7555f7743b5868cbd2094d040eb0feecce8abd4a182fe4fa00"
+      }
+    }
+  ]
+}
