@@ -47,6 +47,7 @@ type validator struct {
 	conformanceDir   string
 	releaseSetsDir   string
 	compilerIndexes  string
+	runtimeIndexes   string
 	rfcsDir          string
 	compiled         map[string]*jsonschema.Schema // name -> compiled
 	failures         []failure
@@ -88,10 +89,12 @@ func main() {
 			v.releaseSetsDir = abs
 		case "compiler-indexes":
 			v.compilerIndexes = abs
+		case "runtime-indexes":
+			v.runtimeIndexes = abs
 		case "rfcs":
 			v.rfcsDir = abs
 		default:
-			fmt.Fprintf(os.Stderr, "unrecognized directory (expected schemas/profiles/examples/invalid-examples/conformance/release-sets/compiler-indexes/rfcs): %s\n", abs)
+			fmt.Fprintf(os.Stderr, "unrecognized directory (expected schemas/profiles/examples/invalid-examples/conformance/release-sets/compiler-indexes/runtime-indexes/rfcs): %s\n", abs)
 			os.Exit(2)
 		}
 	}
@@ -121,6 +124,9 @@ func main() {
 	if v.compilerIndexes != "" {
 		v.checkCompilerIndexes()
 	}
+	if v.runtimeIndexes != "" {
+		v.checkRuntimeIndexes()
+	}
 	if v.rfcsDir != "" {
 		v.checkRFCs()
 	}
@@ -137,6 +143,69 @@ func main() {
 	}
 
 	fmt.Printf("ok: validated %d documents in %s\n", v.documentsChecked, elapsed)
+}
+
+func (v *validator) checkRuntimeIndexes() {
+	schema := v.compiled["pawn-runtime-index"]
+	if schema == nil {
+		v.fail(v.runtimeIndexes, "pawn-runtime-index schema is not loaded")
+		return
+	}
+	entries, err := os.ReadDir(v.runtimeIndexes)
+	if err != nil {
+		v.fail(v.runtimeIndexes, fmt.Sprintf("cannot read runtime indexes: %v", err))
+		return
+	}
+	for _, entry := range entries {
+		if entry.IsDir() || !strings.HasSuffix(entry.Name(), ".json") {
+			continue
+		}
+		path := filepath.Join(v.runtimeIndexes, entry.Name())
+		raw, err := os.ReadFile(path)
+		if err != nil {
+			v.fail(path, fmt.Sprintf("cannot read runtime index: %v", err))
+			continue
+		}
+		if len(raw) > maxSchemaBytes {
+			v.fail(path, fmt.Sprintf("runtime index exceeds %d bytes", maxSchemaBytes))
+			continue
+		}
+		var document struct {
+			ID        string `json:"id"`
+			Artifacts []struct {
+				Vendor  string `json:"vendor"`
+				Version string `json:"version"`
+				Target  string `json:"target"`
+			} `json:"artifacts"`
+		}
+		if err := json.Unmarshal(raw, &document); err != nil {
+			v.fail(path, fmt.Sprintf("cannot decode runtime index: %v", err))
+			continue
+		}
+		var value any
+		if err := json.Unmarshal(raw, &value); err != nil {
+			v.fail(path, fmt.Sprintf("cannot decode runtime index: %v", err))
+			continue
+		}
+		if err := schema.Validate(value); err != nil {
+			v.fail(path, fmt.Sprintf("runtime index does not match schema: %v", err))
+		}
+		if document.ID != strings.TrimSuffix(entry.Name(), ".json") {
+			v.fail(path, fmt.Sprintf("id %q does not match filename", document.ID))
+		}
+		seen := make(map[string]bool, len(document.Artifacts))
+		for _, artifact := range document.Artifacts {
+			key := artifact.Vendor + "\x00" + artifact.Version + "\x00" + artifact.Target
+			if seen[key] {
+				v.fail(path, fmt.Sprintf(
+					"duplicate runtime coordinate %s/%s/%s",
+					artifact.Vendor, artifact.Version, artifact.Target,
+				))
+			}
+			seen[key] = true
+		}
+		v.documentsChecked++
+	}
 }
 
 func (v *validator) checkCompilerIndexes() {

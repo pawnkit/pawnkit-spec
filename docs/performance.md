@@ -5,7 +5,7 @@ Only the validation tool executes code in this repository. Its job is to give co
 Run it from `tools/validate`:
 
 ```sh
-go run . ../../schemas ../../profiles ../../examples ../../conformance ../../rfcs
+go run . ../../schemas ../../profiles ../../examples ../../conformance ../../release-sets ../../compiler-indexes ../../runtime-indexes ../../rfcs
 ```
 
 The complete check should finish in under two seconds on a warm single-core run. Individual fixtures are limited to 1 MiB unless the validator records a reviewed exception.

@@ -1,0 +1,53 @@
+{
+  "schemaVersion": 1,
+  "id": "openmp-1.5.8.3079",
+  "generatedAt": "2026-07-30T14:30:00Z",
+  "artifacts": [
+    {
+      "vendor": "openmultiplayer",
+      "version": "1.5.8.3079",
+      "profile": "openmp",
+      "target": "linux-386",
+      "source": {
+        "repository": "openmultiplayer/open.mp",
+        "tag": "v1.5.8.3079",
+        "commit": "c6759bd8d265171ae3d86598895a23d5a8d92a3b"
+      },
+      "archive": {
+        "url": "https://github.com/openmultiplayer/open.mp/releases/download/v1.5.8.3079/open.mp-linux-x86.tar.gz",
+        "format": "tar.gz",
+        "size": 32026872,
+        "checksum": "sha256:5df708898cbbb97f6c299ad5c1ff663a52ad4d3d39b3d561f1fe08a32df424f4"
+      },
+      "root": "Server",
+      "executable": {
+        "path": "Server/omp-server",
+        "architecture": "386",
+        "checksum": "sha256:4c402c280168447b841b862386ccc1bc1fd3126cfaad3481be493d84a04689ff"
+      }
+    },
+    {
+      "vendor": "openmultiplayer",
+      "version": "1.5.8.3079",
+      "profile": "openmp",
+      "target": "windows-386",
+      "source": {
+        "repository": "openmultiplayer/open.mp",
+        "tag": "v1.5.8.3079",
+        "commit": "c6759bd8d265171ae3d86598895a23d5a8d92a3b"
+      },
+      "archive": {
+        "url": "https://github.com/openmultiplayer/open.mp/releases/download/v1.5.8.3079/open.mp-win-x86.zip",
+        "format": "zip",
+        "size": 36578099,
+        "checksum": "sha256:d1b5ea1d09e7de0f144bf0055183e3ceaad5ff8a0a8e791021141e8973f84e03"
+      },
+      "root": "Server",
+      "executable": {
+        "path": "Server/omp-server.exe",
+        "architecture": "386",
+        "checksum": "sha256:690363cc8d4708685eb2bfcfdc117abfc1293c5606fe5f8a4bbb3d53591c2829"
+      }
+    }
+  ]
+}

@@ -18,6 +18,7 @@ explains the states and acceptance rules.
 | SA-MP and open.mp target profiles | [`profiles`](profiles) |
 | Shared file formats | [`schemas`](schemas) |
 | Reviewed compiler downloads | [`compiler-indexes`](compiler-indexes) |
+| Reviewed server downloads | [`runtime-indexes`](runtime-indexes) |
 | Format examples | [`examples`](examples) |
 | Proposed or accepted decisions | [`rfcs`](rfcs) |
 | Implementation results | [`conformance`](conformance) |
@@ -43,7 +44,7 @@ Run the same schema, example, profile, conformance, and RFC checks used by CI:
 
 ```sh
 cd tools/validate
-go run . ../../schemas ../../profiles ../../examples ../../invalid-examples ../../conformance ../../release-sets ../../compiler-indexes ../../rfcs
+go run . ../../schemas ../../profiles ../../examples ../../invalid-examples ../../conformance ../../release-sets ../../compiler-indexes ../../runtime-indexes ../../rfcs
 ```
 
 The Go module exists only inside `tools/validate`; `pawnkit-spec` is not a public Go library.

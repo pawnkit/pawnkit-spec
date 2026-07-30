@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.1.61 - 2026-07-30
+
+- Define the server runtime artifact index.
+- Add reviewed open.mp 1.5.8.3079 archives for Linux and Windows.
+
 ## 0.1.60 - 2026-07-30
 
 - Add reviewed Pawn 3.10.8 artifacts for older sampctl projects.
