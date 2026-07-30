@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.1.52 - 2026-07-30
+
+- Add a candidate set with the focused CLI commands and the latest linter and
+  language server.
+
 ## 0.1.51 - 2026-07-29
 
 - Promote the pawnlint v1.7.39 and pawnlsp v0.33.67 toolchain after the
