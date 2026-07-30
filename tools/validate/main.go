@@ -46,6 +46,7 @@ type validator struct {
 	invalidExamples  string
 	conformanceDir   string
 	releaseSetsDir   string
+	compilerIndexes  string
 	rfcsDir          string
 	compiled         map[string]*jsonschema.Schema // name -> compiled
 	failures         []failure
@@ -85,10 +86,12 @@ func main() {
 			v.conformanceDir = abs
 		case "release-sets":
 			v.releaseSetsDir = abs
+		case "compiler-indexes":
+			v.compilerIndexes = abs
 		case "rfcs":
 			v.rfcsDir = abs
 		default:
-			fmt.Fprintf(os.Stderr, "unrecognized directory (expected schemas/profiles/examples/invalid-examples/conformance/release-sets/rfcs): %s\n", abs)
+			fmt.Fprintf(os.Stderr, "unrecognized directory (expected schemas/profiles/examples/invalid-examples/conformance/release-sets/compiler-indexes/rfcs): %s\n", abs)
 			os.Exit(2)
 		}
 	}
@@ -115,6 +118,9 @@ func main() {
 	if v.releaseSetsDir != "" {
 		v.checkReleaseSets()
 	}
+	if v.compilerIndexes != "" {
+		v.checkCompilerIndexes()
+	}
 	if v.rfcsDir != "" {
 		v.checkRFCs()
 	}
@@ -131,6 +137,69 @@ func main() {
 	}
 
 	fmt.Printf("ok: validated %d documents in %s\n", v.documentsChecked, elapsed)
+}
+
+func (v *validator) checkCompilerIndexes() {
+	schema := v.compiled["pawn-compiler-index"]
+	if schema == nil {
+		v.fail(v.compilerIndexes, "pawn-compiler-index schema is not loaded")
+		return
+	}
+	entries, err := os.ReadDir(v.compilerIndexes)
+	if err != nil {
+		v.fail(v.compilerIndexes, fmt.Sprintf("cannot read compiler indexes: %v", err))
+		return
+	}
+	for _, entry := range entries {
+		if entry.IsDir() || !strings.HasSuffix(entry.Name(), ".json") {
+			continue
+		}
+		path := filepath.Join(v.compilerIndexes, entry.Name())
+		raw, err := os.ReadFile(path)
+		if err != nil {
+			v.fail(path, fmt.Sprintf("cannot read compiler index: %v", err))
+			continue
+		}
+		if len(raw) > maxSchemaBytes {
+			v.fail(path, fmt.Sprintf("compiler index exceeds %d bytes", maxSchemaBytes))
+			continue
+		}
+		var document struct {
+			ID        string `json:"id"`
+			Artifacts []struct {
+				Vendor  string `json:"vendor"`
+				Version string `json:"version"`
+				Target  string `json:"target"`
+			} `json:"artifacts"`
+		}
+		if err := json.Unmarshal(raw, &document); err != nil {
+			v.fail(path, fmt.Sprintf("cannot decode compiler index: %v", err))
+			continue
+		}
+		var value any
+		if err := json.Unmarshal(raw, &value); err != nil {
+			v.fail(path, fmt.Sprintf("cannot decode compiler index: %v", err))
+			continue
+		}
+		if err := schema.Validate(value); err != nil {
+			v.fail(path, fmt.Sprintf("compiler index does not match schema: %v", err))
+		}
+		if document.ID != strings.TrimSuffix(entry.Name(), ".json") {
+			v.fail(path, fmt.Sprintf("id %q does not match filename", document.ID))
+		}
+		seen := make(map[string]bool, len(document.Artifacts))
+		for _, artifact := range document.Artifacts {
+			key := artifact.Vendor + "\x00" + artifact.Version + "\x00" + artifact.Target
+			if seen[key] {
+				v.fail(path, fmt.Sprintf(
+					"duplicate compiler coordinate %s/%s/%s",
+					artifact.Vendor, artifact.Version, artifact.Target,
+				))
+			}
+			seen[key] = true
+		}
+		v.documentsChecked++
+	}
 }
 
 func (v *validator) checkSchemaMigrations() {

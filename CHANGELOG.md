@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.1.58 - 2026-07-30
+
+- Publish reviewed Pawn 3.10.10 and open.mp 3.10.11 compiler artifacts for
+  Linux and Windows.
+- Advance RFC 0019 to experimental with checked index validation.
+
 ## 0.1.57 - 2026-07-30
 
 - Draft a reviewed compiler artifact index with archive and executable hashes.

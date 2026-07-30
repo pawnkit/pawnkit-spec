@@ -50,7 +50,7 @@ jobs:
           git diff --exit-code -- go.mod go.sum
 
       - name: Validate schemas, examples, conformance docs, release sets, and RFC front matter
-        run: go run . ../../schemas ../../profiles ../../examples ../../invalid-examples ../../conformance ../../release-sets ../../rfcs
+        run: go run . ../../schemas ../../profiles ../../examples ../../invalid-examples ../../conformance ../../release-sets ../../compiler-indexes ../../rfcs
 
   markdown-lint:
     name: markdown link/format check

@@ -1,7 +1,7 @@
 ---
 rfc: 0019
 title: Compiler artifact index
-status: draft
+status: experimental
 created: 2026-07-30
 updated: 2026-07-30
 supersedes: null
@@ -67,8 +67,9 @@ extraction. A cache hit is valid only while the executable hash still matches.
 
 Index documents are immutable. A correction gets a new `id`. The checked-in
 documents live under `compiler-indexes/`, and the website publishes them at an
-immutable URL containing that ID. A tested release set names the index ID and
-SHA-256 hash used by its compatibility run.
+immutable URL containing that ID. Release-set v4 will name the index ID and
+SHA-256 hash used by its compatibility run. Earlier release-set versions
+remain unchanged.
 
 ## PawnKit extensions
 
@@ -112,20 +113,18 @@ Not applicable; this is the first version.
 
 ## Reference implementation status
 
-Planned for `pawn-project/toolchain`. `pawnkit-cli`, `pawn-actions`, and
-`vscode-pawn` will consume that implementation rather than maintaining their
-own compiler tables.
+The schema and first reviewed index are implemented in `pawnkit-spec`.
+`pawn-project/toolchain` is the planned reader. `pawnkit-cli`, `pawn-actions`,
+and `vscode-pawn` will consume that implementation rather than maintaining
+their own compiler tables.
 
 ## Conformance tests
 
-The offline `pawnkit-spec` validator checks valid and invalid index examples.
-Implementation tests still need to cover duplicate coordinates, target
-selection, size and hash failures, archive traversal, interrupted updates, and
-offline cache use.
+The offline `pawnkit-spec` validator checks valid and invalid examples, every
+checked-in index, and duplicate coordinates. Implementation tests still need
+to cover target selection, size and hash failures, archive traversal,
+interrupted updates, and offline cache use.
 
 ## Open questions
 
-- Should compiler indexes be referenced by release-set v3 through an additive
-  field, or should that reference wait for the next release-set major?
-- Which upstream open.mp package should be the source of its compiler artifact:
-  the compiler release or the complete server bundle?
+None.
