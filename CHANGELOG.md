@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.1.53 - 2026-07-30
+
+- Promote the July 30 toolchain after its Linux, Windows, and macOS
+  compatibility run passed.
+
 ## 0.1.52 - 2026-07-30
 
 - Add a candidate set with the focused CLI commands and the latest linter and
