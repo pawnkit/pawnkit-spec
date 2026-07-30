@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.1.62 - 2026-07-30
+
+- Publish the open.mp runtime index against its amd64 host targets.
+
 ## 0.1.61 - 2026-07-30
 
 - Define the server runtime artifact index.

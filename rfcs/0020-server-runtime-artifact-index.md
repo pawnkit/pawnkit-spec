@@ -57,6 +57,9 @@ Index documents are immutable. Corrections get a new `id`. Checked-in indexes
 live under `runtime-indexes/` and are published at an immutable URL containing
 that ID.
 
+The executable architecture may differ from the host architecture. For
+example, open.mp publishes a 32-bit server for amd64 Linux and Windows hosts.
+
 ## PawnKit extensions
 
 This is a PawnKit format. It does not change upstream server archives,
@@ -95,9 +98,10 @@ Not applicable; this is the first version.
 
 ## Reference implementation status
 
-The schema and first reviewed open.mp index are implemented in
-`pawnkit-spec`. Runtime selection and installation remain to be implemented
-in `pawn-project`, `pawnserver`, and `pawnkit-cli`.
+The schema and reviewed open.mp index are implemented in `pawnkit-spec`. The
+first index remains published for audit history; consumers use
+`openmp-1.5.8.3079-linux-windows`. Runtime selection and installation remain
+to be implemented in `pawn-project`, `pawnserver`, and `pawnkit-cli`.
 
 ## Conformance tests
 
