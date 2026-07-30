@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.1.54 - 2026-07-30
+
+- Align the `pawn.lock` schema and RFC with sampctl 1.14.1.
+- Keep the earlier PawnKit lockfile draft as a temporary read-only shape.
+
 ## 0.1.53 - 2026-07-30
 
 - Promote the July 30 toolchain after its Linux, Windows, and macOS

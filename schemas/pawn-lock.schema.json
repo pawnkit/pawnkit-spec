@@ -2,40 +2,130 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://schemas.pawnkit.dev/pawn-lock/v1/schema.json",
   "title": "Pawn lockfile (pawn.lock)",
-  "description": "Resolved dependencies, checksums, and toolchain versions.",
-  "type": "object",
-  "required": ["schemaVersion", "packages"],
-  "properties": {
-    "schemaVersion": { "type": "integer", "const": 1 },
-    "generatedAt": { "type": "string", "format": "date-time" },
-    "manifestChecksum": { "$ref": "#/$defs/checksum" },
-    "compiler": {
+  "description": "The sampctl-compatible dependency, runtime, and build lockfile.",
+  "oneOf": [
+    { "$ref": "#/$defs/sampctlLock" },
+    { "$ref": "#/$defs/legacyPawnKitLock" }
+  ],
+  "$defs": {
+    "sampctlLock": {
       "type": "object",
-      "required": ["vendor", "version"],
+      "required": ["version", "generated", "sampctl_version", "dependencies"],
       "properties": {
-        "vendor": { "type": "string", "enum": ["pawn-lang", "openmultiplayer", "original-pawn"] },
-        "version": { "type": "string" },
-        "checksum": { "$ref": "#/$defs/checksum" }
+        "version": { "type": "integer", "const": 1 },
+        "generated": { "type": "string", "format": "date-time" },
+        "sampctl_version": { "type": "string" },
+        "dependencies": {
+          "type": "object",
+          "additionalProperties": { "$ref": "#/$defs/sampctlDependency" }
+        },
+        "runtime": { "$ref": "#/$defs/sampctlRuntime" },
+        "build": { "$ref": "#/$defs/sampctlBuild" }
       },
       "additionalProperties": false
     },
-    "runtimeProfile": {
-      "type": "string",
-      "pattern": "^[a-z][a-z0-9-]*$",
-      "description": "Runtime profile used to create this lockfile."
+    "sampctlDependency": {
+      "type": "object",
+      "required": ["user", "repo"],
+      "properties": {
+        "constraint": { "type": "string" },
+        "resolved": { "type": "string" },
+        "commit": { "type": "string", "pattern": "^[0-9a-f]{7,40}$" },
+        "integrity": {
+          "type": "string",
+          "pattern": "^(sha256:[0-9a-f]{64}|commit:[0-9a-f]{7,40})$"
+        },
+        "site": { "type": "string" },
+        "user": { "type": "string", "minLength": 1 },
+        "repo": { "type": "string", "minLength": 1 },
+        "path": { "type": "string" },
+        "branch": { "type": "string" },
+        "transitive": { "type": "boolean" },
+        "required_by": {
+          "type": "array",
+          "items": { "type": "string", "minLength": 1 },
+          "uniqueItems": true
+        },
+        "scheme": {
+          "type": "string",
+          "enum": ["plugin", "component", "includes", "filterscript"]
+        },
+        "local": { "type": "string" }
+      },
+      "additionalProperties": false,
+      "if": { "required": ["local"] },
+      "else": { "required": ["constraint", "resolved", "commit"] }
     },
-    "packages": {
-      "type": "array",
-      "items": { "$ref": "#/$defs/package" }
-    }
-  },
-  "additionalProperties": false,
-  "$defs": {
+    "sampctlRuntime": {
+      "type": "object",
+      "required": ["version", "platform", "runtime_type"],
+      "properties": {
+        "version": { "type": "string" },
+        "platform": { "type": "string" },
+        "runtime_type": { "type": "string" },
+        "files": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/sampctlFile" }
+        }
+      },
+      "additionalProperties": false
+    },
+    "sampctlFile": {
+      "type": "object",
+      "required": ["path", "size", "hash", "mode"],
+      "properties": {
+        "path": { "type": "string" },
+        "size": { "type": "integer", "minimum": 0 },
+        "hash": { "type": "string" },
+        "mode": { "type": "integer", "minimum": 0 }
+      },
+      "additionalProperties": false
+    },
+    "sampctlBuild": {
+      "type": "object",
+      "properties": {
+        "compiler_version": { "type": "string" },
+        "compiler_preset": { "type": "string" },
+        "entry": { "type": "string" },
+        "output": { "type": "string" },
+        "output_hash": { "type": "string" }
+      },
+      "additionalProperties": false
+    },
+    "legacyPawnKitLock": {
+      "type": "object",
+      "required": ["schemaVersion", "packages"],
+      "properties": {
+        "schemaVersion": { "type": "integer", "const": 1 },
+        "generatedAt": { "type": "string", "format": "date-time" },
+        "manifestChecksum": { "$ref": "#/$defs/checksum" },
+        "compiler": {
+          "type": "object",
+          "required": ["vendor", "version"],
+          "properties": {
+            "vendor": { "type": "string", "enum": ["pawn-lang", "openmultiplayer", "original-pawn"] },
+            "version": { "type": "string" },
+            "checksum": { "$ref": "#/$defs/checksum" }
+          },
+          "additionalProperties": false
+        },
+        "runtimeProfile": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9-]*$"
+        },
+        "packages": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/legacyPackage" }
+        }
+      },
+      "additionalProperties": false,
+      "deprecated": true
+    },
     "checksum": {
       "type": "string",
       "pattern": "^sha256:[0-9a-f]{64}$"
     },
-    "package": {
+    "legacyPackage": {
       "type": "object",
       "required": ["name", "resolved", "commit", "source", "kind"],
       "properties": {
@@ -63,7 +153,7 @@
             "type": "object",
             "required": ["platform"],
             "properties": {
-              "platform": { "type": "string", "examples": ["linux-x86_64", "windows-x86_64", "darwin-arm64"] },
+              "platform": { "type": "string" },
               "url": { "type": "string" },
               "path": { "type": "string" },
               "checksum": { "$ref": "#/$defs/checksum" }
@@ -73,13 +163,20 @@
         },
         "dependencies": {
           "type": "array",
-          "items": { "type": "string" },
-          "description": "Packages required by this package."
+          "items": { "type": "string" }
         }
       },
       "additionalProperties": false,
-      "if": { "properties": { "source": { "properties": { "type": { "const": "archive" } } } } },
-      "then": { "required": ["name", "resolved", "commit", "source", "kind", "checksum"] }
+      "if": {
+        "properties": {
+          "source": {
+            "properties": {
+              "type": { "const": "archive" }
+            }
+          }
+        }
+      },
+      "then": { "required": ["checksum"] }
     }
   }
 }
