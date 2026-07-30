@@ -21,9 +21,9 @@
     "local": { "type": "boolean", "default": false },
     "include_path": { "type": "string" },
     "resources": {
-      "type": "object",
-      "description": "Extra platform-specific files and archives.",
-      "additionalProperties": true
+      "type": "array",
+      "description": "Release files and archives used by plugin and component packages.",
+      "items": { "$ref": "#/$defs/resource" }
     },
     "extract_ignore_patterns": {
       "type": "array",
@@ -100,6 +100,23 @@
   },
   "additionalProperties": true,
   "$defs": {
+    "resource": {
+      "type": "object",
+      "required": ["name", "platform"],
+      "properties": {
+        "name": { "type": "string", "minLength": 1 },
+        "platform": { "type": "string", "minLength": 1 },
+        "version": { "type": "string" },
+        "archive": { "type": "boolean", "default": false },
+        "includes": { "type": "array", "items": { "type": "string" } },
+        "plugins": { "type": "array", "items": { "type": "string" } },
+        "files": {
+          "type": "object",
+          "additionalProperties": { "type": "string" }
+        }
+      },
+      "additionalProperties": true
+    },
     "dependencyString": {
       "type": "string",
       "description": "Package in user/repo form, with an optional kind and version reference.",

@@ -40,7 +40,7 @@ and the project wiki. As observed there:
 | `preset` | string | no | Selects runtime/compiler defaults; observed values `samp`, `openmp`. |
 | `local` | bool | no, default `false` | Build/run inside the project folder instead of a temporary runtime folder. |
 | `include_path` | string | no | Subfolder containing additional `.inc` sources. |
-| `resources` | object | no | Extra platform-specific files/archives (documented as primarily relevant to plugin packages). |
+| `resources` | array | no | Release files and archives used by plugin and component packages. |
 | `extract_ignore_patterns` | array of strings | no | Patterns excluded during archive extraction. |
 | `contributors` | array | no | Package metadata. |
 | `website` | string | no | Package metadata (project URL). |
@@ -58,6 +58,13 @@ Dependencies are `user/repo` strings with optional version pinning (source:
   `./plugins/`), `component://` (open.mp components into `./components/`),
   `includes://` (adds include search paths), `filterscript://`
   (filterscript resources).
+
+### Resources
+
+Each `resources` entry has a release asset pattern in `name` and a required
+`platform`. `version` selects a release. `archive` marks compressed assets.
+Archive entries may declare `includes`, `plugins`, and a `files` source-to-target
+map. Unknown fields remain readable for sampctl compatibility.
 
 ### `build` / `builds`
 

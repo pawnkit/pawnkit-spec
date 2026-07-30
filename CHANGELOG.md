@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.1.56 - 2026-07-30
+
+- Correct `resources` to sampctl's array shape and document its resource fields.
+
 ## 0.1.55 - 2026-07-30
 
 - Clarify that dependency schemes share the same source checkout layout before
