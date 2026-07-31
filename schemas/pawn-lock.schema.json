@@ -124,7 +124,7 @@
       "properties": {
         "package": {
           "type": "string",
-          "pattern": "^(plugin|component|includes|filterscript)://[^/]+/[^/]+$"
+          "pattern": "^(?:(?:plugin|component|includes|filterscript)://[^/]+/[^/]+|[A-Za-z0-9.-]+/[^/]+/[^/]+)$"
         },
         "resource": { "type": "string", "minLength": 1 },
         "target": {

@@ -70,8 +70,11 @@ Version 1 lockfiles MAY contain a top-level `pawnkit` object:
 }
 ```
 
-`package` MUST match a dependency key in the same lockfile. `resource` is the
-manifest resource name. `target` uses PawnKit host target names.
+`package` MUST match a dependency key in the same lockfile. This may be a
+resource-scheme key such as `plugin://owner/repo` or sampctl's usual
+`github.com/owner/repo` form. Packages can declare release resources without
+using a resource scheme. `resource` is the manifest resource name. `target`
+uses PawnKit host target names.
 
 `url` MUST be a final HTTPS URL without credentials. `size` and `checksum`
 cover the downloaded file. `archive` is `zip`, `tar.gz`, or `file`.

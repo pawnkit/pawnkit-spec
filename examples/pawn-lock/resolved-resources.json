@@ -3,7 +3,7 @@
   "generated": "2026-07-31T08:00:00Z",
   "sampctl_version": "1.14.1",
   "dependencies": {
-    "plugin://samp-incognito/samp-streamer-plugin": {
+    "github.com/samp-incognito/samp-streamer-plugin": {
       "constraint": "2.9.6",
       "resolved": "2.9.6",
       "commit": "1111111111111111111111111111111111111111",
@@ -16,7 +16,7 @@
     "schema_version": 1,
     "resources": [
       {
-        "package": "plugin://samp-incognito/samp-streamer-plugin",
+        "package": "github.com/samp-incognito/samp-streamer-plugin",
         "resource": "streamer",
         "target": "linux-amd64",
         "url": "https://github.com/samp-incognito/samp-streamer-plugin/releases/download/v2.9.6/streamer.zip",
@@ -33,7 +33,7 @@
         ]
       },
       {
-        "package": "plugin://samp-incognito/samp-streamer-plugin",
+        "package": "github.com/samp-incognito/samp-streamer-plugin",
         "resource": "streamer",
         "target": "windows-amd64",
         "url": "https://github.com/samp-incognito/samp-streamer-plugin/releases/download/v2.9.6/streamer.zip",
