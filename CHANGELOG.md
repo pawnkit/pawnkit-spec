@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.1.65 - 2026-07-31
+
+- Promote the July 31 toolchain after its Linux, Windows, and macOS
+  compatibility run passed.
+
 ## 0.1.64 - 2026-07-31
 
 - Add a toolchain candidate for native open.mp project runs.
