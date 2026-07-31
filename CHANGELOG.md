@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.1.63 - 2026-07-31
+
+- Draft RFC 0021 for verified package resource assets.
+
 ## 0.1.62 - 2026-07-30
 
 - Publish the open.mp runtime index against its amd64 host targets.
