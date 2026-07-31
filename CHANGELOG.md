@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.1.70 - 2026-07-31
+
+- Draft native dependency resolution and lock generation.
+
 ## 0.1.69 - 2026-07-31
 
 - Define sampctl-compatible release asset selection for broad patterns.
