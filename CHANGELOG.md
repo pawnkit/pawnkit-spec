@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.1.64 - 2026-07-31
+
+- Add a toolchain candidate for native open.mp project runs.
+
 ## 0.1.63 - 2026-07-31
 
 - Draft RFC 0021 for verified package resource assets.
