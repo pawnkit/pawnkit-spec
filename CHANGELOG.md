@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.1.81 - 2026-07-31
+
+- Define a unique-basename fallback for stale plugin archive paths.
+
 ## 0.1.80 - 2026-07-31
 
 - Add the experimental root dependency override field and schema examples.

@@ -92,6 +92,12 @@ supports existing manifests whose patterns also match debug archives. The lock
 records the selected URL and checksum, so restoration does not repeat this
 selection.
 
+Some existing manifests name a plugin's old directory after a release moves
+the binary. If an exact plugin path selects no file, a resolver MAY select the
+sole archive file with the same basename. It MUST reject the fallback when
+more than one file has that basename. The locked source path records the file
+actually selected.
+
 ## PawnKit extensions
 
 The optional top-level `pawnkit` object is a PawnKit extension to sampctl's
