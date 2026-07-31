@@ -79,6 +79,12 @@
           "items": { "type": "string" },
           "description": "Extra include directories."
         },
+        "dependencyOverrides": {
+          "type": "object",
+          "description": "Root-only replacements for obsolete transitive dependencies.",
+          "propertyNames": { "$ref": "#/$defs/dependencyIdentity" },
+          "additionalProperties": { "$ref": "#/$defs/dependencyString" }
+        },
         "tests": {
           "type": "object",
           "description": "Settings passed to pawntest.",
@@ -121,6 +127,11 @@
       "type": "string",
       "description": "Package in user/repo or HTTPS host/user/repo form, with an optional kind and version reference.",
       "pattern": "^(?:(?:plugin://|component://|includes://|filterscript://)?[A-Za-z0-9_.-]+/[A-Za-z0-9_.-]+|https://[A-Za-z0-9.-]+/[A-Za-z0-9_.-]+/[A-Za-z0-9_.-]+)([:#@].+)?$"
+    },
+    "dependencyIdentity": {
+      "type": "string",
+      "description": "Package identity without a version reference.",
+      "pattern": "^(?:(?:plugin://|component://|includes://|filterscript://)?[A-Za-z0-9_.-]+/[A-Za-z0-9_.-]+|https://[A-Za-z0-9.-]+/[A-Za-z0-9_.-]+/[A-Za-z0-9_.-]+)$"
     },
     "build": {
       "type": "object",

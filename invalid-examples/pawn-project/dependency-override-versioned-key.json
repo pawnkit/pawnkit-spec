@@ -1,0 +1,8 @@
+{
+  "pawnkit": {
+    "schemaVersion": 1,
+    "dependencyOverrides": {
+      "Misiur/YSI-Includes:v4.0.0": "pawn-lang/YSI-Includes@5.x"
+    }
+  }
+}

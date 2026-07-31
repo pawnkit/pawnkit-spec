@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.1.80 - 2026-07-31
+
+- Add the experimental root dependency override field and schema examples.
+
 ## 0.1.79 - 2026-07-31
 
 - Draft root dependency overrides for obsolete transitive package sources.
