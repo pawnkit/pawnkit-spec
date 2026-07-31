@@ -1,7 +1,7 @@
 ---
 rfc: 0021
 title: Resolved package resources
-status: draft
+status: experimental
 created: 2026-07-31
 updated: 2026-07-31
 supersedes: null
@@ -139,10 +139,9 @@ into the extension when every required field is present.
 
 ## Reference implementation status
 
-Open. `pawn-project` will own parsing, validation, resolution, and safe
-installation. `pawnkit-cli` will only invoke that capability.
-
-Implementation must not begin until this RFC is accepted.
+`pawn-project` owns parsing, validation, resolution, and safe installation.
+The first prototype will consume complete lock records before it adds network
+resolution. `pawnkit-cli` only invokes those capabilities.
 
 ## Conformance tests
 
@@ -160,7 +159,13 @@ lockfile loads and document that a save removes the extension.
 
 ## Open questions
 
-- Should PawnKit preserve the extension when invoking a sampctl operation that
-  rewrites the lockfile, or only warn and require regeneration?
-- Which command resolves resources without changing dependency commits?
-- Should a future sampctl release preserve the namespaced object?
+`pawn restore` only consumes locked data. A later `pawn install` command may
+resolve missing resources and update the lockfile without changing dependency
+commits.
+
+PawnKit will not copy resource records across a sampctl lockfile rewrite. They
+may be stale if dependency data changed. It reports the missing records and
+requires resolution again.
+
+A future sampctl release may preserve the namespaced object, but PawnKit does
+not depend on that behavior.

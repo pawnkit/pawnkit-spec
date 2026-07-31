@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.1.67 - 2026-07-31
+
+- Advance resolved package resources to an experimental implementation.
+
 ## 0.1.66 - 2026-07-31
 
 - Add the draft resolved-resource lock schema and conformance examples.
