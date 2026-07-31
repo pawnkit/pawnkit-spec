@@ -51,7 +51,8 @@ and the project wiki. As observed there:
 Dependencies are `user/repo` strings with optional version pinning (source:
 `Southclaws/sampctl` `docs/dependencies.md`):
 
-- `user/repo:1.2.3`: pins a released tag.
+- `user/repo:1.2.3`: pins a released tag. Caret, tilde, and `x` ranges use the
+  newest matching semantic-version tag.
 - `user/repo@branch-name`: targets a branch.
 - `user/repo#<sha1>`: locks to an exact commit.
 - Prefixed schemes select install target: `plugin://` (binaries into

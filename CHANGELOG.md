@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.1.75 - 2026-07-31
+
+- Define sampctl-compatible semantic-version dependency ranges.
+
 ## 0.1.74 - 2026-07-31
 
 - Define canonical provider identity for moved dependency repositories.

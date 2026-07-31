@@ -47,8 +47,12 @@ The resolver applies references as follows:
 
 - `#commit` resolves that commit.
 - `@branch` resolves the current branch tip when resolution is required.
-- `:tag` resolves that exact tag.
+- `:version` resolves an exact semantic-version tag or the newest tag matching
+  a sampctl-compatible caret, tilde, or `x` range.
 - an unqualified dependency resolves the provider's default branch.
+
+Range matching ignores tags that are not semantic versions. Providers sort
+matching versions before selection, so API order cannot change the result.
 
 Every remote result records the full commit ID and
 `integrity:commit:<full-commit>`. `resolved` records the tag, branch, abbreviated
@@ -128,8 +132,8 @@ when passed `--update`.
 ## Conformance tests
 
 `pawn-project/dependency/resolution_test.go` covers constraints, transitive and
-development dependencies, cycles, conflicts, matching lock reuse, explicit
-updates, and deterministic output. `pawn-project/lockfile/dependencies_write_test.go`
+development dependencies, cycles, conflicts, tag ranges, matching lock reuse,
+explicit updates, and deterministic output. `pawn-project/lockfile/dependencies_write_test.go`
 covers lock creation and preservation. `pawnkit-cli` tests GitHub responses,
 offline lock reuse, stale-lock reconciliation, updates, and clean
 manifest-only installation. A public transitive smoke test covers repository
