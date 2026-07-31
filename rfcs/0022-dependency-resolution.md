@@ -70,6 +70,8 @@ order must not affect the lockfile.
 The lockfile writer MUST replace the dependency object recoverably while
 preserving supported runtime, build, and PawnKit extension data. Resource
 records whose package or commit changed MUST be removed and resolved again.
+For a new lock, `sampctl_version` records the compatible format baseline
+`1.14.1`; it does not imply that sampctl created the file.
 
 ## PawnKit extensions
 
@@ -117,14 +119,16 @@ Projects without a lock can create the same version 1 shape through
 
 ## Reference implementation status
 
-`pawn-project` contains the provider-neutral graph resolver. GitHub resolution
-and lock writing remain open before CLI adoption.
+`pawn-project` contains the graph resolver and lock writer. `pawnkit-cli`
+provides GitHub revision lookup and creates missing locks during install.
 
 ## Conformance tests
 
 `pawn-project/dependency/resolution_test.go` covers constraints, transitive and
 development dependencies, cycles, conflicts, matching lock reuse, and
-deterministic output. Provider and lock-writer tests remain open.
+deterministic output. `pawn-project/lockfile/dependencies_write_test.go` covers
+lock creation and preservation. `pawnkit-cli` tests GitHub responses and clean
+manifest-only installation.
 
 ## Open questions
 
