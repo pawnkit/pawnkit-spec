@@ -31,8 +31,7 @@ records each selected commit in a version 1 lockfile and discovers transitive
 dependencies from the selected package manifest.
 
 PawnKit implements the same manifest references and lock shape through RFCs
-0002 and 0003. It currently reads and restores locks but does not create the
-dependency graph.
+0002 and 0003. It can create, reconcile, update, and restore this graph.
 
 ## Proposal
 
@@ -119,18 +118,21 @@ Projects without a lock can create the same version 1 shape through
 
 ## Reference implementation status
 
-`pawn-project` contains the graph resolver and lock writer. `pawnkit-cli`
-provides GitHub revision lookup and creates missing locks during install.
+`pawn-project` contains the graph resolver, drift check, and lock writer.
+`pawnkit-cli` provides GitHub revision lookup. `pawn install` creates missing
+locks, reconciles changed direct dependencies, and refreshes the full graph
+when passed `--update`.
 
 ## Conformance tests
 
 `pawn-project/dependency/resolution_test.go` covers constraints, transitive and
-development dependencies, cycles, conflicts, matching lock reuse, and
-deterministic output. `pawn-project/lockfile/dependencies_write_test.go` covers
-lock creation and preservation. `pawnkit-cli` tests GitHub responses and clean
+development dependencies, cycles, conflicts, matching lock reuse, explicit
+updates, and deterministic output. `pawn-project/lockfile/dependencies_write_test.go`
+covers lock creation and preservation. `pawnkit-cli` tests GitHub responses,
+offline lock reuse, stale-lock reconciliation, updates, and clean
 manifest-only installation.
 
 ## Open questions
 
-- Should update mode update the full graph or accept selected package names?
+- Should update mode later accept selected package names?
 - Which non-GitHub providers should the first implementation support?

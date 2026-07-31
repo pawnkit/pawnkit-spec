@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.1.73 - 2026-07-31
+
+- Record lock reconciliation and explicit dependency updates.
+
 ## 0.1.72 - 2026-07-31
 
 - Record native lock generation and GitHub resolution coverage.
