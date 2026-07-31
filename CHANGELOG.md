@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.1.79 - 2026-07-31
+
+- Draft root dependency overrides for obsolete transitive package sources.
+
 ## 0.1.78 - 2026-07-31
 
 - Define direct dependency constraints as authoritative over transitive
