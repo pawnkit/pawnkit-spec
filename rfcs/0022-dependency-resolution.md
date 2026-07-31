@@ -1,7 +1,7 @@
 ---
 rfc: 0022
 title: Dependency resolution and lock generation
-status: draft
+status: experimental
 created: 2026-07-31
 updated: 2026-07-31
 supersedes: null
@@ -117,13 +117,14 @@ Projects without a lock can create the same version 1 shape through
 
 ## Reference implementation status
 
-Planned for `pawn-project`, then consumed by `pawnkit-cli`.
+`pawn-project` contains the provider-neutral graph resolver. GitHub resolution
+and lock writing remain open before CLI adoption.
 
 ## Conformance tests
 
-Planned fixtures will cover tags, branches, commits, default branches,
-transitive dependencies, development dependencies, cycles, conflicts, stale
-locks, deterministic output, and provider failures.
+`pawn-project/dependency/resolution_test.go` covers constraints, transitive and
+development dependencies, cycles, conflicts, matching lock reuse, and
+deterministic output. Provider and lock-writer tests remain open.
 
 ## Open questions
 

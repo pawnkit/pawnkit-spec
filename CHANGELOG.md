@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.1.71 - 2026-07-31
+
+- Advance native dependency resolution to experimental implementation.
+
 ## 0.1.70 - 2026-07-31
 
 - Draft native dependency resolution and lock generation.
