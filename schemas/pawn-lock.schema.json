@@ -20,7 +20,11 @@
           "additionalProperties": { "$ref": "#/$defs/sampctlDependency" }
         },
         "runtime": { "$ref": "#/$defs/sampctlRuntime" },
-        "build": { "$ref": "#/$defs/sampctlBuild" }
+        "build": { "$ref": "#/$defs/sampctlBuild" },
+        "pawnkit": {
+          "$ref": "#/$defs/pawnkitLockExtension",
+          "x-pawnkit-extension": true
+        }
       },
       "additionalProperties": false
     },
@@ -91,6 +95,90 @@
         "output_hash": { "type": "string" }
       },
       "additionalProperties": false
+    },
+    "pawnkitLockExtension": {
+      "type": "object",
+      "required": ["schema_version", "resources"],
+      "properties": {
+        "schema_version": { "type": "integer", "const": 1 },
+        "resources": {
+          "type": "array",
+          "maxItems": 1024,
+          "items": { "$ref": "#/$defs/resolvedResource" }
+        }
+      },
+      "additionalProperties": false
+    },
+    "resolvedResource": {
+      "type": "object",
+      "required": [
+        "package",
+        "resource",
+        "target",
+        "url",
+        "size",
+        "checksum",
+        "archive",
+        "files"
+      ],
+      "properties": {
+        "package": {
+          "type": "string",
+          "pattern": "^(plugin|component|includes|filterscript)://[^/]+/[^/]+$"
+        },
+        "resource": { "type": "string", "minLength": 1 },
+        "target": {
+          "type": "string",
+          "pattern": "^[a-z0-9]+-[a-z0-9]+$"
+        },
+        "url": {
+          "type": "string",
+          "format": "uri",
+          "pattern": "^https://[^/@]+(?:/|$)"
+        },
+        "size": { "type": "integer", "minimum": 1, "maximum": 1073741824 },
+        "checksum": { "$ref": "#/$defs/checksum" },
+        "archive": {
+          "type": "string",
+          "enum": ["zip", "tar.gz", "file"]
+        },
+        "files": {
+          "type": "array",
+          "minItems": 1,
+          "maxItems": 4096,
+          "items": { "$ref": "#/$defs/resolvedResourceFile" }
+        }
+      },
+      "additionalProperties": false,
+      "if": {
+        "properties": { "archive": { "const": "file" } },
+        "required": ["archive"]
+      },
+      "then": {
+        "properties": { "files": { "maxItems": 1 } }
+      }
+    },
+    "resolvedResourceFile": {
+      "type": "object",
+      "required": ["source", "destination", "size", "checksum"],
+      "properties": {
+        "source": { "$ref": "#/$defs/safeRelativePath" },
+        "destination": { "$ref": "#/$defs/safeRelativePath" },
+        "size": { "type": "integer", "minimum": 0, "maximum": 1073741824 },
+        "checksum": { "$ref": "#/$defs/checksum" }
+      },
+      "additionalProperties": false
+    },
+    "safeRelativePath": {
+      "type": "string",
+      "minLength": 1,
+      "allOf": [
+        { "not": { "pattern": "^/" } },
+        { "not": { "pattern": "^[A-Za-z]:" } },
+        { "not": { "pattern": "\\\\" } },
+        { "not": { "pattern": "(^|/)\\.\\.(/|$)" } },
+        { "not": { "pattern": "^\\.?$" } }
+      ]
     },
     "legacyPawnKitLock": {
       "type": "object",

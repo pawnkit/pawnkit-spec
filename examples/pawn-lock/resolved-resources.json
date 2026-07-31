@@ -1,0 +1,54 @@
+{
+  "version": 1,
+  "generated": "2026-07-31T08:00:00Z",
+  "sampctl_version": "1.14.1",
+  "dependencies": {
+    "plugin://samp-incognito/samp-streamer-plugin": {
+      "constraint": "2.9.6",
+      "resolved": "2.9.6",
+      "commit": "1111111111111111111111111111111111111111",
+      "user": "samp-incognito",
+      "repo": "samp-streamer-plugin",
+      "scheme": "plugin"
+    }
+  },
+  "pawnkit": {
+    "schema_version": 1,
+    "resources": [
+      {
+        "package": "plugin://samp-incognito/samp-streamer-plugin",
+        "resource": "streamer",
+        "target": "linux-amd64",
+        "url": "https://github.com/samp-incognito/samp-streamer-plugin/releases/download/v2.9.6/streamer.zip",
+        "size": 1234,
+        "checksum": "sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "archive": "zip",
+        "files": [
+          {
+            "source": "plugins/streamer.so",
+            "destination": "plugins/streamer.so",
+            "size": 456,
+            "checksum": "sha256:bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+          }
+        ]
+      },
+      {
+        "package": "plugin://samp-incognito/samp-streamer-plugin",
+        "resource": "streamer",
+        "target": "windows-amd64",
+        "url": "https://github.com/samp-incognito/samp-streamer-plugin/releases/download/v2.9.6/streamer.zip",
+        "size": 2345,
+        "checksum": "sha256:cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
+        "archive": "zip",
+        "files": [
+          {
+            "source": "plugins/streamer.dll",
+            "destination": "plugins/streamer.dll",
+            "size": 567,
+            "checksum": "sha256:dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd"
+          }
+        ]
+      }
+    ]
+  }
+}

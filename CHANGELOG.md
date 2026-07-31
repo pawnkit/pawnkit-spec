@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.1.66 - 2026-07-31
+
+- Add the draft resolved-resource lock schema and conformance examples.
+
 ## 0.1.65 - 2026-07-31
 
 - Promote the July 31 toolchain after its Linux, Windows, and macOS

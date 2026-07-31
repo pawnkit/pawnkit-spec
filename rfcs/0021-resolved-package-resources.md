@@ -146,9 +146,13 @@ Implementation must not begin until this RFC is accepted.
 
 ## Conformance tests
 
-Open. `pawnkit-spec` needs valid Linux and Windows examples plus failures for
-duplicate coordinates, insecure URLs, missing checksums, traversal, links,
-case collisions, size limits, and target fallback.
+The lock schema includes a valid resolved-resource example and rejects
+insecure URLs, missing checksums, unsafe paths, unsupported archives, and
+unbounded resource lists.
+
+Coordinate uniqueness, archive links, case collisions, aggregate size limits,
+and exact target selection require implementation tests because JSON Schema
+cannot inspect archive contents or compare compound keys.
 
 `pawn-project` needs archive and single-file installation tests on Linux and
 Windows. A sampctl 1.14.1 compatibility test must confirm that the extended
