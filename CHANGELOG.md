@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.1.69 - 2026-07-31
+
+- Define sampctl-compatible release asset selection for broad patterns.
+
 ## 0.1.68 - 2026-07-31
 
 - Allow resolved resources to reference ordinary sampctl dependency keys.

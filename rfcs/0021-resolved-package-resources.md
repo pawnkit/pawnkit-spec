@@ -86,6 +86,12 @@ downloaded filename.
 Coordinates formed by package, resource, and target MUST be unique. Installers
 MUST select an exact target and MUST NOT fall back to another architecture.
 
+When a resource pattern matches several release assets, resolvers MUST select
+the first match in the release provider's asset order. This matches sampctl and
+supports existing manifests whose patterns also match debug archives. The lock
+records the selected URL and checksum, so restoration does not repeat this
+selection.
+
 ## PawnKit extensions
 
 The optional top-level `pawnkit` object is a PawnKit extension to sampctl's
