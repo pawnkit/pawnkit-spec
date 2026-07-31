@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.1.74 - 2026-07-31
+
+- Define canonical provider identity for moved dependency repositories.
+
 ## 0.1.73 - 2026-07-31
 
 - Record lock reconciliation and explicit dependency updates.

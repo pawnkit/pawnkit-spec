@@ -59,9 +59,11 @@ manifest and adds its dependencies. Development dependencies are included only
 for the root project. Transitive entries set `transitive` and record every
 direct parent in `required_by`.
 
-Package identity includes its scheme and source repository. If two graph paths
-request the same identity with incompatible constraints, resolution MUST fail
-and report both paths. It MUST NOT silently choose one constraint.
+Package identity includes its scheme and the provider's canonical source
+repository. Providers MUST collapse repository redirects and aliases. If two
+graph paths request the same identity with incompatible constraints,
+resolution MUST fail and report both paths. It MUST NOT silently choose one
+constraint.
 
 Resolution order and output order MUST be deterministic. Network completion
 order must not affect the lockfile.
@@ -130,7 +132,8 @@ development dependencies, cycles, conflicts, matching lock reuse, explicit
 updates, and deterministic output. `pawn-project/lockfile/dependencies_write_test.go`
 covers lock creation and preservation. `pawnkit-cli` tests GitHub responses,
 offline lock reuse, stale-lock reconciliation, updates, and clean
-manifest-only installation.
+manifest-only installation. A public transitive smoke test covers repository
+redirects and repeat installation without provider access.
 
 ## Open questions
 
