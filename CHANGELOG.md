@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.1.78 - 2026-07-31
+
+- Define direct dependency constraints as authoritative over transitive
+  requests.
+
 ## 0.1.77 - 2026-07-31
 
 - Record the released HTTPS Git dependency implementation and public smoke

@@ -69,10 +69,10 @@ for the root project. Transitive entries set `transitive` and record every
 direct parent in `required_by`.
 
 Package identity includes its scheme and the provider's canonical source
-repository. Providers MUST collapse repository redirects and aliases. If two
-graph paths request the same identity with incompatible constraints,
-resolution MUST fail and report both paths. It MUST NOT silently choose one
-constraint.
+repository. Providers MUST collapse repository redirects and aliases. A
+direct project constraint is authoritative over transitive requests for the
+same package. If requests at the same priority use incompatible constraints,
+resolution MUST fail and report both paths. It MUST NOT silently choose one.
 
 Resolution order and output order MUST be deterministic. Network completion
 order must not affect the lockfile.
