@@ -119,8 +119,8 @@
     },
     "dependencyString": {
       "type": "string",
-      "description": "Package in user/repo form, with an optional kind and version reference.",
-      "pattern": "^(plugin://|component://|includes://|filterscript://)?[A-Za-z0-9_.-]+/[A-Za-z0-9_.-]+([:#@].+)?$"
+      "description": "Package in user/repo or HTTPS host/user/repo form, with an optional kind and version reference.",
+      "pattern": "^(?:(?:plugin://|component://|includes://|filterscript://)?[A-Za-z0-9_.-]+/[A-Za-z0-9_.-]+|https://[A-Za-z0-9.-]+/[A-Za-z0-9_.-]+/[A-Za-z0-9_.-]+)([:#@].+)?$"
     },
     "build": {
       "type": "object",

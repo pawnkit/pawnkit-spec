@@ -55,6 +55,8 @@ Dependencies are `user/repo` strings with optional version pinning (source:
   newest matching semantic-version tag.
 - `user/repo@branch-name`: targets a branch.
 - `user/repo#<sha1>`: locks to an exact commit.
+- `https://host/user/repo`: selects another Git host. Credentials, query
+  strings, fragments outside a commit reference, and plain HTTP are rejected.
 - Prefixed schemes select install target: `plugin://` (binaries into
   `./plugins/`), `component://` (open.mp components into `./components/`),
   `includes://` (adds include search paths), `filterscript://`

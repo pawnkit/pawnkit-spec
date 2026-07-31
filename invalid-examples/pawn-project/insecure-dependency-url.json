@@ -1,0 +1,6 @@
+{
+  "entry": "main.pwn",
+  "dependencies": [
+    "http://gitlab.com/example/pawn-library"
+  ]
+}

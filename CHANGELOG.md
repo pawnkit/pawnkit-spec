@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.1.76 - 2026-07-31
+
+- Add HTTPS-hosted ordinary dependency references.
+
 ## 0.1.75 - 2026-07-31
 
 - Define sampctl-compatible semantic-version dependency ranges.

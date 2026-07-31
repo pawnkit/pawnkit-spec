@@ -51,6 +51,11 @@ The resolver applies references as follows:
   a sampctl-compatible caret, tilde, or `x` range.
 - an unqualified dependency resolves the provider's default branch.
 
+Ordinary dependencies may use `https://host/user/repo`. GitHub uses its API
+provider. Other HTTPS hosts use the configured Git client and its credential
+helper. Provider credentials never become part of the dependency identity or
+lock URL. Prefixed resource schemes remain GitHub-only in this version.
+
 Range matching ignores tags that are not semantic versions. Providers sort
 matching versions before selection, so API order cannot change the result.
 
