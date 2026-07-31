@@ -129,10 +129,11 @@ Projects without a lock can create the same version 1 shape through
 
 ## Reference implementation status
 
-`pawn-project` contains the graph resolver, drift check, and lock writer.
-`pawnkit-cli` provides GitHub revision lookup. `pawn install` creates missing
-locks, reconciles changed direct dependencies, and refreshes the full graph
-when passed `--update`.
+`pawn-project` v0.28.0 contains the graph resolver, drift check, lock writer,
+GitHub-independent Git resolver, and bounded manifest reader. `pawnkit-cli`
+v1.24.0 uses the GitHub API for GitHub packages and the configured Git client
+for other HTTPS hosts. `pawn install` creates missing locks, reconciles changed
+direct dependencies, and refreshes the full graph when passed `--update`.
 
 ## Conformance tests
 
@@ -141,10 +142,12 @@ development dependencies, cycles, conflicts, tag ranges, matching lock reuse,
 explicit updates, and deterministic output. `pawn-project/lockfile/dependencies_write_test.go`
 covers lock creation and preservation. `pawnkit-cli` tests GitHub responses,
 offline lock reuse, stale-lock reconciliation, updates, and clean
-manifest-only installation. A public transitive smoke test covers repository
-redirects and repeat installation without provider access.
+manifest-only installation. Public transitive smoke tests cover repository
+redirects, repeat installation without provider access, and a GitLab root
+package with GitHub transitive dependencies.
 
 ## Open questions
 
 - Should update mode later accept selected package names?
-- Which non-GitHub providers should the first implementation support?
+- Should a future version add provider APIs for non-GitHub hosts? The first
+  implementation uses the Git protocol through the configured client.

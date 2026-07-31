@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.1.77 - 2026-07-31
+
+- Record the released HTTPS Git dependency implementation and public smoke
+  test.
+
 ## 0.1.76 - 2026-07-31
 
 - Add HTTPS-hosted ordinary dependency references.
