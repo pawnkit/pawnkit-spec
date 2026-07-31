@@ -1,7 +1,7 @@
 ---
 rfc: 0023
 title: Root dependency overrides
-status: draft
+status: experimental
 created: 2026-07-31
 updated: 2026-07-31
 supersedes: null
@@ -108,14 +108,21 @@ transitive replacement is necessary. Removing one may require `pawn install
 
 ## Reference implementation status
 
-Planned for `pawn-project` and `pawnkit-cli` after review of this draft.
+`pawn-project` v0.32.0 implements root overrides, validation, cycle checks, and
+lock invalidation. `pawnkit-cli` v1.28.0 exposes that implementation through
+`pawn install`.
 
 ## Conformance tests
 
-Planned schema examples will cover valid source and constraint replacements,
-credentials, scheme changes, and malformed identities. `pawn-project` tests
-will cover substitution, cycles, direct dependency precedence, lock drift, and
-deterministic output. ScavengeSurvive will provide the public integration test.
+The project schema includes a valid source replacement and rejects versioned
+override keys. `pawn-project/dependency/resolution_test.go` covers source and
+constraint replacement and override cycles. Manifest tests cover malformed
+identities, schemes, credentials, and duplicate normalized keys.
+
+ScavengeSurvive commit `39c8567c` replaces the stale
+`Misiur/YSI-Includes` request with `pawn-lang/YSI-Includes@5.x`. Its public
+PawnKit workflow installs the locked graph, builds the gamemode, runs format
+and lint checks, and uploads the AMX artifact.
 
 ## Open questions
 
