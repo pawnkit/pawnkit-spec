@@ -68,6 +68,12 @@ manifest and adds its dependencies. Development dependencies are included only
 for the root project. Transitive entries set `transitive` and record every
 direct parent in `required_by`.
 
+Package dependency cycles are allowed. Pawn include guards make guarded header
+cycles valid, and existing sampctl projects use them. The resolver MUST record
+each edge once, stop traversing packages it has already visited, and keep
+installation order deterministic. Override cycles remain invalid under RFC
+0023.
+
 Package identity includes its scheme and the provider's canonical source
 repository. Providers MUST collapse repository redirects and aliases. A
 direct project constraint is authoritative over transitive requests for the
@@ -112,7 +118,8 @@ time and weaken lockfile review.
 
 Repository URLs and manifests are untrusted. The resolver must use bounded
 process output and manifest reads, reject credentials and unsupported URL
-schemes, limit graph depth and package count, and detect cycles.
+schemes, and limit graph depth and package count. It must detect and collapse
+package cycles so they cannot cause unbounded traversal.
 
 Package scripts are not executed. Revisions are verified after checkout.
 Lockfile replacement must be recoverable and must reject links and non-regular
@@ -138,7 +145,7 @@ direct dependencies, and refreshes the full graph when passed `--update`.
 ## Conformance tests
 
 `pawn-project/dependency/resolution_test.go` covers constraints, transitive and
-development dependencies, cycles, conflicts, tag ranges, matching lock reuse,
+development dependencies, guarded cycles, conflicts, tag ranges, matching lock reuse,
 explicit updates, and deterministic output. `pawn-project/lockfile/dependencies_write_test.go`
 covers lock creation and preservation. `pawnkit-cli` tests GitHub responses,
 offline lock reuse, stale-lock reconciliation, updates, and clean

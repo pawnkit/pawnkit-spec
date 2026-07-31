@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.1.82 - 2026-07-31
+
+- Allow bounded package dependency cycles used by guarded Pawn includes.
+
 ## 0.1.81 - 2026-07-31
 
 - Define a unique-basename fallback for stale plugin archive paths.
