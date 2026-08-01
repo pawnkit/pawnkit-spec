@@ -396,7 +396,7 @@
       "repository": "pawnkit/pawnlint",
       "module": "github.com/pawnkit/pawnlint",
       "version": "v1.8.12",
-      "commit": "de7459f6e73502acb88c3d1948a6c319396bb9f3",
+      "commit": "417855f9e185f73fd192943ba00330025a88957b",
       "dependencies": [
         {
           "repository": "pawnkit/pawn-analysis",
@@ -424,7 +424,7 @@
       "repository": "pawnkit/pawnlsp",
       "module": "github.com/pawnkit/pawnlsp",
       "version": "v0.33.74",
-      "commit": "fc0275f679dc85865e85247e738b6ba6cdfaea0f",
+      "commit": "a04c50177d46d34b1b5b86f7008aaf06bb2a4a78",
       "dependencies": [
         {
           "repository": "pawnkit/pawn-analysis",
