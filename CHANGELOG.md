@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.1.86 - 2026-08-01
+
+- Add a candidate toolchain with the trivia-reuse updates in pawn-analysis,
+  pawnlint, pawnlsp, and the PawnKit CLI.
+
 ## 0.1.85 - 2026-08-01
 
 - Promote the August 1 toolchain after its Linux, Windows, and macOS
