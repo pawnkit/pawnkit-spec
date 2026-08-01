@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.1.84 - 2026-08-01
+
+- Add a candidate toolchain set with the latest CLI, linter, and language
+  server releases.
+
 ## 0.1.83 - 2026-07-31
 
 - Advance root dependency overrides to experimental after the public
