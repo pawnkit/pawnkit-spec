@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.1.92 - 2026-08-01
+
+- Promote the incremental editor toolchain with pawn-analysis 0.30.5 and
+  pawnlsp 0.33.80 after the Linux, Windows, and macOS smoke run passed.
+
 ## 0.1.91 - 2026-08-01
 
 - Promote the token-reuse toolchain with pawnlint 1.8.16 and pawnlsp 0.33.79
