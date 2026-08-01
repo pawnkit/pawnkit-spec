@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.1.97 - 2026-08-01
+
+- Promote indexed callable lookup with pawnlint 1.8.21 and pawnlsp 0.33.85
+  after the Linux, Windows, and macOS smoke run passed.
+
 ## 0.1.96 - 2026-08-01
 
 - Promote the editor preparation fix with pawnlint 1.8.20 and pawnlsp 0.33.84
