@@ -1,10 +1,10 @@
 {
   "schemaVersion": 3,
   "id": "toolchain-candidate-2026-08-01-9",
-  "generatedAt": "2026-08-01T15:01:09Z",
+  "generatedAt": "2026-08-01T15:07:03Z",
   "source": {
     "repository": "pawnkit/pawn-actions",
-    "commit": "cab269e745f18aaa2e8014ac1db1e50249537fd9"
+    "commit": "40671acd11f8fcdb2ceb3f49e2bdbf94a50b2aa1"
   },
   "targets": [
     "linux-amd64",
@@ -478,9 +478,9 @@
     }
   ],
   "evidence": {
-    "workflow": "https://github.com/pawnkit/pawn-actions/actions/runs/30701896628",
-    "commit": "cab269e745f18aaa2e8014ac1db1e50249537fd9",
-    "completedAt": "2026-08-01T13:34:17Z",
+    "workflow": "https://github.com/pawnkit/pawn-actions/actions/runs/30705048129",
+    "commit": "40671acd11f8fcdb2ceb3f49e2bdbf94a50b2aa1",
+    "completedAt": "2026-08-01T15:05:23Z",
     "projects": [
       "pawn-corpus/projects/minimal-samp-gamemode",
       "pawn-corpus/projects/filterscript-with-includes",
