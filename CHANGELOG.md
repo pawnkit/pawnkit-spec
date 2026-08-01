@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.1.95 - 2026-08-01
+
+- Promote the editor tree-reuse toolchain with pawnlint 1.8.19 and pawnlsp
+  0.33.83 after the Linux, Windows, and macOS smoke run passed.
+
 ## 0.1.94 - 2026-08-01
 
 - Promote the signed toolchain with pawnlint 1.8.18 and pawnlsp 0.33.82
