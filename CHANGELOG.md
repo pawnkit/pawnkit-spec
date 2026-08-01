@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.1.94 - 2026-08-01
+
+- Promote the signed toolchain with pawnlint 1.8.18 and pawnlsp 0.33.82
+  after the Linux, Windows, and macOS smoke run passed.
+
 ## 0.1.93 - 2026-08-01
 
 - Promote the workspace incremental toolchain with pawnlsp 0.33.81 after the
