@@ -4,7 +4,7 @@
   "generatedAt": "2026-08-01T11:20:00Z",
   "source": {
     "repository": "pawnkit/pawn-actions",
-    "commit": "63108236a8ade98aa2559f96055da37f01dc42e0"
+    "commit": "06e9aa60a09529da105ebb18f777f51c68be8c45"
   },
   "targets": [
     "linux-amd64",
@@ -307,7 +307,7 @@
   ],
   "evidence": {
     "workflow": "https://github.com/pawnkit/pawn-actions/actions/runs/30695212076",
-    "commit": "63108236a8ade98aa2559f96055da37f01dc42e0",
+    "commit": "06e9aa60a09529da105ebb18f777f51c68be8c45",
     "completedAt": "2026-08-01T10:13:38Z",
     "projects": [
       "pawn-corpus/projects/minimal-samp-gamemode",
