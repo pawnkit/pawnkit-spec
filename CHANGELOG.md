@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.1.93 - 2026-08-01
+
+- Promote the workspace incremental toolchain with pawnlsp 0.33.81 after the
+  Linux, Windows, and macOS smoke run passed.
+
 ## 0.1.92 - 2026-08-01
 
 - Promote the incremental editor toolchain with pawn-analysis 0.30.5 and
