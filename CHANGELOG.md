@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.1.87 - 2026-08-01
+
+- Promote the trivia-reuse toolchain after its Linux, Windows, and macOS
+  smoke run passed.
+
 ## 0.1.86 - 2026-08-01
 
 - Add a candidate toolchain with the trivia-reuse updates in pawn-analysis,
