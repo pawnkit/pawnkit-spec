@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.1.89 - 2026-08-01
+
+- Promote the toolchain with pawnlint 1.8.14 and pawnlsp 0.33.77 after the
+  Linux, Windows, and macOS smoke run passed.
+
 ## 0.1.88 - 2026-08-01
 
 - Promote the lint and language-server performance fixes after the Linux,
