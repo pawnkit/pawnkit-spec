@@ -1,7 +1,7 @@
 {
   "schemaVersion": 3,
   "id": "toolchain-candidate-2026-08-01-6",
-  "generatedAt": "2026-08-01T12:51:59Z",
+  "generatedAt": "2026-08-01T12:56:12Z",
   "source": {
     "repository": "pawnkit/pawn-actions",
     "commit": "237b916a5ee85c678e8aa7781ab4c863ce986216"
