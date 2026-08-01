@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.1.85 - 2026-08-01
+
+- Promote the August 1 toolchain after its Linux, Windows, and macOS
+  compatibility run passed.
+
 ## 0.1.84 - 2026-08-01
 
 - Add a candidate toolchain set with the latest CLI, linter, and language
