@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.1.98 - 2026-08-01
+
+### Added
+
+- Promote the define-check allocation fix with pawnlint 1.8.22 and pawnlsp 0.33.86 after Linux, Windows, and macOS smoke runs passed.
+
 ## 0.1.97 - 2026-08-01
 
 - Promote indexed callable lookup with pawnlint 1.8.21 and pawnlsp 0.33.85
