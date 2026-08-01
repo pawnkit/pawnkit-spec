@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.1.88 - 2026-08-01
+
+- Promote the lint and language-server performance fixes after the Linux,
+  Windows, and macOS smoke run passed.
+
 ## 0.1.87 - 2026-08-01
 
 - Promote the trivia-reuse toolchain after its Linux, Windows, and macOS
