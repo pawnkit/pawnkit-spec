@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.1.100 - 2026-08-02
+
+### Added
+
+- Promote the latest PawnKit toolchain after Linux, Windows, and macOS smoke
+  runs and remote artifact verification passed.
+
 ## 0.1.99 - 2026-08-01
 
 ### Added
