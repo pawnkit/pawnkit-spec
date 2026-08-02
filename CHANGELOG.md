@@ -1,5 +1,11 @@
 # Changelog
 
+## Unreleased
+
+### Added
+
+- Add a candidate signed release set with the latest compatible tool releases.
+
 ## 0.1.100 - 2026-08-02
 
 ### Added
