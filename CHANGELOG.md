@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.1.130 - 2026-08-03
+
+- Publish corrected signed toolchain set 29 with matching module-graph commit
+  metadata for pawnlint v1.8.49 and pawnlsp v0.34.32.
+
 ## 0.1.129 - 2026-08-03
 
 - Publish signed toolchain set 28 with pawnlint v1.8.49 and pawnlsp v0.34.32.
