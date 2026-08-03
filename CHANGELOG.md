@@ -1,6 +1,6 @@
 # Changelog
 
-## Unreleased
+## 0.1.120 - 2026-08-03
 
 - Add corrected signed set 19 with component and module-graph versions aligned.
 
