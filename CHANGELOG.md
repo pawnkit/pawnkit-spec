@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.1.148 - 2026-08-04
+
+- Publish signed toolchain set 46 with source and smoke evidence aligned to
+  Actions v1.8.81.
+
 ## 0.1.147 - 2026-08-04
 
 - Publish corrected signed toolchain set 45 with valid smoke evidence timing.
