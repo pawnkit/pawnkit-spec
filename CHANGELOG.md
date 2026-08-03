@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.1.107 - 2026-08-03
+
+### Added
+
+- Add the signed toolchain with pawn 1.34.20, pawnlint 1.8.37, and pawnlsp
+  0.34.15 after the Linux, Windows, and macOS smoke matrix passed.
+
 ## 0.1.106 - 2026-08-03
 
 ### Added
