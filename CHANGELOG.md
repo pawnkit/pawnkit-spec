@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.1.113 - 2026-08-03
+
+- Promote the signed 2026-08-03 toolchain set with pawnlint 1.8.39,
+  pawnlsp 0.34.21, and pawnkit-cli 1.34.22.
+
 ## 0.1.112 - 2026-08-03
 
 ### Changed
