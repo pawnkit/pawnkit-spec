@@ -1,7 +1,7 @@
 {
   "schemaVersion": 3,
   "id": "toolchain-candidate-2026-08-03-13",
-  "generatedAt": "2026-08-03T07:04:10Z",
+  "generatedAt": "2026-08-03T07:10:49Z",
   "source": {
     "repository": "pawnkit/pawn-actions",
     "commit": "fff3555f3d4e1685996aef31cb3fa4d06c423891"
@@ -187,55 +187,55 @@
     {
       "name": "pawnlsp",
       "repository": "pawnkit/pawnlsp",
-      "version": "v0.34.22",
-      "commit": "bd4e499cf6d9388bdbac641b59fea774e9d69b6a",
+      "version": "v0.34.23",
+      "commit": "9015439dc00ab8f0582e9345fa0165867f4a1aa3",
       "artifacts": [
         {
           "target": "linux-amd64",
-          "url": "https://github.com/pawnkit/pawnlsp/releases/download/v0.34.22/pawnlsp_0.34.22_linux_amd64.tar.gz",
-          "size": 4033345,
-          "checksum": "sha256:8429780578dbc2356d61d361897e13e4156be2384999f48e1442c9033d67f6ce",
+          "url": "https://github.com/pawnkit/pawnlsp/releases/download/v0.34.23/pawnlsp_0.34.23_linux_amd64.tar.gz",
+          "size": 4033391,
+          "checksum": "sha256:0d578358265a4e5cb1acca18f82d2b2a02c5f30088f11e091f985652ac9e9a71",
           "sbom": {
-            "url": "https://github.com/pawnkit/pawnlsp/releases/download/v0.34.22/pawnlsp_0.34.22_linux_amd64.tar.gz.sbom.json",
+            "url": "https://github.com/pawnkit/pawnlsp/releases/download/v0.34.23/pawnlsp_0.34.23_linux_amd64.tar.gz.sbom.json",
             "size": 24150,
-            "checksum": "sha256:8e27ac5a18531cb8969c3b1d56c35b9bf25b2b29795044d6bdc6a0a4649407f4"
+            "checksum": "sha256:72a7fc19e58e94122c4b9497b69ec9b3902229e6eb5edad4f2519c6e443c6e9e"
           },
           "provenance": {
             "repository": "pawnkit/pawnlsp",
-            "workflow": "https://github.com/pawnkit/pawnlsp/.github/workflows/release.yml@refs/tags/v0.34.22",
-            "subject": "sha256:8429780578dbc2356d61d361897e13e4156be2384999f48e1442c9033d67f6ce"
+            "workflow": "https://github.com/pawnkit/pawnlsp/.github/workflows/release.yml@refs/tags/v0.34.23",
+            "subject": "sha256:0d578358265a4e5cb1acca18f82d2b2a02c5f30088f11e091f985652ac9e9a71"
           }
         },
         {
           "target": "windows-amd64",
-          "url": "https://github.com/pawnkit/pawnlsp/releases/download/v0.34.22/pawnlsp_0.34.22_windows_amd64.zip",
-          "size": 4111720,
-          "checksum": "sha256:8551b2cd49163007bbe7071d4567e5eef7c6d98ca2cf263dc929f4f94c89812f",
+          "url": "https://github.com/pawnkit/pawnlsp/releases/download/v0.34.23/pawnlsp_0.34.23_windows_amd64.zip",
+          "size": 4111752,
+          "checksum": "sha256:15662e373d24aeec106208e3e665edceda8c01732c28645c2e0f4f1f51d79831",
           "sbom": {
-            "url": "https://github.com/pawnkit/pawnlsp/releases/download/v0.34.22/pawnlsp_0.34.22_windows_amd64.zip.sbom.json",
+            "url": "https://github.com/pawnkit/pawnlsp/releases/download/v0.34.23/pawnlsp_0.34.23_windows_amd64.zip.sbom.json",
             "size": 25179,
-            "checksum": "sha256:bd69a7e09c16a937f860a6e97a4b34ac3a86aea9811fe23386fd75e3e2c0b942"
+            "checksum": "sha256:82991cdd444c5e68853fd0813aca4ec6b74413855676fc7b1521937e2fcf66d0"
           },
           "provenance": {
             "repository": "pawnkit/pawnlsp",
-            "workflow": "https://github.com/pawnkit/pawnlsp/.github/workflows/release.yml@refs/tags/v0.34.22",
-            "subject": "sha256:8551b2cd49163007bbe7071d4567e5eef7c6d98ca2cf263dc929f4f94c89812f"
+            "workflow": "https://github.com/pawnkit/pawnlsp/.github/workflows/release.yml@refs/tags/v0.34.23",
+            "subject": "sha256:15662e373d24aeec106208e3e665edceda8c01732c28645c2e0f4f1f51d79831"
           }
         },
         {
           "target": "darwin-arm64",
-          "url": "https://github.com/pawnkit/pawnlsp/releases/download/v0.34.22/pawnlsp_0.34.22_darwin_arm64.tar.gz",
+          "url": "https://github.com/pawnkit/pawnlsp/releases/download/v0.34.23/pawnlsp_0.34.23_darwin_arm64.tar.gz",
           "size": 3798051,
-          "checksum": "sha256:35e0ea143497ec4c1ed41b046e73203e0fd4518a5b0a30c35ee60b6447ff3a23",
+          "checksum": "sha256:c5117d8ac36d6aa65a03b34d79c5c2cdce1d8e11c07f932308046732a04925b1",
           "sbom": {
-            "url": "https://github.com/pawnkit/pawnlsp/releases/download/v0.34.22/pawnlsp_0.34.22_darwin_arm64.tar.gz.sbom.json",
+            "url": "https://github.com/pawnkit/pawnlsp/releases/download/v0.34.23/pawnlsp_0.34.23_darwin_arm64.tar.gz.sbom.json",
             "size": 24170,
-            "checksum": "sha256:b79ce8ab2b21bf62881933e9af495ccc1b145f34c5a24a97e50fa0ffdf1ef466"
+            "checksum": "sha256:b2246a9199f682a8ac86845ec9541b884cb78228a0de06a4f84386a4bbf85a91"
           },
           "provenance": {
             "repository": "pawnkit/pawnlsp",
-            "workflow": "https://github.com/pawnkit/pawnlsp/.github/workflows/release.yml@refs/tags/v0.34.22",
-            "subject": "sha256:35e0ea143497ec4c1ed41b046e73203e0fd4518a5b0a30c35ee60b6447ff3a23"
+            "workflow": "https://github.com/pawnkit/pawnlsp/.github/workflows/release.yml@refs/tags/v0.34.23",
+            "subject": "sha256:c5117d8ac36d6aa65a03b34d79c5c2cdce1d8e11c07f932308046732a04925b1"
           }
         }
       ]
@@ -408,8 +408,8 @@
     {
       "repository": "pawnkit/pawnlsp",
       "module": "github.com/pawnkit/pawnlsp",
-      "version": "v0.34.22",
-      "commit": "bd4e499cf6d9388bdbac641b59fea774e9d69b6a",
+      "version": "v0.34.23",
+      "commit": "9015439dc00ab8f0582e9345fa0165867f4a1aa3",
       "dependencies": [
         {
           "repository": "pawnkit/pawn-analysis",
