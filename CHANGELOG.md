@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.1.114 - 2026-08-03
+
+- Promote the signed 2026-08-03 toolchain set with pawnkit-cli 1.34.24,
+  pawnlint 1.8.41, and pawnlsp 0.34.23 after the cross-platform smoke run.
+
 ## 0.1.113 - 2026-08-03
 
 - Promote the signed 2026-08-03 toolchain set with pawnlint 1.8.39,
