@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.1.144 - 2026-08-04
+
+- Publish signed toolchain set 42 with the current CLI, linter, and language
+  server releases after the Linux, Windows, and macOS smoke matrix passed.
+
 ## 0.1.143 - 2026-08-03
 
 - Publish corrected signed toolchain set 41 with evidence timing that passes
