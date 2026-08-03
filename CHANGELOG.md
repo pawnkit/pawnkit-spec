@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.1.125 - 2026-08-03
+
+- Publish corrected signed toolchain set 24 with matching source and smoke-run
+  commit metadata.
+
 ## 0.1.124 - 2026-08-03
 
 - Publish signed toolchain set 23 with pawnlint v1.8.46 and pawnlsp v0.34.29.
