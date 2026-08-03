@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.1.106 - 2026-08-03
+
+### Added
+
+- Add the signed toolchain with pawn-analysis v0.30.15 and pawnlsp v0.34.14
+  after the Linux, Windows, and macOS smoke matrix passed.
+
 ## 0.1.105 - 2026-08-03
 
 ### Added
