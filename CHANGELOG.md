@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.1.135 - 2026-08-03
+
+- Publish signed toolchain set 34 with pawnlsp v0.34.37 and the workspace
+  diagnostic ownership fix.
+
 ## 0.1.134 - 2026-08-03
 
 - Publish signed toolchain set 33 with pawn v1.34.29, pawnlint v1.8.53, and
