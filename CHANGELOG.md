@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.1.103 - 2026-08-03
+
+### Added
+
+- Add the signed 2026-08-03 toolchain set with the workspace-index reuse
+  release of pawnlsp.
+
 ## 0.1.102 - 2026-08-03
 
 ### Added
