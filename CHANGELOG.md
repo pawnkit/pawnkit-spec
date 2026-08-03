@@ -1,5 +1,9 @@
 # Changelog
 
+## Unreleased
+
+- Add corrected signed set 19 with component and module-graph versions aligned.
+
 ## 0.1.119 - 2026-08-03
 
 - Promote the cross-platform tested set with pawnkit-cli v1.34.26 and
