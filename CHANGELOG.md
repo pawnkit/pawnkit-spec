@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.1.138 - 2026-08-03
+
+- Publish signed toolchain set 36 with pawn v1.34.30, pawnlsp v0.34.38, and
+  pawntest v1.2.12.
+
 ## 0.1.137 - 2026-08-03
 
 - Add the signed `pawnserver v0.7.2` release set for Linux, Windows, and
