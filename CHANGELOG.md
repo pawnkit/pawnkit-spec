@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.1.116 - 2026-08-03
+
+- Promote the signed 2026-08-03 toolchain set with pawnlint 1.8.42 after the
+  cross-platform smoke run.
+
 ## 0.1.115 - 2026-08-03
 
 - Promote the signed 2026-08-03 toolchain set with pawnlsp 0.34.24 after the
