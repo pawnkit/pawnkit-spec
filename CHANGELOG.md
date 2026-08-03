@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.1.139 - 2026-08-03
+
+- Publish signed toolchain set 37 with pawn v1.34.32, pawnlint v1.8.54, and
+  pawnlsp v0.34.40.
+
 ## 0.1.138 - 2026-08-03
 
 - Publish signed toolchain set 36 with pawn v1.34.30, pawnlsp v0.34.38, and
