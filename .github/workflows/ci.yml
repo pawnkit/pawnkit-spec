@@ -23,9 +23,9 @@ jobs:
       run:
         working-directory: tools/validate
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
 
-      - uses: actions/setup-go@v5
+      - uses: actions/setup-go@v6
         with:
           go-version: ${{ matrix.go-version }}
 
@@ -56,7 +56,7 @@ jobs:
     name: markdown link/format check
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
 
       - name: Check for obviously broken relative links
         run: |
@@ -81,10 +81,10 @@ jobs:
     name: compiler probes
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
 
       - name: Check out pawn-corpus
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
         with:
           repository: pawnkit/pawn-corpus
           ref: 5de1f49a847f674dd03e1c27801f7d17a4b1f1c3
@@ -109,9 +109,9 @@ jobs:
       run:
         working-directory: tools/validate
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
 
-      - uses: actions/setup-go@v5
+      - uses: actions/setup-go@v6
         with:
           go-version: "1.26"
 
