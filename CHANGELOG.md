@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.1.121 - 2026-08-03
+
+- Publish signed toolchain set 20 with the incremental editor cache releases.
+
 ## 0.1.120 - 2026-08-03
 
 - Add corrected signed set 19 with component and module-graph versions aligned.
