@@ -193,7 +193,7 @@
         {
           "target": "linux-amd64",
           "url": "https://github.com/pawnkit/pawnlsp/releases/download/v0.34.24/pawnlsp_0.34.24_linux_amd64.tar.gz",
-          "size": 4033391,
+          "size": 4034821,
           "checksum": "sha256:95aa0887f27cd4700976a41852c196115714b56e1b029f32388d3c695d49436e",
           "sbom": {
             "url": "https://github.com/pawnkit/pawnlsp/releases/download/v0.34.24/pawnlsp_0.34.24_linux_amd64.tar.gz.sbom.json",
@@ -209,7 +209,7 @@
         {
           "target": "windows-amd64",
           "url": "https://github.com/pawnkit/pawnlsp/releases/download/v0.34.24/pawnlsp_0.34.24_windows_amd64.zip",
-          "size": 4111752,
+          "size": 4112286,
           "checksum": "sha256:f078b83f75cd59977828be3118fd54dcbb21e6c53f8f9c5bb22b5e6ed6760cc2",
           "sbom": {
             "url": "https://github.com/pawnkit/pawnlsp/releases/download/v0.34.24/pawnlsp_0.34.24_windows_amd64.zip.sbom.json",
@@ -225,7 +225,7 @@
         {
           "target": "darwin-arm64",
           "url": "https://github.com/pawnkit/pawnlsp/releases/download/v0.34.24/pawnlsp_0.34.24_darwin_arm64.tar.gz",
-          "size": 3798051,
+          "size": 3798248,
           "checksum": "sha256:61bd620f5fbb4450c9e321add7bf9ac250e8eb18ffb26c13755d1b17765dcf39",
           "sbom": {
             "url": "https://github.com/pawnkit/pawnlsp/releases/download/v0.34.24/pawnlsp_0.34.24_darwin_arm64.tar.gz.sbom.json",
