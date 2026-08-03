@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.1.143 - 2026-08-03
+
+- Publish corrected signed toolchain set 41 with evidence timing that passes
+  remote release-set validation.
+
 ## 0.1.142 - 2026-08-03
 
 - Publish signed toolchain set 40 with pawn v1.34.36, pawnlint v1.8.58, and
