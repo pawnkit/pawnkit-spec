@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.1.137 - 2026-08-03
+
+- Add the signed `pawnserver v0.7.2` release set for Linux, Windows, and
+  macOS.
+
 ## 0.1.136 - 2026-08-03
 
 - Publish corrected signed toolchain set 35 with valid evidence timing.

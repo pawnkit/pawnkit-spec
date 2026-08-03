@@ -1,0 +1,111 @@
+{
+  "schemaVersion": 3,
+  "id": "server-preview-2026-08-03",
+  "generatedAt": "2026-08-03T17:30:00Z",
+  "source": {
+    "repository": "pawnkit/pawnserver",
+    "commit": "6b93cb711b97288c2e1e4b2b643d899b549709e4"
+  },
+  "targets": [
+    "linux-amd64",
+    "windows-amd64",
+    "darwin-arm64"
+  ],
+  "profiles": [
+    "samp-037",
+    "openmp"
+  ],
+  "components": [
+    {
+      "name": "pawnserver",
+      "repository": "pawnkit/pawnserver",
+      "version": "v0.7.2",
+      "commit": "6b93cb711b97288c2e1e4b2b643d899b549709e4",
+      "artifacts": [
+        {
+          "target": "linux-amd64",
+          "url": "https://github.com/pawnkit/pawnserver/releases/download/v0.7.2/pawnserver_0.7.2_linux_amd64.tar.gz",
+          "size": 1422414,
+          "checksum": "sha256:446d2c0825f3e4cc6c96b2c4adeaaa6e21b0d710af25084660c860d0caf083ee",
+          "sbom": {
+            "url": "https://github.com/pawnkit/pawnserver/releases/download/v0.7.2/pawnserver_0.7.2_linux_amd64.tar.gz.sbom.json",
+            "size": 3922,
+            "checksum": "sha256:b45b07a794188870ba140cd7ee0767601df41b0a290572ea4bdf16e097b9e3c1"
+          },
+          "provenance": {
+            "repository": "pawnkit/pawnserver",
+            "workflow": "https://github.com/pawnkit/pawnserver/.github/workflows/release.yml@refs/tags/v0.7.2",
+            "subject": "sha256:446d2c0825f3e4cc6c96b2c4adeaaa6e21b0d710af25084660c860d0caf083ee"
+          }
+        },
+        {
+          "target": "windows-amd64",
+          "url": "https://github.com/pawnkit/pawnserver/releases/download/v0.7.2/pawnserver_0.7.2_windows_amd64.zip",
+          "size": 1465099,
+          "checksum": "sha256:b0aa8d92e92a0794005816d87a487d84db7adb43e1e158a1b59adc592d35d276",
+          "sbom": {
+            "url": "https://github.com/pawnkit/pawnserver/releases/download/v0.7.2/pawnserver_0.7.2_windows_amd64.zip.sbom.json",
+            "size": 4885,
+            "checksum": "sha256:a9199eb2c87ebad55ff765efec8183c621f842bcff55025e99cf39301b3c7090"
+          },
+          "provenance": {
+            "repository": "pawnkit/pawnserver",
+            "workflow": "https://github.com/pawnkit/pawnserver/.github/workflows/release.yml@refs/tags/v0.7.2",
+            "subject": "sha256:b0aa8d92e92a0794005816d87a487d84db7adb43e1e158a1b59adc592d35d276"
+          }
+        },
+        {
+          "target": "darwin-arm64",
+          "url": "https://github.com/pawnkit/pawnserver/releases/download/v0.7.2/pawnserver_0.7.2_darwin_arm64.tar.gz",
+          "size": 1299343,
+          "checksum": "sha256:67ce53e191e3bc5aac8a42a04bd5eb0f6fe77a9717b8489f50324864113ac750",
+          "sbom": {
+            "url": "https://github.com/pawnkit/pawnserver/releases/download/v0.7.2/pawnserver_0.7.2_darwin_arm64.tar.gz.sbom.json",
+            "size": 3929,
+            "checksum": "sha256:492d18383d03ff7e38041f3e771f5c5220942f30e72be5265e0bf71ca3acc91e"
+          },
+          "provenance": {
+            "repository": "pawnkit/pawnserver",
+            "workflow": "https://github.com/pawnkit/pawnserver/.github/workflows/release.yml@refs/tags/v0.7.2",
+            "subject": "sha256:67ce53e191e3bc5aac8a42a04bd5eb0f6fe77a9717b8489f50324864113ac750"
+          }
+        }
+      ]
+    }
+  ],
+  "moduleGraph": [
+    {
+      "repository": "pawnkit/pawnserver",
+      "module": "github.com/pawnkit/pawnserver",
+      "version": "v0.7.2",
+      "commit": "6b93cb711b97288c2e1e4b2b643d899b549709e4",
+      "dependencies": []
+    }
+  ],
+  "schemas": [
+    {
+      "name": "pawn-bundle",
+      "version": 1,
+      "url": "https://schemas.pawnkit.dev/pawn-bundle/v1/schema.json",
+      "checksum": "sha256:a0cdf8f4052f4e51979e029d3e16e2a323f53495753e989b9dfae0d2e808298c"
+    }
+  ],
+  "evidence": {
+    "workflow": "https://github.com/pawnkit/pawnserver/actions/runs/30769896791",
+    "commit": "6b93cb711b97288c2e1e4b2b643d899b549709e4",
+    "completedAt": "2026-08-02T22:21:49Z",
+    "projects": [
+      "pawnserver bundle fixtures"
+    ],
+    "targets": [
+      "linux-amd64",
+      "windows-amd64",
+      "darwin-arm64"
+    ]
+  },
+  "knownLimits": [
+    "Server bundles and operation remain experimental.",
+    "Native plugins are verified as files but are not security-sandboxed.",
+    "The release tests bundle fixtures rather than a live public server."
+  ]
+}
