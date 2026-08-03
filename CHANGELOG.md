@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.1.102 - 2026-08-03
+
+### Added
+
+- Add the signed 2026-08-03 toolchain set with the latest parser, analysis,
+  linter, language server, and CLI releases.
+
 ## 0.1.101 - 2026-08-02
 
 ### Added
