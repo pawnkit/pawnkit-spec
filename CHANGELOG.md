@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.1.146 - 2026-08-04
+
+- Publish signed toolchain set 44 with pawnlsp v0.34.47 after the Linux,
+  Windows, and macOS smoke matrix passed.
+
 ## 0.1.145 - 2026-08-04
 
 - Publish signed toolchain set 43 with pawn v1.34.38, pawnlint v1.8.60, and
