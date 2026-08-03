@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.1.110 - 2026-08-03
+
+### Changed
+
+- Promote toolchain signed set 9 with pawn-analysis v0.30.18 and pawnlsp
+  v0.34.18.
+
 ## 0.1.109 - 2026-08-03
 
 ### Added
