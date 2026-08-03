@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.1.128 - 2026-08-03
+
+- Publish signed toolchain set 27 with pawnlint v1.8.48 and pawnlsp v0.34.31.
+
 ## 0.1.127 - 2026-08-03
 
 - Publish corrected signed toolchain set 26 with matching module-graph commit
