@@ -4,7 +4,7 @@
   "generatedAt": "2026-08-03T21:10:23Z",
   "source": {
     "repository": "pawnkit/pawn-actions",
-    "commit": "846bebc64cd3c5d1fdbb98e74b32956ba165eda4"
+    "commit": "43245e1abb71df283dc13903542ea9c4efe13eed"
   },
   "targets": [
     "linux-amd64",
