@@ -188,7 +188,7 @@
       "name": "pawnlsp",
       "repository": "pawnkit/pawnlsp",
       "version": "v0.34.37",
-      "commit": "8b8ca56f832d8de238ddbe2bf1a5bfed3fca11a8",
+      "commit": "8b8ca56a7f784293f4ef79c9eddc04b602853f5c",
       "artifacts": [
         {
           "target": "linux-amd64",
@@ -408,8 +408,8 @@
     {
       "repository": "pawnkit/pawnlsp",
       "module": "github.com/pawnkit/pawnlsp",
-      "version": "v0.34.36",
-      "commit": "72b326f832045ea2fc3a14f3cc1728ddb388ffb0",
+      "version": "v0.34.37",
+      "commit": "8b8ca56a7f784293f4ef79c9eddc04b602853f5c",
       "dependencies": [
         {
           "repository": "pawnkit/pawn-analysis",
