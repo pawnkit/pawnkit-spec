@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.1.147 - 2026-08-04
+
+- Publish corrected signed toolchain set 45 with valid smoke evidence timing.
+
 ## 0.1.146 - 2026-08-04
 
 - Publish signed toolchain set 44 with pawnlsp v0.34.47 after the Linux,
