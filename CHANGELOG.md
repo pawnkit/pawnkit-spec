@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.1.104 - 2026-08-03
+
+### Added
+
+- Promote the signed 2026-08-03 toolchain set after Linux, Windows, and macOS
+  smoke runs and remote artifact verification passed.
+
 ## 0.1.103 - 2026-08-03
 
 ### Added
