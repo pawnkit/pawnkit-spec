@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.1.136 - 2026-08-03
+
+- Publish corrected signed toolchain set 35 with valid evidence timing.
+
 ## 0.1.135 - 2026-08-03
 
 - Publish signed toolchain set 34 with pawnlsp v0.34.37 and the workspace
