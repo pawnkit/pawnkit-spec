@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.1.118 - 2026-08-03
+
+- Promote corrected signed toolchain set 17 with pawnkit-cli 1.34.25 after
+  the cross-platform smoke run.
+
 ## 0.1.117 - 2026-08-03
 
 - Promote the signed 2026-08-03 toolchain set with pawnkit-cli 1.34.25 after
